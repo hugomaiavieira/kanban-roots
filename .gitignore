@@ -1,0 +1,7 @@
+test
+log
+webrat-*
+spec/views
+spec/fixtures
+db/schema.rb
+
