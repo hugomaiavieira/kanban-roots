@@ -5,6 +5,9 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    when /the new project page/
+      new_project_path
+
 
 
     else
