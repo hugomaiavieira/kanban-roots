@@ -5,11 +5,11 @@ class CreateProjects < ActiveRecord::Migration
       t.string :description
       t.date :start
       t.date :end
-
+      
       t.timestamps
     end
   end
-
+  
   def self.down
     drop_table :projects
   end

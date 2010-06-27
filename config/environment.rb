@@ -8,5 +8,9 @@ Rails::Initializer.run do |config|
 
   config.time_zone = 'UTC'
 
+  config.gem 'haml'
+  config.gem 'will_paginate'
+  config.gem 'formtastic'
+  config.gem 'inherited_resources', :version => '1.0.6'
 end
 

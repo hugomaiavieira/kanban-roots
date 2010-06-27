@@ -1,16 +1,7 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Project do
-  before(:each) do
-    @valid_attributes = {
-      :name => "value for name",
-      :description => "value for description",
-      :start => Date.today,
-      :end => Date.today
-    }
-  end
-
-  it "should create a new instance given valid attributes" do
-    Project.create!(@valid_attributes)
+  it "should be valid" do
+    Project.new.should be_valid
   end
 end

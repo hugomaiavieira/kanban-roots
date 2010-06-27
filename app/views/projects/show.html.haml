@@ -1,0 +1,17 @@
+%h1.heading
+  = "Project %s" % resource.id
+  
+- content_tag_for(:dl, resource) do
+  %dt.label= 'Name'
+  %dd.name= h resource.try(:name)
+  %dt.label= 'Description'
+  %dd.description= h resource.try(:description)
+  %dt.label= 'Start'
+  %dd.start= h resource.try(:start)
+  %dt.label= 'End'
+  %dd.end= h resource.try(:end)
+  
+%p.actions
+  = link_to 'Edit', edit_resource_path(resource)
+  |
+  = link_to 'Index', collection_path

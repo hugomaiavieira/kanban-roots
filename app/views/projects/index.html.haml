@@ -1,0 +1,18 @@
+%h1.heading
+  = "Projects"
+
+%p.actions
+  = link_to 'New Project', new_resource_path
+
+%table
+  %thead.header
+    %tr
+      %th.name= 'Name'
+      %th.description= 'Description'
+      %th.start= 'Start'
+      %th.end= 'End'
+      %th.actions= 'Actions'
+  %tbody.items.resources
+    - collection.each do |resource|
+      = render 'item', :resource => resource
+
