@@ -17,15 +17,15 @@ Feature: Manage projects
 
   Scenario: Delete project
     Given the following projects:
-      |name|description|start|end|
-      |name 1|description 1|2010-01-01|2010-02-02|
-      |name 2|description 2|2010-02-01|2010-03-02|
-      |name 3|description 3|2010-03-01|2010-04-02|
-      |name 4|description 4|2010-04-01|2010-05-02|
+      | name   | description   | start      | end        |
+      | name 1 | description 1 | 2010-01-01 | 2010-02-02 |
+      | name 2 | description 2 | 2010-02-01 | 2010-03-02 |
+      | name 3 | description 3 | 2010-03-01 | 2010-04-02 |
+      | name 4 | description 4 | 2010-04-01 | 2010-05-02 |
     When I delete the 3rd project
     Then I should see the following projects:
-      |Name|Description|Start|End|
-      |name 1|description 1|2010-01-01|2010-02-02|
-      |name 2|description 2|2010-02-01|2010-03-02|
-      |name 4|description 4|2010-04-01|2010-05-02|
+      | Name   | Description   | Start      | End        |
+      | name 1 | description 1 | 2010-01-01 | 2010-02-02 |
+      | name 2 | description 2 | 2010-02-01 | 2010-03-02 |
+      | name 4 | description 4 | 2010-04-01 | 2010-05-02 |
 
