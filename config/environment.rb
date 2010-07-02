@@ -12,5 +12,6 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate'
   config.gem 'formtastic'
   config.gem 'inherited_resources', :version => '1.0.6'
+  config.gem 'validation_reflection'
 end
 
