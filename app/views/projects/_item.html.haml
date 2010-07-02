@@ -4,8 +4,9 @@
   %td.start= h resource.try(:start)
   %td.end= h resource.try(:end)
   %td.actions
-    = link_to 'Show', resource_path(resource)
+    = link_to t('application.show'), resource_path(resource)
     |
-    = link_to 'Edit', edit_resource_path(resource)
+    = link_to t('application.edit'), edit_resource_path(resource)
     |
-    = link_to 'Destroy', resource, :confirm => 'Are you sure?', :method => :delete
+    = link_to t('application.destroy'), resource, :confirm => t('application.are_you_sure'), :method => :delete
+

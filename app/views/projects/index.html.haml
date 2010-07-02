@@ -1,17 +1,17 @@
 %h1.heading
-  = "Projects"
+  = t('project.model').pluralize
 
 %p.actions
-  = link_to 'New Project', new_resource_path
+  = link_to t('application.new_project'), new_resource_path
 
 %table
   %thead.header
     %tr
-      %th.name= 'Name'
-      %th.description= 'Description'
-      %th.start= 'Start'
-      %th.end= 'End'
-      %th.actions= 'Actions'
+      %th.name= t('project.name')
+      %th.description= t('project.description')
+      %th.start= t('project.start')
+      %th.end= t('project.end')
+      %th.actions= t('application.actions')
   %tbody.items.resources
     - collection.each do |resource|
       = render 'item', :resource => resource
