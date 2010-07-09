@@ -3,3 +3,5 @@ log
 webrat-*
 db/schema.rb
 database.yml
+capybara-*
+
