@@ -8,6 +8,12 @@ module NavigationHelpers
     when /the new project page/
       new_project_path
 
+  when /the projects page/
+      projects_path
+
+    when /the project edit page/
+      edit_project_path(@project)
+
 
 
     else

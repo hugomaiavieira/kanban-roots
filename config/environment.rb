@@ -13,5 +13,6 @@ Rails::Initializer.run do |config|
   config.gem 'formtastic'
   config.gem 'inherited_resources', :version => '1.0.6'
   config.gem 'validation_reflection'
+  config.gem 'factory_girl'
 end
 

@@ -2,12 +2,20 @@ Given /^the following projects:$/ do |projects|
   Project.create!(projects.hashes)
 end
 
+Given /^I have a project$/ do
+ @project = Factory.create :project
+end
+
 When /^I delete the (\d+)(?:st|nd|rd|th) project$/ do |pos|
   visit projects_path
   within("table tr:nth-child(#{pos.to_i})") do
-    click_link "Destroy"
+    click_link "Excluir"
   end
 end
+
+#When /^I am in the project edit page$/ do
+#  pending # express the regexp above with the code you wish you had
+#end
 
 Then /^I should see the following projects:$/ do |expected_projects_table|
   expected_projects_table.diff!(tableish('table tr', 'td,th'))
