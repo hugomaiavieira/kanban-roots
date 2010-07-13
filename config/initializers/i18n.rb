@@ -1,4 +1,4 @@
-I18n.default_locale = 'pt-BR'
+I18n.default_locale = 'en'
 
 LOCALES_DIRECTORY = "#{RAILS_ROOT}/config/locales"
 
