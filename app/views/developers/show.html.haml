@@ -1,0 +1,14 @@
+%h1.heading
+  = "Developer %s" % resource.id
+
+- content_tag_for(:dl, resource) do
+  %dt.label= 'Name'
+  %dd.name= h resource.try(:name)
+  %dt.label= 'E-mail'
+  %dd.email= h resource.try(:email)
+
+%p.actions
+  = link_to 'Edit', edit_resource_path(resource)
+  |
+  = link_to 'Index', collection_path
+

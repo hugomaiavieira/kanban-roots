@@ -11,9 +11,11 @@ module NavigationHelpers
   when /the projects page/
       projects_path
 
-    when /the project edit page/
-      edit_project_path(@project)
+  when /the project edit page/
+    edit_project_path(@project)
 
+  when /the developer edit page/
+    edit_developer_path(@developer)
 
 
     else
