@@ -1,7 +1,4 @@
-test
-log
-webrat-*
-db/schema.rb
-database.yml
-capybara-*
-
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
