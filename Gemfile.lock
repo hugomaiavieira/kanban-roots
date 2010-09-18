@@ -140,4 +140,5 @@ DEPENDENCIES
   launchy
   mysql2
   rails (= 3.0.0)
+  rspec
   rspec-rails (>= 2.0.0.beta.22)
