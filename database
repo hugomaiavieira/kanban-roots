@@ -1,0 +1,12 @@
+#!/bin/bash
+
+rake db:drop:all
+rake db:create:all
+rake db:migrate
+
+if [ "$RAILS_ENV" != 'test' ]
+then
+    rake db:test:clone
+    rake db:seed
+fi
+
