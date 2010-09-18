@@ -4,6 +4,7 @@ gem 'rails', '3.0.0'
 gem 'mysql2'
 
 gem 'haml'
+gem 'haml-rails'
 gem 'formtastic'
 gem 'inherited_resources'
 
@@ -16,4 +17,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem "factory_girl_rails"
 end
+
+gem 'rails3-generators', :group => :development
 

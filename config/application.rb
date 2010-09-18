@@ -22,6 +22,14 @@ module KanbanRoots
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
+    # Configure generators values.
+    config.generators do |g|
+      g.stylesheets false
+      g.test_framework :rspec,
+                       :view_specs => false,
+                       :fixture_replacement => :factory_girl
+    end
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
