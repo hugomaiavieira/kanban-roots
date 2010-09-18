@@ -7,6 +7,5 @@ rake db:migrate
 if [ "$RAILS_ENV" != 'test' ]
 then
     rake db:test:clone
-    rake db:seed
 fi
 
