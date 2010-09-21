@@ -1,4 +1,6 @@
 KanbanRoots::Application.routes.draw do
+  resources :developers
+
   resources :projects
 
   # The priority is based upon order of creation:

@@ -1,13 +1,13 @@
 Feature: Manage developers
-  As a [stakeholder]
-  I want [behaviour]
-  In order to [goal]
+  As a user
+  I want manage developers
+  In order to organize them
 
   Scenario: Register developers successfully
     Given I am on the new developer page
     When I fill in "Name" with "Someone of Nothing"
     And I fill in "E-mail" with "someone@gmail.com"
-    And I press "Create"
+    And I press "Save"
     Then I should see "Someone of Nothing"
     And I should see "someone@gmail.com"
 
@@ -15,7 +15,7 @@ Feature: Manage developers
     Given I am on the new developer page
     When I fill in "Name" with "<name>"
     And I fill in "E-mail" with "<e-mail>"
-    And I press "Create"
+    And I press "Save"
     Then I should see "<sentence>"
 
     Examples:
@@ -28,6 +28,6 @@ Feature: Manage developers
     Given I have a developer
     When I am on the developer edit page
     And I fill in "Name" with "Someone of Something"
-    And I press "Update"
+    And I press "Save"
     Then I should see "Someone of Something"
 

@@ -11,6 +11,11 @@ Feature: Manage projects
     Then I should see "name 1"
     And I should see "description 1"
 
+  Scenario: Try to register projects with erros
+    Given I am on the new project page
+    And I press "Save"
+    Then I should see "Name can't be blank"
+
   Scenario: Edit a project
     Given I have a project
     When I am on the project edit page
