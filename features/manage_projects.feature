@@ -35,7 +35,7 @@ Feature: Manage projects
     And I am on the projects page
     When I delete the 3rd project
     Then I should see the following projects:
-      | name   | description   |
+      | Name   | Description   |
       | name 1 | description 1 |
       | name 2 | description 2 |
       | name 4 | description 4 |
