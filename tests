@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo ""
+echo "============================="
+echo "Runing unit tests with Rspec"
+echo "============================="
+echo ""
+rspec spec
+
+echo ""
+echo "====================================="
+echo "Runing acceptance tests with Cucumber"
+echo "====================================="
+echo ""
+cucumber features
+
