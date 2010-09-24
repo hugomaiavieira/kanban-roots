@@ -28,8 +28,6 @@ __Keep as simple as possible__
   * Project
     * name
     * description
-    * start
-    * end
 
   * Developer (or Contributor)
     * name
@@ -40,8 +38,8 @@ __Keep as simple as possible__
     * title
     * description
     * points
-    * type (Normal and Bug)
-    * position
+    * type (Normal, Bug, ...)
+    * position (on the board)
     * project_id
     * developer_ids
 
