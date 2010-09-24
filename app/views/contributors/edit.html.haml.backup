@@ -1,7 +1,0 @@
-%h1 Editing developer
-
-= render 'form'
-
-= link_to 'Show', @developer
-\|
-= link_to 'Back', developers_path
