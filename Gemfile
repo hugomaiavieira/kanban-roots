@@ -8,6 +8,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'formtastic'
 gem 'inherited_resources'
+gem 'escape_utils'
 
 group :development, :test do
   gem 'launchy'
