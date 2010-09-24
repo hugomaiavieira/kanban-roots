@@ -9,6 +9,9 @@ __Keep as simple as possible__
 
   * The board have 4 divisions: backlog, todo, doing and done.
 
+  * The backlog division can optionally appear or not on the board, and should
+  have a separated view too.
+
   * Use drag-and-drop of HTML5 to move the tasks between the positions.
 
   * Different types of Task have different colors.
