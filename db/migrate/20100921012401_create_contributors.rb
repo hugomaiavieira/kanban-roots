@@ -1,6 +1,6 @@
-class CreateDevelopers < ActiveRecord::Migration
+class CreateContributors < ActiveRecord::Migration
   def self.up
-    create_table :developers do |t|
+    create_table :contributors do |t|
       t.string :name
       t.string :email
 
@@ -9,6 +9,6 @@ class CreateDevelopers < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :developers
+    drop_table :contributors
   end
 end

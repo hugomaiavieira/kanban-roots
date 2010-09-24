@@ -1,0 +1,10 @@
+%p
+  %b Name:
+  = @contributor.name
+%p
+  %b Email:
+  = @contributor.email
+
+= link_to 'Edit', edit_contributor_path(@contributor)
+\|
+= link_to 'Back', contributors_path

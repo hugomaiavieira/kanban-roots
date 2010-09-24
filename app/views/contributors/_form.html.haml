@@ -1,0 +1,17 @@
+= form_for @contributor do |f|
+  -if @contributor.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@contributor.errors.count, "error")} prohibited this contributor from being saved:"
+      %ul
+        - @contributor.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :email, 'E-mail'
+    = f.text_field :email
+  .actions
+    = f.submit 'Save'
+

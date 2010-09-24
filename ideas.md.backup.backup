@@ -15,10 +15,10 @@ __Keep as simple as possible__
 
 ##Features
 
-  * When a tasks is created, all contributors of the project are informed, besides
+  * When a tasks is created, all developers of the project are informed, besides
     who create.
 
-  * When the position of a tasks is modified, all contributors of the project are
+  * When the position of a tasks is modified, all developers of the project are
     informed, besides who create.
 
   * A simple burn-down chart
@@ -29,7 +29,7 @@ __Keep as simple as possible__
     * name
     * description
 
-  * Contributor (or Contributor)
+  * Developer (or Contributor)
     * name
     * email
     * project_ids
@@ -41,7 +41,7 @@ __Keep as simple as possible__
     * type (Normal, Bug, ...)
     * position (on the board)
     * project_id
-    * contributor_ids
+    * developer_ids
 
 ##Future
 

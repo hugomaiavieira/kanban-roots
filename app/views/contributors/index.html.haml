@@ -1,0 +1,21 @@
+%h1 Listing contributors
+
+%table
+  %tr
+    %th Name
+    %th Email
+    %th
+    %th
+    %th
+
+  - @contributors.each do |contributor|
+    %tr
+      %td= contributor.name
+      %td= contributor.email
+      %td= link_to 'Show', contributor
+      %td= link_to 'Edit', edit_contributor_path(contributor)
+      %td= link_to 'Destroy', contributor, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New contributor', new_contributor_path

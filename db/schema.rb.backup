@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(:version => 20100921012401) do
 
-  create_table "contributors", :force => true do |t|
+  create_table "developers", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
