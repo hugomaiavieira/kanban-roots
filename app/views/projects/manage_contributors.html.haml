@@ -1,0 +1,15 @@
+= semantic_form_for @project do |f|
+  -if @project.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+      %ul
+        - @project.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.input :contributors
+  .actions
+    = f.submit 'Save'
+
+= link_to 'Back', project_path(@project)
+

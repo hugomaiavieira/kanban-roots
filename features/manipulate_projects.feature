@@ -1,6 +1,6 @@
-Feature: Manage projects
+Feature: Manipulate projects
   As a user
-  I want manage my projects
+  I want manipulate projects
   In order to organize them
 
   Scenario: Register new project

@@ -10,13 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100921012401) do
+ActiveRecord::Schema.define(:version => 20100925143453) do
 
   create_table "contributors", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "contributors_projects", :id => false, :force => true do |t|
+    t.integer "contributor_id"
+    t.integer "project_id"
   end
 
   create_table "projects", :force => true do |t|

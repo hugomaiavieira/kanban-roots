@@ -1,7 +1,8 @@
 KanbanRoots::Application.routes.draw do
   resources :contributors
-
   resources :projects
+
+  match 'projects/:id/manage_contributors' => 'projects#manage_contributors',  :as => :manage_contributors
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -60,3 +61,4 @@ KanbanRoots::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
+

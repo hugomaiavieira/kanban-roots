@@ -1,6 +1,6 @@
-Feature: Manage contributors
+Feature: Manipulate contributors
   As a user
-  I want manage contributors
+  I want manipulate contributors
   In order to organize them
 
   Scenario: Register contributors successfully

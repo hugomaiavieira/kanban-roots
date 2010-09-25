@@ -14,8 +14,11 @@ module NavigationHelpers
     when /the project edit page/
       edit_project_path(@project)
 
-  when /the contributor edit page/
+    when /the contributor edit page/
       edit_contributor_path(@contributor)
+
+    when /the manage contributors page/
+      manage_contributors_path(@project)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
