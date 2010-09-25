@@ -1,4 +1,4 @@
-= form_for @contributor do |f|
+= semantic_form_for @contributor do |f|
   -if @contributor.errors.any?
     #errorExplanation
       %h2= "#{pluralize(@contributor.errors.count, "error")} prohibited this contributor from being saved:"
@@ -7,11 +7,9 @@
           %li= msg
 
   .field
-    = f.label :name
-    = f.text_field :name
+    = f.input :name
   .field
-    = f.label :email, 'E-mail'
-    = f.text_field :email
+    = f.input :email, :label => 'E-mail'
   .actions
     = f.submit 'Save'
 
