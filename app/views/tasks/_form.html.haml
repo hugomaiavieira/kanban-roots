@@ -1,0 +1,19 @@
+= semantic_form_for @task do |f|
+  -if @task.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+      %ul
+        - @task.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.input :title
+  .field
+    = f.input :description
+  .field
+    = f.input :points, :as => 'select', :collection => Task::POINTS
+  .field
+    = f.input :category, :as => 'select', :collection => Task::CATEGORIES
+  .actions
+    = f.submit 'Save'
+

@@ -22,7 +22,7 @@ __Keep as simple as possible__
     who create.
 
   * When the position of a tasks is modified, all contributors of the project are
-    informed, besides who create.
+    informed, besides who move.
 
   * A simple burn-down chart
 
@@ -32,7 +32,7 @@ __Keep as simple as possible__
     * name
     * description
 
-  * Contributor (or Contributor)
+  * Contributor
     * name
     * email
     * project_ids
@@ -41,7 +41,7 @@ __Keep as simple as possible__
     * title
     * description
     * points
-    * type (Normal, Bug, ...)
+    * category (Normal, Bug, ...)
     * position (on the board)
     * project_id
     * contributor_ids

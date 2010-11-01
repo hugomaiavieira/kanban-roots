@@ -1,4 +1,6 @@
 KanbanRoots::Application.routes.draw do
+  resources :tasks
+
   resources :contributors
   resources :projects
 

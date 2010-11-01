@@ -1,0 +1,19 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @task.title
+%p
+  %b Description:
+  = @task.description
+%p
+  %b Points:
+  = @task.points
+%p
+  %b Category:
+  = @task.category
+
+= link_to 'Edit', edit_task_path(@task)
+\|
+= link_to 'Back', tasks_path
+
