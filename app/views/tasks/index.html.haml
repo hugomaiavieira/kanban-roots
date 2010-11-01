@@ -6,6 +6,7 @@
     %th Description
     %th Points
     %th Category
+    %th Position
     %th
     %th
     %th
@@ -16,6 +17,7 @@
       %td= task.description
       %td= task.points
       %td= task.category
+      %td= task.position
       %td= link_to 'Show', task
       %td= link_to 'Edit', edit_task_path(task)
       %td= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete

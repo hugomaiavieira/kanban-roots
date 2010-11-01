@@ -9,11 +9,13 @@ Feature: Manipulate tasks
     And I fill in "Description" with "Create issues for kanban-roots project"
     And I select "5" from "Points"
     And I select "Feature" from "Category"
+    And I select "" from "Position"
     And I press "Save"
     Then I should see "Create issue"
     And I should see "Create issues for kanban-roots project"
     And I should see "5"
     And I should see "Feature"
+    And I should see "Backlog"
 
   Scenario: Try to register tasks with errors
     Given I am on the new task page

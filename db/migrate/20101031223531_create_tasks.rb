@@ -5,6 +5,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :description
       t.integer :points
       t.string :category
+      t.string :position, :default => 'Backlog'
 
       t.timestamps
     end

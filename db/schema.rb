@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20101031223531) do
     t.string   "description"
     t.integer  "points"
     t.string   "category"
+    t.string   "position",    :default => "Backlog"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
