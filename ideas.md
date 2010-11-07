@@ -45,6 +45,7 @@ __Keep as simple as possible__
     * position (on the board)
     * project_id
     * contributor_ids
+    * comments __new__
 
 ##Future
 
