@@ -18,6 +18,8 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem "factory_girl_rails"
+  gem 'remarkable_activerecord', '4.0.0.alpha4'
+  gem 'remarkable_activemodel', '4.0.0.alpha4'
 end
 
 gem 'rails3-generators', :group => :development
