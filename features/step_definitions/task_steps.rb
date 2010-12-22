@@ -3,7 +3,11 @@ Given /^I have a task$/ do
 end
 
 Given /^the following tasks:$/ do |tasks|
-  Task.create!(tasks.hashes)
+  hash = tasks.hashes
+  hash.each do |dict|
+    dict[:project] = @project
+  end
+  Task.create!(hash)
 end
 
 Given /^I have a task of "([^"]*)" project$/ do |project_name|
