@@ -1,4 +1,4 @@
-= semantic_form_for @task do |f|
+= semantic_form_for [@project, @task] do |f|
   -if @task.errors.any?
     #error_explanation
       %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
@@ -18,4 +18,3 @@
     = f.input :position, :as => 'select', :collection => Task::POSITIONS, :prompt => false
   .actions
     = f.submit 'Save'
-

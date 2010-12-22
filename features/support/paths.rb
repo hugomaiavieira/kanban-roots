@@ -18,7 +18,10 @@ module NavigationHelpers
       edit_contributor_path(@contributor)
 
     when /the task edit page/
-      edit_task_path(@task)
+      edit_project_task_path(@project, @task)
+
+   when /^the (.*) tasks page$/i
+     project_tasks_path(@project)
 
     when /the manage contributors page/
       manage_contributors_path(@project)

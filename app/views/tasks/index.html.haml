@@ -18,11 +18,11 @@
       %td= task.points
       %td= task.category
       %td= task.position
-      %td= link_to 'Show', task
-      %td= link_to 'Edit', edit_task_path(task)
-      %td= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Show', project_task_path(@project, task)
+      %td= link_to 'Edit', edit_project_task_path(@project, task)
+      %td= link_to 'Destroy', project_task_path(@project, task),
+                              :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Task', new_task_path
-
+= link_to 'New Task', new_project_task_path

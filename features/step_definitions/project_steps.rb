@@ -18,3 +18,8 @@ When /^I delete the (\d+)(?:st|nd|rd|th) project$/ do |pos|
   end
 end
 
+Then /^"([^"]*)" project should have "([^"]*)" task$/ do |project_name, tasks_number|
+  project = Project.where(:name => project_name).first
+  project.tasks.count.should == tasks_number.to_i
+end
+

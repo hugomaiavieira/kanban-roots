@@ -1,8 +1,8 @@
 KanbanRoots::Application.routes.draw do
-  resources :tasks
-
   resources :contributors
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
 
   match 'projects/:id/manage_contributors' => 'projects#manage_contributors',  :as => :manage_contributors
 

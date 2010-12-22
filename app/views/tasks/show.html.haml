@@ -16,7 +16,6 @@
   %b Position:
   = @task.position
 
-= link_to 'Edit', edit_task_path(@task)
+= link_to 'Edit', edit_project_task_path(@project, @task)
 \|
-= link_to 'Back', tasks_path
-
+= link_to 'Back', project_tasks_path
