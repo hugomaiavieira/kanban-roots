@@ -1,25 +1,20 @@
 require 'spec_helper'
 
 describe Contributor do
-
-  it "should have a name" do
-    contributor = Factory.build :contributor, :name => ""
-    contributor.save.should be_false
-  end
+  should_validate_presence_of :name
 
   it "should have a valid e-mail" do
     contributor = Factory.build :contributor, :email => ""
-    contributor.save.should be_false
+    contributor.should_not be_valid
 
     contributor.email = "hugo@"
-    contributor.save.should be_false
+    contributor.should_not be_valid
 
     contributor.email = "hugo@gmail.c"
-    contributor.save.should be_false
+    contributor.should_not be_valid
 
     contributor.email = "hugo@gmail.com"
-    contributor.save.should be_true
+    contributor.should be_valid
   end
-
 end
 
