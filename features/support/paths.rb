@@ -26,6 +26,9 @@ module NavigationHelpers
     when /the manage contributors page/
       manage_contributors_path(@project)
 
+    when /the projects board page/
+      board_path(@project)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
