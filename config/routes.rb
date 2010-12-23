@@ -1,11 +1,11 @@
 KanbanRoots::Application.routes.draw do
-  resources :boards
   resources :contributors
   resources :projects do
     resources :tasks
   end
 
   match 'projects/:id/manage_contributors' => 'projects#manage_contributors',  :as => :manage_contributors
+  match 'projects/:project_id/board' => 'boards#show',  :as => :project_board
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
