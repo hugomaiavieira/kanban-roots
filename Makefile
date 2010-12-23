@@ -31,3 +31,13 @@ javascript:
 	@echo ""
 	@cucumber features --tag @javascript --format progress
 
+data:
+	@echo "================================"
+	@echo "Recreating database from scratch"
+	@echo "================================"
+	@rake db:drop:all
+	@rake db:create:all
+	@rake db:migrate
+
+	@[ "$RAILS_ENV" != 'test' ] && rake db:test:clone
+
