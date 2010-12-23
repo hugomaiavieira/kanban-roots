@@ -13,11 +13,9 @@ Feature: Manipulate tasks
     And I select "Feature" from "Category"
     And I select "" from "Position"
     And I press "Save"
-    Then I should see "Create issue"
-    And I should see "Create issues for kanban-roots project"
-    And I should see "5"
-    And I should see "Feature"
-    And I should see "Backlog"
+    Then I should be on the projects board page
+    And I should see "Task was successfully created."
+    And I should see "Create issue"
     And "Sgtran" project should have "1" task
 
   Scenario: Try to register tasks with errors
