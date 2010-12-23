@@ -15,6 +15,7 @@
   .field
     = f.input :category, :as => 'select', :collection => Task::CATEGORIES
   .field
-    = f.input :position, :as => 'select', :collection => Task::POSITIONS, :prompt => false
+    = f.input :position, :as => 'select', :collection => Board::POSITIONS, :prompt => false
   .actions
     = f.submit 'Save'
+
