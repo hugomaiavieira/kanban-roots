@@ -4,5 +4,9 @@ class TasksController < InheritedResources::Base
   def create
     create! { project_board_path }
   end
+
+  def update
+    update! { project_board_path }
+  end
 end
 

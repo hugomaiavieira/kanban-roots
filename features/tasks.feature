@@ -31,5 +31,6 @@ Feature: Manipulate tasks
     When I am on the task edit page
     And I fill in "Title" with "Close issue"
     And I press "Save"
+    Then I should be on the projects board page
     Then I should see "Close issue"
 
