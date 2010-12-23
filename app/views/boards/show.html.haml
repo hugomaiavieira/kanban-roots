@@ -1,0 +1,40 @@
+%h1
+  = @project.name
+  Board
+
+-# XXX: This table and the awful code at 'while' is just temporary, until the
+-# drag and drop come in the scene
+
+%table
+  %tr
+    %th Backlog
+    %th To Do
+    %th Doing
+    %th Done
+
+    - while not @tasks.empty? do
+      %tr
+        %td
+          - task = ((@tasks.collect { |item| item if item.position == 'Backlog' }).compact).first
+          - if task
+            = link_to task.title, project_task_path(@project, task)
+            - task = @tasks.delete_if { |item| item == task }
+        %td
+          - task = ((@tasks.collect { |item| item if item.position == 'To Do' }).compact).first
+          - if task
+            = link_to task.title, project_task_path(@project, task)
+            - task = @tasks.delete_if { |item| item == task }
+        %td
+          - task = ((@tasks.collect { |item| item if item.position == 'Doing' }).compact).first
+          - if task
+            = link_to task.title, project_task_path(@project, task)
+            - task = @tasks.delete_if { |item| item == task }
+        %td
+          - task = ((@tasks.collect { |item| item if item.position == 'Done' }).compact).first
+          - if task
+            = link_to task.title, project_task_path(@project, task)
+            - task = @tasks.delete_if { |item| item == task }
+
+%br
+= link_to 'New Task', new_project_task_path
+
