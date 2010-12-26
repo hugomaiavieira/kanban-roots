@@ -1,0 +1,20 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @team.name
+%p
+  %b Contributors:
+  = @team.contributors.collect(&:name).to_sentence
+%p
+  %b Projects:
+  = @team.projects.collect(&:name).to_sentence
+
+= link_to 'Edit', edit_team_path(@team)
+\|
+= link_to 'Back', teams_path
+\|
+= link_to 'Manage contributors', manage_contributors_path(@team)
+\|
+= link_to 'Manage projects', manage_projects_path(@team)
+

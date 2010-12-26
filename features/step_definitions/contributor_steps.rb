@@ -5,7 +5,7 @@ end
 
 Given /^I am a contributor of "([^"]*)" project$/ do |name|
   @project = Factory.create :project, :name => name
-  @contributor = Factory.create :contributor, :projects => [@project]
-  @project.update_attributes(:contributors => [@contributor])
+  @contributor = Factory.create :contributor
+  @team = Factory.create :team, :projects => [@project], :contributors => [@contributor]
 end
 

@@ -4,14 +4,10 @@
 %p
   %b Description:
   = @project.description
-%p
-  %b Contributors:
-  = @project.contributors.collect(&:name).to_sentence
 
 = link_to 'Edit', edit_project_path(@project)
 \|
 = link_to 'Back', projects_path
 \|
-= link_to 'Manage contributors', manage_contributors_path(@project)
-\|
 = link_to 'Board', project_board_path(@project)
+

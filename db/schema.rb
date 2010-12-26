@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101031223531) do
+ActiveRecord::Schema.define(:version => 20101226144824) do
 
   create_table "contributors", :force => true do |t|
     t.string   "name"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(:version => 20101031223531) do
     t.datetime "updated_at"
   end
 
-  create_table "contributors_projects", :id => false, :force => true do |t|
+  create_table "contributors_teams", :id => false, :force => true do |t|
     t.integer "contributor_id"
-    t.integer "project_id"
+    t.integer "team_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(:version => 20101031223531) do
     t.datetime "updated_at"
   end
 
+  create_table "projects_teams", :id => false, :force => true do |t|
+    t.integer "project_id"
+    t.integer "team_id"
+  end
+
   create_table "tasks", :force => true do |t|
     t.string   "title"
     t.string   "description"
@@ -38,6 +43,12 @@ ActiveRecord::Schema.define(:version => 20101031223531) do
     t.string   "category"
     t.string   "position",    :default => "Backlog"
     t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

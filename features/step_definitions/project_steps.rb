@@ -23,3 +23,7 @@ Then /^"([^"]*)" project should have "([^"]*)" task$/ do |project_name, tasks_nu
   project.tasks.count.should == tasks_number.to_i
 end
 
+Given /^I have a project named "([^"]*)"$/ do |name|
+  Factory.create :project, :name => name
+end
+
