@@ -15,6 +15,9 @@
 %p
   %b Position:
   = @task.position
+%p
+  %b Sponsors:
+  = @task.contributors.collect(&:name).to_sentence
 
 = link_to 'Edit', edit_project_task_path(@project, @task)
 \|

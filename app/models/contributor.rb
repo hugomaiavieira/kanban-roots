@@ -1,6 +1,7 @@
 class Contributor < ActiveRecord::Base
 
   has_and_belongs_to_many :teams
+  has_and_belongs_to_many :tasks
 
   validates_presence_of :name, :email
   validates_format_of :email,

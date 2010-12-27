@@ -34,3 +34,18 @@ Feature: Manipulate tasks
     Then I should be on the projects board page
     Then I should see "Close issue"
 
+  Scenario: Edit a task
+    Given I have a task of "Sgtran" project
+    And I have a team
+    And "Hugo Maia" belongs to the team
+    And "Rodrigo Manhães" belongs to the team
+    And the team works on this project
+    When I am on the task edit page
+    And I select "Hugo Maia" from "Sponsors"
+    And I select "Rodrigo Manhães" from "Sponsors"
+    And I press "Save"
+    Then I should be on the projects board page
+    And I should see "Task was successfully updated."
+    And "Hugo Maia" should be a sponsor of the task
+    And "Rodrigo Manhães" should be a sponsor of the task
+

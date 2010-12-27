@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(:version => 20101226144824) do
     t.datetime "updated_at"
   end
 
+  create_table "contributors_tasks", :id => false, :force => true do |t|
+    t.integer "contributor_id"
+    t.integer "task_id"
+  end
+
   create_table "contributors_teams", :id => false, :force => true do |t|
     t.integer "contributor_id"
     t.integer "team_id"

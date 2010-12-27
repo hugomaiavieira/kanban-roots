@@ -16,6 +16,8 @@
     = f.input :category, :as => 'select', :collection => Task::CATEGORIES
   .field
     = f.input :position, :as => 'select', :collection => Board::POSITIONS, :prompt => false
+  .field
+    = f.input :contributors, :label => 'Sponsors'
   .actions
     = f.submit 'Save'
 

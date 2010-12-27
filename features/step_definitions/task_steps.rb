@@ -15,3 +15,8 @@ Given /^I have a task of "([^"]*)" project$/ do |project_name|
   @task = Factory.create :task, :project => @project
 end
 
+Then /^"([^"]*)" should be a sponsor of the task$/ do |name|
+  sponsor = (Contributor.where :name => name).first
+  @task.contributors.should include(sponsor)
+end
+
