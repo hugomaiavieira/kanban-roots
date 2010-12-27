@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Contributor do
-  should_validate_presence_of :name
+  should_validate_presence_of :name, :email
+  should_have_and_belong_to_many :teams
+  should_have_and_belong_to_many :tasks
 
   it "should have a valid e-mail" do
     contributor = Factory.build :contributor, :email => ""
