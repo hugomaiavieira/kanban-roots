@@ -14,10 +14,18 @@ ActiveRecord::Schema.define(:version => 20101226144824) do
 
   create_table "contributors", :force => true do |t|
     t.string   "name"
-    t.string   "email"
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "contributors", ["email"], :name => "index_contributors_on_email", :unique => true
+  add_index "contributors", ["reset_password_token"], :name => "index_contributors_on_reset_password_token", :unique => true
 
   create_table "contributors_tasks", :id => false, :force => true do |t|
     t.integer "contributor_id"

@@ -1,4 +1,6 @@
 class TeamsController < InheritedResources::Base
+  before_filter :authenticate_contributor!
+
   def manage_contributors
     @team = Team.find(params[:id])
   end

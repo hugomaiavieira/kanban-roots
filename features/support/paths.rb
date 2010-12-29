@@ -17,18 +17,23 @@ module NavigationHelpers
     when /the projects board page/
       project_board_path(@project)
 
-    when /the contributor edit page/
-      edit_contributor_path(@contributor)
+    when /my details page/
+      contributor_path(@contributor)
+
+    when /the new contributor page/
+      new_contributor_registration_path
 
     when /the task edit page/
       edit_project_task_path(@project, @task)
 
-   when /^the (.*) tasks page$/i
-     project_tasks_path(@project)
+    when /^the (.*) tasks page$/i
+      project_tasks_path(@project)
 
     when /the team page/
       team_path(@team)
 
+    when /the sign in page/
+      new_contributor_session_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

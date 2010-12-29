@@ -5,6 +5,7 @@ Feature: Manipulate tasks
 
   Scenario: Register task successfully
     Given I am a contributor of "Sgtran" project
+    And I am authenticated
     And I am on the "Sgtran" tasks page
     When I follow "New Task"
     And I fill in "Title" with "Create issues"
@@ -20,6 +21,7 @@ Feature: Manipulate tasks
 
   Scenario: Try to register tasks with errors
     Given I am a contributor of "Sgtran" project
+    And I am authenticated
     And I am on the "Sgtran" tasks page
     When I follow "New Task"
     When I fill in "Title" with ""
@@ -27,15 +29,19 @@ Feature: Manipulate tasks
     Then I should see "Title can't be blank"
 
   Scenario: Edit a task
-    Given I have a task of "Sgtran" project
+    Given I am a contributor of "Sgtran" project
+    And I am authenticated
+    And I have a task of "Sgtran" project
     When I am on the task edit page
     And I fill in "Title" with "Close issue"
     And I press "Save"
     Then I should be on the projects board page
     Then I should see "Close issue"
 
-  Scenario: Edit a task
-    Given I have a task of "Sgtran" project
+  Scenario: Add sponsors for a task
+    Given I am a contributor of "Sgtran" project
+    And I am authenticated
+    And I have a task of "Sgtran" project
     And I have a team
     And "Hugo Maia" belongs to the team
     And "Rodrigo Manhães" belongs to the team

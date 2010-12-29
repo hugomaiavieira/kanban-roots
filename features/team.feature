@@ -4,20 +4,23 @@ Feature: Manipulate teams
   In order to organize easier the contributors of the projects
 
   Scenario: Register team successfully
-    Given I am on the new team page
+    Given I am an authenticated contributor
+    And I am on the new team page
     When I fill in "Name" with "Owners"
     And I press "Save"
     Then I should see "Owners"
     And I should see "Team was successfully created."
 
   Scenario: Register team with errors
-    Given I am on the new team page
+    Given I am an authenticated contributor
+    And I am on the new team page
     When I fill in "Name" with ""
     And I press "Save"
     And I should see "Name can't be blank"
 
   Scenario: Add conributors
-    Given I have a team
+    Given I am an authenticated contributor
+    And I have a team
     And I have a contributor named "Hugo Maia Vieira"
     And I have a contributor named "Rodrigo Manhães"
     And I am on the team page
@@ -29,7 +32,8 @@ Feature: Manipulate teams
     And I should see "Team was successfully updated."
 
   Scenario: Add project
-    Given I have a team
+    Given I am an authenticated contributor
+    And I have a team
     And I have a project named "kanban-roots"
     And I have a project named "sgtran"
     And I am on the team page

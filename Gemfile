@@ -9,6 +9,7 @@ gem 'haml-rails'
 gem 'formtastic'
 gem 'inherited_resources'
 gem 'escape_utils'
+gem 'devise'
 
 group :development, :test do
   gem 'factory_girl_rails'

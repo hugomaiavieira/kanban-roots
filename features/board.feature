@@ -4,7 +4,8 @@ Feature: Use the board
   In order see, move and manipulate the taks of my project
 
   Scenario: Show the board
-    Given I have a project
+    Given I am an authenticated contributor
+    And I have a project
     And the following tasks:
       | title  | position |
       | task 1 | Backlog  |

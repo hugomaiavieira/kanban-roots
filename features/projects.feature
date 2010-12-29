@@ -4,7 +4,8 @@ Feature: Manipulate projects
   In order to organize them
 
   Scenario: Register new project
-    Given I am on the new project page
+    Given I am an authenticated contributor
+    And I am on the new project page
     When I fill in "Name" with "name 1"
     And I fill in "Description" with "description 1"
     And I press "Save"
@@ -12,12 +13,14 @@ Feature: Manipulate projects
     And I should see "description 1"
 
   Scenario: Try to register projects with erros
-    Given I am on the new project page
+    Given I am an authenticated contributor
+    And I am on the new project page
     And I press "Save"
     Then I should see "Name can't be blank"
 
   Scenario: Edit a project
-    Given I have a project
+    Given I am an authenticated contributor
+    And I have a project
     When I am on the project edit page
     And I fill in "Name" with "Some name"
     And I fill in "Description" with "Any description"
@@ -26,7 +29,8 @@ Feature: Manipulate projects
     And I should see "Any description"
 
   Scenario: Delete project
-    Given the following projects:
+    Given I am an authenticated contributor
+    And the following projects:
       | name   | description   |
       | name 1 | description 1 |
       | name 2 | description 2 |

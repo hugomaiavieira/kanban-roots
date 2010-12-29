@@ -1,4 +1,6 @@
 class BoardsController < InheritedResources::Base
+  before_filter :authenticate_contributor!
+
   actions :show
 
   def show
