@@ -8,8 +8,9 @@
   <body>
 
     <% if contributor_signed_in? %>
-      Hello <%= current_contributor.name %>. Not you?
-      <%= link_to 'Sign out', destroy_contributor_session_path %>
+      Hello <%= link_to current_contributor.name,
+                        contributor_path(current_contributor) %>.
+      Not you? <%= link_to 'Sign out', destroy_contributor_session_path %>
     <% else %>
       <%= link_to 'Sign up', new_contributor_registration_path %> or
       <%= link_to 'Sign in', new_contributor_session_path %>
@@ -18,6 +19,8 @@
     <%- flash.each do |name, msg| -%>
       <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
     <%- end -%>
+
+    <p><%= link_to 'Home', root_path %></p>
 
     <%= yield %>
 
