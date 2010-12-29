@@ -11,7 +11,7 @@ KanbanRoots::Application.routes.draw do
   match 'teams/:id/manage_projects' => 'teams#manage_projects',  :as => :manage_projects
   match 'projects/:project_id/board' => 'boards#show',  :as => :project_board
 
-  root :to => 'projects#index'
+  root :to => 'contributors#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

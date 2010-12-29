@@ -10,5 +10,13 @@ class Contributor < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def projects
+    project_list = []
+    self.teams.each do |team|
+      project_list << team.projects
+    end
+    project_list.flatten
+  end
+
 end
 

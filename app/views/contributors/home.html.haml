@@ -1,0 +1,22 @@
+%h1 Kanban-roots
+
+%h2 My projects
+
+%ul
+  - current_contributor.projects.each do |project|
+    %li
+      = link_to project.name, project_path(project)
+
+%p
+  = link_to 'New project', new_project_path
+
+%h2 My teams
+
+%ul
+  - current_contributor.teams.each do |team|
+    %li
+      = link_to team.name, team_path(team)
+
+%p
+  = link_to 'New team', new_team_path
+
