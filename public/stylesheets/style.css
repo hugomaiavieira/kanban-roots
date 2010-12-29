@@ -1,0 +1,21 @@
+body {
+    font-family: Molengo, Verdana, Helvetica;
+}
+
+table {
+    border: solid 2px #bfbfbf;
+}
+
+th {
+    background-color: #80c0ff;
+    padding: 1px 4px;
+}
+
+tr:nth-child(odd) {
+  background-color: #c7ffc7;
+}
+
+td {
+    padding: 1px 4px;
+}
+
