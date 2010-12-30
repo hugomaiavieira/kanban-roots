@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20101226144824) do
 
   create_table "tasks", :force => true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.integer  "points"
     t.string   "category"
     t.string   "position",    :default => "Backlog"
