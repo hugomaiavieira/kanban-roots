@@ -5,7 +5,7 @@
 -# XXX: This table and the awful code at 'while' is just temporary, until the
 -# drag and drop come in the scene
 
-%table
+%table.board
   %tr
     %th Backlog
     %th To Do
@@ -17,22 +17,22 @@
         %td
           - task = ((@tasks.collect { |item| item if item.position == Board::BACKLOG }).compact).first
           - if task
-            = link_to task.title, project_task_path(@project, task)
+            = link_to task.title, project_task_path(@project, task), :class => 'postit'
             - task = @tasks.delete_if { |item| item == task }
         %td
           - task = ((@tasks.collect { |item| item if item.position == Board::TODO }).compact).first
           - if task
-            = link_to task.title, project_task_path(@project, task)
+            = link_to task.title, project_task_path(@project, task), :class => 'postit'
             - task = @tasks.delete_if { |item| item == task }
         %td
           - task = ((@tasks.collect { |item| item if item.position == Board::DOING }).compact).first
           - if task
-            = link_to task.title, project_task_path(@project, task)
+            = link_to task.title, project_task_path(@project, task), :class => 'postit'
             - task = @tasks.delete_if { |item| item == task }
         %td
           - task = ((@tasks.collect { |item| item if item.position == Board::DONE }).compact).first
           - if task
-            = link_to task.title, project_task_path(@project, task)
+            = link_to task.title, project_task_path(@project, task), :class => 'postit'
             - task = @tasks.delete_if { |item| item == task }
 
 %br
