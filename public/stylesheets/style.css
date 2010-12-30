@@ -34,16 +34,20 @@ div.board {
     border: solid 2px #bfbfbf;
 }
 
+div.board h3 {
+    border-bottom: solid 2px #bfbfbf;
+    margin: 0px 3px;
+    padding: 3px;
+    text-align: center;
+}
+
 div.division {
     float: left;
     width: 390px;
 }
 
-div.division h3 {
-    border-bottom: solid 2px #bfbfbf;
-    margin: 0px;
-    padding: 3px;
-    text-align: center;
+div.backlog {
+    width: 1170px;
 }
 
 .postit {

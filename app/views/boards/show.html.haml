@@ -17,7 +17,7 @@
       = (to_postit task).html_safe
 
 .board
-  .division
+  .backlog
     %h3 Backlog
     - (@project.tasks_by_position Board::BACKLOG).each do |task|
       = (to_postit task).html_safe
