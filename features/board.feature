@@ -19,8 +19,8 @@ Feature: Use the board
       | task 9 | Done     |
     When I am on the projects board page
     Then I should see a board like this:
-      | Backlog | To Do  | Doing  | Done   |
-      | task 1  | task 2 | task 5 | task 7 |
-      | task 3  | task 6 | task 8 | task 9 |
-      | task 4  |        |        |        |
+      | Backlog                     | To Do                       | Doing                       | Done                        |
+      | task 1\n  \n    Set sponsor | task 2\n  \n    Set sponsor | task 5\n  \n    Set sponsor | task 7\n  \n    Set sponsor |
+      | task 3\n  \n    Set sponsor | task 6\n  \n    Set sponsor | task 8\n  \n    Set sponsor | task 9\n  \n    Set sponsor |
+      | task 4\n  \n    Set sponsor |                             |                             |                             |
 
