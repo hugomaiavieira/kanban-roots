@@ -5,5 +5,9 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def tasks_by_position position
+    # XXX: It is not tested!
+    (self.tasks.collect { |item| item if item.position == position }).compact
+  end
 end
 

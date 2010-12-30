@@ -2,23 +2,25 @@
   = @project.name
   Board
 
-%table.board
-  %tr
-    %th Backlog
-    %th To Do
-    %th Doing
-    %th Done
+.board
+  .division
+    %h3 To Do
+    - (@project.tasks_by_position Board::TODO).each do |task|
+      = (to_postit task).html_safe
+  .division
+    %h3 Doing
+    - (@project.tasks_by_position Board::DOING).each do |task|
+      = (to_postit task).html_safe
+  .division
+    %h3 Done
+    - (@project.tasks_by_position Board::DONE).each do |task|
+      = (to_postit task).html_safe
 
-    - while not @tasks.empty? do
-      %tr
-        %td
-          = (postit Board::BACKLOG).html_safe
-        %td
-          = (postit Board::TODO).html_safe
-        %td
-          = (postit Board::DOING).html_safe
-        %td
-          = (postit Board::DONE).html_safe
+.board
+  .division
+    %h3 Backlog
+    - (@project.tasks_by_position Board::BACKLOG).each do |task|
+      = (to_postit task).html_safe
 
 %br
 = link_to 'New Task', new_project_task_path

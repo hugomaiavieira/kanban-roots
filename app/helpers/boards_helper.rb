@@ -1,11 +1,8 @@
 module BoardsHelper
 
-  def postit position
-    # XXX: This awful code at is just temporary, until the drag and drop come
-    #      in the scene. It is not tested!
-    task = ((@tasks.collect { |item| item if item.position == position }).compact).first
+  def to_postit task
+    # XXX: It is not tested!
     string=''
-    if task
       string=
 "<div class='postit'>
   <p class='points'>#{task.points}</p>
@@ -16,10 +13,7 @@ module BoardsHelper
     else
       task.contributors.collect(&:name).to_sentence
     end}
-  </p>
 </div>"
-      task = @tasks.delete_if { |item| item == task }
-    end
     return string
   end
 

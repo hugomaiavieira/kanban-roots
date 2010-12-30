@@ -28,17 +28,26 @@ a {
 
 /* Board */
 
-table.board th {
-    background-color: white;
-    border-bottom: solid 2px #bfbfbf;
-    font-size: 20px;
+div.board {
+    display: table;
+    margin: 10px;
+    border: solid 2px #bfbfbf;
 }
 
-table.board tr {
-    background-color: white;
+div.division {
+    float: left;
+    width: 390px;
+}
+
+div.division h3 {
+    border-bottom: solid 2px #bfbfbf;
+    margin: 0px;
+    padding: 3px;
+    text-align: center;
 }
 
 .postit {
+    float: left;
     padding: 7px 15px;
     margin: 5px;
     width: 150px;
