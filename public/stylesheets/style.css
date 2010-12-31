@@ -34,11 +34,12 @@ div.board {
     display: table;
     margin: 10px;
     border: solid 2px #bfbfbf;
+    padding-bottom: 5px;
 }
 
 div.board h3 {
     border-bottom: solid 2px #bfbfbf;
-    margin: 0px 3px;
+    margin: 0px 3px 2px 3px;
     padding: 3px;
     text-align: center;
 }
