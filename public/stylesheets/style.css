@@ -22,6 +22,8 @@ td {
 a {
     padding: 1px 4px;
     border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     color: white;
     background-color: orange;
 }
@@ -56,10 +58,16 @@ div.backlog {
     margin: 5px;
     width: 150px;
     border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
     border: solid 2px #f5f500;
     text-align: center;
     color: black;
     background-color: #ffffa5;
+    box-shadow: 3px 3px 3px #888;
+    -moz-box-shadow: 3px 3px 3px #888;
+    -webkit-box-shadow: 3px 3px 3px #888;
 }
 
 .postit a.title {
