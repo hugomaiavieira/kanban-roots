@@ -17,10 +17,9 @@
       = (to_postit task).html_safe
 
 .board
-  .backlog
-    %h3 Backlog
-    - (@project.tasks_by_position Board::BACKLOG).each do |task|
-      = (to_postit task).html_safe
+  %h3 Backlog
+  - (@project.tasks_by_position Board::BACKLOG).each do |task|
+    = (to_postit task).html_safe
 
 %br
 = link_to 'New Task', new_project_task_path

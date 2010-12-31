@@ -32,6 +32,7 @@ a {
 
 div.board {
     display: table;
+    width: 1170px;
     margin: 10px;
     border: solid 2px #bfbfbf;
     padding-bottom: 5px;
@@ -47,10 +48,6 @@ div.board h3 {
 div.division {
     float: left;
     width: 390px;
-}
-
-div.backlog {
-    width: 1170px;
 }
 
 .postit {
