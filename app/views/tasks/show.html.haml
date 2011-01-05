@@ -3,7 +3,9 @@
   = @task.title
 %p
   %b Description:
-  = @task.description
+  %pre
+    = @task.description
+    // = @task.description.gsub("\n",'<br />').html_safe
 %p
   %b Points:
   = @task.points

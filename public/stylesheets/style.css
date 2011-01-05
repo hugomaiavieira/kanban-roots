@@ -2,6 +2,11 @@ body {
     font-family: Molengo, Ubuntu, Monaco, Verdana, Helvetica;
 }
 
+pre {
+    font-family: inherit;
+    font-size: inherit;
+}
+
 table {
     border: solid 2px #bfbfbf;
 }
