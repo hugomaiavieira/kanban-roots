@@ -1,6 +1,7 @@
 module BoardsHelper
   def to_postit task
-"<div class='postit'>
+    category_class = task.category.nil? ? '' : " #{task.category.downcase}"
+"<div class='postit#{category_class}'>
   <p class='points'>
     #{if task.points.nil?
       link_to 'Set points', edit_project_task_path(task.project, task)

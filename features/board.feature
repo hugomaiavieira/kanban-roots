@@ -1,9 +1,23 @@
-# XXX: Look for a way to test it!
+Feature: Use the board
+  As a user
+  I want use the board
+  In order see, move and manipulate the taks of my project
 
-#Feature: Use the board
-#  As a user
-#  I want use the board
-#  In order see, move and manipulate the taks of my project
+  Scenario: Show the board
+    Given I am an authenticated contributor
+    And I have a project
+    And the following tasks:
+      | title  | position |
+      | task 1 | Doing    |
+      | task 2 | Done     |
+      | task 3 | Done     |
+      | task 4 | Done     |
+    When I am on the projects board page
+    And I follow "Clean up Done"
+    Then I should see "Done division was cleaned up."
+    And the Done division should be cleaned
+
+# XXX: Look for a way to test it!
 
 #  Scenario: Show the board
 #    Given I am an authenticated contributor

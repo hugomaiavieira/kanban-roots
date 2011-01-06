@@ -4,28 +4,33 @@ describe BoardsHelper do
   describe 'to_postit' do
     def stub_all(options = {})
       @project = stub
-      @task = stub(:title => options[:title] || '',
-                   :points => options[:points] || nil,
-                   :project => @project,
+      @task = stub(:project => @project,
+                   :title => options[:title] || '',
+                   :points => options[:points],
+                   :category => options[:category],
                    :contributors => options[:contributors] || [])
     end
 
-    it "generates an enclosing div with 'postit' class" do
-      stub_all
+    it "generates an enclosing div with 'postit' and category classes" do
+      stub_all(:category => 'Bug')
+      helper.to_postit(@task).should =~ /^<div class='postit bug'>/
+      helper.to_postit(@task).should =~ /<\/div>$/
+
+      stub_all(:category => nil)
       helper.to_postit(@task).should =~ /^<div class='postit'>/
       helper.to_postit(@task).should =~ /<\/div>$/
     end
 
     context 'with seted points' do
       it 'shows task points' do
-        stub_all(:points => 10)
+        stub_all(:points => 10, :category => 'Feature')
         helper.to_postit(@task).should =~ /<p class='points'>\n    10\n  <\/p>/
       end
     end
 
     context 'without set points' do
       it "shows 'Set points' link" do
-        stub_all(:points => nil)
+        stub_all(:points => nil, :category => 'Feature')
         helper.stub(:edit_project_task_path).with(@project, @task).and_return(path_stub = stub)
         helper.stub(:link_to).with('Set points', path_stub).and_return('<the points link>')
         helper.stub(:link_to).with('', anything, anything)
@@ -36,7 +41,7 @@ describe BoardsHelper do
 
     it 'shows task title as a link to task' do
       the_title = 'the title'
-      stub_all(:title => the_title, :points => 0)
+      stub_all(:title => the_title, :points => 0, :category => 'Feature')
       helper.stub(:project_task_path).with(@project, @task).and_return(path_stub = stub)
       helper.stub(:link_to).with(the_title, path_stub, {:class => :title}).and_return('<the link>')
       helper.stub(:link_to).with('Set sponsor', anything)
@@ -45,7 +50,7 @@ describe BoardsHelper do
 
     context 'with no contributors' do
       it "shows 'Set sponsor' link" do
-        stub_all(:title => 'the title', :points => 0)
+        stub_all(:title => 'the title', :points => 0, :category => 'Feature')
         helper.stub(:link_to).with('the title', anything, anything)
         helper.stub(:edit_project_task_path).with(@project, @task).and_return(path_stub = stub)
         helper.stub(:link_to).with('Set sponsor', path_stub).and_return('<the sponsor link>')
@@ -56,6 +61,7 @@ describe BoardsHelper do
     context 'with contributors' do
       it 'shows contributors as sentence' do
         stub_all(:points => 0,
+                 :category => 'Feature',
                  :contributors => [stub(:name => 'Hugo'),
                                    stub(:name => 'Eduardo'),
                                    stub(:name => 'Rodrigo')])

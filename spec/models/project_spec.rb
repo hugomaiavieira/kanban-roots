@@ -24,5 +24,23 @@ describe Project do
 
     project.tasks_by_position(4).should be_empty
   end
+
+  it 'cleanup all Done tasks' do
+    tasks = [stub_model(Task, :position => Board::DOING),
+             stub_model(Task, :position => Board::DONE),
+             stub_model(Task, :position => Board::DONE),
+             stub_model(Task, :position => Board::DONE),
+             stub_model(Task, :position => Board::DONE)]
+    project = Project.new
+    project.tasks.<<(*tasks)
+
+    project.clean_up_done_tasks
+    done_tasks = project.tasks.select {|item| item.position == Board::DONE }
+    done_tasks.should be_empty
+
+    out_tasks = project.tasks.select {|item| item.position == Board::OUT }
+    out_tasks.should include(*tasks[1..4])
+    out_tasks.should have(4).tasks
+  end
 end
 

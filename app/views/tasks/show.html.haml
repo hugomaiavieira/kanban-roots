@@ -32,6 +32,10 @@
 %hr
 = link_to 'Edit', edit_project_task_path(@project, @task)
 \|
+= link_to 'Destroy', project_task_path(@project, @task),
+  :confirm => 'Are you sure?',
+  :method => :delete
+\|
 = link_to 'Back', :back
 \|
 = link_to 'New comment', new_task_comment_path(@task)
