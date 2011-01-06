@@ -20,3 +20,7 @@ Then /^"([^"]*)" should be a sponsor of the task$/ do |name|
   @task.contributors.should include(sponsor)
 end
 
+Then /^The task should no longer exist$/ do
+  Task.where(:id => @task.id).should be_empty
+end
+

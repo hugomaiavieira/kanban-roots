@@ -10,5 +10,9 @@ class TasksController < InheritedResources::Base
   def update
     update! { project_board_path }
   end
+
+  def destroy
+    destroy! { project_board_path }
+  end
 end
 

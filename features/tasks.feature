@@ -38,6 +38,16 @@ Feature: Manipulate tasks
     Then I should be on the projects board page
     Then I should see "Close issue"
 
+  @javascript
+  Scenario: Destroy task
+    Given I am a contributor of "Sgtran" project
+    And I am authenticated
+    And I have a task of "Sgtran" project
+    When I am on the "Sgtran" tasks page
+    And I follow "Destroy" and press ok at the pop-up
+    Then I should be on the projects board page
+    And The task should no longer exist
+
   Scenario: Add sponsors for a task
     Given I am a contributor of "Sgtran" project
     And I am authenticated
