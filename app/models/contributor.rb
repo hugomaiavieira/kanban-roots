@@ -7,6 +7,7 @@ class Contributor < ActiveRecord::Base
 
   has_and_belongs_to_many :teams
   has_and_belongs_to_many :tasks
+  has_many :comments
 
   validates_presence_of :name
 

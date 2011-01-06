@@ -1,10 +1,17 @@
 KanbanRoots::Application.routes.draw do
+
   devise_for :contributors
+
   get 'contributors/:id/' => 'contributors#show',  :as => :contributor
 
   resources :teams
+
   resources :projects do
     resources :tasks
+  end
+
+  resources :tasks do
+    resources :comments
   end
 
   match 'teams/:id/manage_contributors' => 'teams#manage_contributors',  :as => :manage_contributors

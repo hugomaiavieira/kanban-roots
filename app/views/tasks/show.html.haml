@@ -18,7 +18,21 @@
   %b Sponsors:
   = @task.contributors.collect(&:name).to_sentence
 
+- if !@task.comments.empty?
+  %hr
+  Comments
+  - @task.comments.each do |c|
+    %p
+      %b Author:
+      = c.contributor.name
+      %br
+      %b Comment:
+      = c.content
+
+%hr
 = link_to 'Edit', edit_project_task_path(@project, @task)
 \|
 = link_to 'Back', :back
+\|
+= link_to 'New comment', new_task_comment_path(@task)
 

@@ -29,6 +29,9 @@ module NavigationHelpers
     when /^the (.*) tasks page$/i
       project_tasks_path(@project)
 
+    when /the task page/
+      project_task_path(@project, @task)
+
     when /the team page/
       team_path(@team)
 

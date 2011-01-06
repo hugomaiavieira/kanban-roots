@@ -29,3 +29,4 @@ group :cucumber do
 end
 
 gem 'rails3-generators', :group => :development
+
