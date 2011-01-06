@@ -17,7 +17,7 @@
   .field
     = f.input :position, :as => 'select', :collection => Board::POSITIONS, :prompt => false
   .field
-    = f.input :contributors, :label => 'Sponsors'
+    = f.input :contributors, :label => 'Sponsors', :include_blank => true
   .actions
     = f.submit 'Save'
 
