@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Comment do
-  pending "add some examples to (or delete) #{__FILE__}"
+  should_belong_to :task
+  should_belong_to :contributor
 end
+
