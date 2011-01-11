@@ -5,7 +5,9 @@ body {
 pre {
     font-family: inherit;
     font-size: inherit;
-    margin: 5px 0px 0px 20px;
+    margin: 10px 0px 0px 20px;
+    white-space: pre-wrap;
+    text-align: justify;
 }
 
 table {
