@@ -5,6 +5,7 @@ body {
 pre {
     font-family: inherit;
     font-size: inherit;
+    margin: 5px 0px 0px 20px;
 }
 
 table {
@@ -106,5 +107,12 @@ div.division {
 
 .postit p.points {
     text-align: left;
+}
+
+.comment {
+    margin: 20px;
+    padding: 10px;
+    border: solid 1px #e6e6fa;
+    width: 700px;
 }
 
