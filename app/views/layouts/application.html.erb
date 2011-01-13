@@ -22,7 +22,12 @@
       <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
     <%- end -%>
 
-    <p><%= link_to 'Home', root_path %></p>
+    <p>
+      <%= link_to 'Home', root_path %>
+      <% if @project and @project.id %>
+      | <%= link_to "#{@project.name} board", project_board_path(@project) %>
+      <% end %>
+    </p>
 
     <%= yield %>
 
