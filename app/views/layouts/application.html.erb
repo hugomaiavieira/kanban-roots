@@ -25,7 +25,7 @@
     <p>
       <%= link_to 'Home', root_path %>
       <% if @project and @project.id %>
-      | <%= link_to "#{@project.name} board", project_board_path(@project) %>
+      | <%= link_to 'Board', project_board_path(@project) %>
       <% end %>
     </p>
 
