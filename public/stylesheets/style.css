@@ -118,3 +118,9 @@ div.division {
     width: 700px;
 }
 
+.comment p {
+/*    display: inline;*/
+    margin: 10px 2px 2px 2px;
+    text-align: right;
+}
+
