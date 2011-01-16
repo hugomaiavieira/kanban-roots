@@ -5,7 +5,7 @@
 %ul
   - current_contributor.projects.each do |project|
     %li
-      = link_to project.name, project_path(project)
+      = link_to project.name, project_board_path(project)
 
 %p
   = link_to 'New project', new_project_path
