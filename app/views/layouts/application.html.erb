@@ -24,7 +24,7 @@
 
     <p>
       <%= link_to 'Home', root_path %>
-      <% if @project and @project.id %>
+      <% if @project and @project.id and not current_page? project_board_path(@project) %>
       | <%= link_to 'Board', project_board_path(@project) %>
       <% end %>
     </p>
