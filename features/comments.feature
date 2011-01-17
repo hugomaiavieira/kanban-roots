@@ -22,14 +22,12 @@ Feature: Manipulate comments in tasks
     And I have a task of "Sgtran" project
     And I write a comment for this task
     When I am on the task page
-    Then show me the page
     And I follow "Edit" within "div.comment"
     And I fill in "Content" with "I'm editing this content"
     And I press "Save"
     Then I should be on the task page
     And I should see "I'm editing this content"
 
-  @now
   Scenario: See the edit link only in my comments
     Given I am a contributor of "Sgtran" project
     And I am authenticated
