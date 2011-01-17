@@ -1,9 +1,15 @@
 class CommentsController < InheritedResources::Base
 
+  before_filter :authenticate_contributor!
   belongs_to :task
 
   def edit
-    edit! { @project = @task.project }
+    edit! {
+      if current_contributor != @comment.contributor
+        redirect_to(project_task_path(@comment.task.project, @comment.task)) and return
+      end
+      @project = @task.project
+    }
   end
 
   def new

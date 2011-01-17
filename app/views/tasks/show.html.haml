@@ -26,12 +26,13 @@
       %b<= comment.contributor.name + ':'
       %pre
         = comment.content
-      %p
-        = link_to 'Edit', edit_task_comment_path(@task, comment)
-        \|
-        = link_to 'Destroy', task_comment_path(@task, comment),
-          :confirm => 'Are you sure?',
-          :method => :delete
+      - if comment.contributor == current_contributor
+        %p
+          = link_to 'Edit', edit_task_comment_path(@task, comment)
+          \|
+          = link_to 'Destroy', task_comment_path(@task, comment),
+            :confirm => 'Are you sure?',
+            :method => :delete
 
 = link_to 'Edit', edit_project_task_path(@project, @task)
 \|
