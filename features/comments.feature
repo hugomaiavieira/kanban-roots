@@ -28,7 +28,7 @@ Feature: Manipulate comments in tasks
     Then I should be on the task page
     And I should see "I'm editing this content"
 
-  Scenario: See the edit link only in my comments
+  Scenario: Edit only my comment
     Given I am a contributor of "Sgtran" project
     And I am authenticated
     And I have a task of "Sgtran" project
@@ -36,7 +36,7 @@ Feature: Manipulate comments in tasks
     When I am on the edit comment page
     Then I should be on the task page
 
-  Scenario: Edit only my comment
+  Scenario: See the edit link only in my comments
     Given I am a contributor of "Sgtran" project
     And I am authenticated
     And I have a task of "Sgtran" project
