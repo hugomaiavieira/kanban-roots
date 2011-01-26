@@ -26,7 +26,7 @@ describe BoardsHelper do
     context 'with seted points' do
       it 'shows task points' do
         stub_all(:points => 10, :category => 'Feature')
-        helper.to_postit(@task).should =~ /<p class='points'>\n    10\n  <\/p>/
+        helper.to_postit(@task).should =~ /<p class='points'>\n {8}10\n {6}<\/p>/
       end
     end
 
@@ -71,9 +71,9 @@ describe BoardsHelper do
                  :contributors => [stub(:name => 'Hugo'),
                                    stub(:name => 'Rodrigo'),
                                    stub(:name => 'Max')])
-        helper.sponsors(@task).should =~ /title='Hugo, Rodrigo, and Max'/
         helper.sponsors(@task).should =~ /Hugo, Rodrigo, and Max/i
         helper.sponsors(@task).should_not =~ /Set sponsor/i
+        helper.sponsors(@task).should_not =~ /title='Hugo, Rodrigo, and Max'/
       end
 
       it 'shows contributors as sentence concatenated for long sentence' do
