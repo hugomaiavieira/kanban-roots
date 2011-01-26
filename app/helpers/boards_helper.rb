@@ -10,14 +10,20 @@ module BoardsHelper
     end}
   </p>
   #{link_to task.title, project_task_path(task.project, task), :class => :title}
-  <p class='sponsor'>
-    #{if task.contributors.empty?
-      link_to 'Set sponsor', edit_project_task_path(task.project, task)
-    else
-      task.contributors.collect(&:name).to_sentence
-    end}
-  </p>
+  #{sponsors(task)}
 </div>"
+  end
+
+  def sponsors task
+    if task.contributors.empty?
+return "<p class='sponsor'>
+  #{link_to 'Set sponsor', edit_project_task_path(task.project, task)}
+</p>"
+    else
+return "<p class='sponsor alias' title='#{task.contributors.collect(&:name).to_sentence}'>
+  #{truncate(task.contributors.collect(&:name).to_sentence, :length => 25)}
+</p>"
+    end
   end
 end
 

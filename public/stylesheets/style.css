@@ -31,6 +31,10 @@ a {
     color: #005e9b;
 }
 
+.alias {
+    cursor: alias;
+}
+
 /* Board */
 
 div.board {
@@ -119,7 +123,6 @@ div.division {
 }
 
 .comment p {
-/*    display: inline;*/
     margin: 10px 2px 2px 2px;
     text-align: right;
 }

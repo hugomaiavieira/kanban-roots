@@ -1,15 +1,17 @@
 require 'spec_helper'
 
 describe BoardsHelper do
+
+  def stub_all(options = {})
+    @project = stub
+    @task = stub(:project => @project,
+                 :title => options[:title] || '',
+                 :points => options[:points],
+                 :category => options[:category],
+                 :contributors => options[:contributors] || [])
+  end
+
   describe 'to_postit' do
-    def stub_all(options = {})
-      @project = stub
-      @task = stub(:project => @project,
-                   :title => options[:title] || '',
-                   :points => options[:points],
-                   :category => options[:category],
-                   :contributors => options[:contributors] || [])
-    end
 
     it "generates an enclosing div with 'postit' and category classes" do
       stub_all(:category => 'Bug')
@@ -48,25 +50,42 @@ describe BoardsHelper do
       helper.to_postit(@task).should =~ /<the link>/
     end
 
-    context 'with no contributors' do
+  end
+
+  describe 'sponsors' do
+
+    context 'for task without sponsors' do
       it "shows 'Set sponsor' link" do
         stub_all(:title => 'the title', :points => 0, :category => 'Feature')
         helper.stub(:link_to).with('the title', anything, anything)
         helper.stub(:edit_project_task_path).with(@project, @task).and_return(path_stub = stub)
         helper.stub(:link_to).with('Set sponsor', path_stub).and_return('<the sponsor link>')
-        helper.to_postit(@task).should =~ /<the sponsor link>/
+        helper.sponsors(@task).should =~ /<the sponsor link>/
       end
     end
 
-    context 'with contributors' do
+    context 'for task with contributors' do
       it 'shows contributors as sentence' do
         stub_all(:points => 0,
                  :category => 'Feature',
                  :contributors => [stub(:name => 'Hugo'),
-                                   stub(:name => 'Eduardo'),
-                                   stub(:name => 'Rodrigo')])
-        helper.to_postit(@task).should =~ /Hugo, Eduardo, and Rodrigo/i
-        helper.to_postit(@task).should_not =~ /Set sponsor/i
+                                   stub(:name => 'Rodrigo'),
+                                   stub(:name => 'Max')])
+        helper.sponsors(@task).should =~ /title='Hugo, Rodrigo, and Max'/
+        helper.sponsors(@task).should =~ /Hugo, Rodrigo, and Max/i
+        helper.sponsors(@task).should_not =~ /Set sponsor/i
+      end
+
+      it 'shows contributors as sentence concatenated for long sentence' do
+        stub_all(:points => 0,
+                 :category => 'Feature',
+                 :contributors => [stub(:name => 'Hugo'),
+                                   stub(:name => 'Rodrigo'),
+                                   stub(:name => 'Max'),
+                                   stub(:name => 'Eduardo')])
+        helper.sponsors(@task).should =~ /title='Hugo, Rodrigo, Max, and Eduardo'/
+        helper.sponsors(@task).should =~ /Hugo, Rodrigo, Max.../i
+        helper.sponsors(@task).should_not =~ /Set sponsor/i
       end
     end
   end
