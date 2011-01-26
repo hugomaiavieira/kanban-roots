@@ -31,8 +31,8 @@ a {
     color: #005e9b;
 }
 
-.alias {
-    cursor: alias;
+.help_cursor {
+    cursor: help;
 }
 
 /* Board */

@@ -20,7 +20,7 @@ return "<p class='sponsor'>
   #{link_to 'Set sponsor', edit_project_task_path(task.project, task)}
 </p>"
     else
-return "<p class='sponsor alias' title='#{task.contributors.collect(&:name).to_sentence}'>
+return "<p class='sponsor help_cursor' title='#{task.contributors.collect(&:name).to_sentence}'>
   #{truncate(task.contributors.collect(&:name).to_sentence, :length => 25)}
 </p>"
     end
