@@ -8,25 +8,61 @@ describe BoardsHelper do
                  :title => options[:title] || '',
                  :points => options[:points],
                  :category => options[:category],
-                 :contributors => options[:contributors] || [])
+                 :contributors => options[:contributors] || [],
+                 :comments => options[:comments] || [])
   end
 
-  describe 'to_postit' do
+  it "category_class generates the category class" do
+    stub_all(:category => 'Bug')
+    helper.category_class(@task).should == ' bug'
 
-    it "generates an enclosing div with 'postit' and category classes" do
-      stub_all(:category => 'Bug')
-      helper.to_postit(@task).should =~ /^<div class='postit bug'>/
-      helper.to_postit(@task).should =~ /<\/div>$/
+    stub_all(:category => nil)
+    helper.category_class(@task).should == ''
+  end
 
-      stub_all(:category => nil)
-      helper.to_postit(@task).should =~ /^<div class='postit'>/
-      helper.to_postit(@task).should =~ /<\/div>$/
+  it 'title returns the task title as a link to task' do
+    the_title = 'the title'
+    stub_all(:title => the_title, :points => 0, :category => 'Feature')
+    helper.stub(:project_task_path).with(@project, @task).and_return(path_stub = stub)
+    helper.stub(:link_to).with(the_title, path_stub, {:class => :title}).and_return('<the link>')
+    helper.stub(:link_to).with('Set sponsor', anything)
+    helper.title(@task).should =~ /<the link>/
+  end
+
+  describe 'comments' do
+
+    context 'with 0 or >= 2 comments' do
+      it "generates a span with the number of comments of a task and the word comment on plural" do
+        stub_all()
+        helper.comments(@task).should ==
+          "<span class ='comments_number'>0 comments</span>"
+
+        stub_all(:comments => [stub])
+        helper.comments(@task).should ==
+          "<span class ='comments_number'>1 comment</span>"
+
+        stub_all(:comments => [stub, stub])
+        helper.comments(@task).should ==
+          "<span class ='comments_number'>2 comments</span>"
+      end
     end
+
+    context 'with 1 comment' do
+      it "generates a span with the number of comments of a task and the word comment on singular" do
+        stub_all(:comments => [stub])
+        helper.comments(@task).should ==
+          "<span class ='comments_number'>1 comment</span>"
+      end
+    end
+
+  end
+
+  describe  'points' do
 
     context 'with seted points' do
       it 'shows task points' do
         stub_all(:points => 10, :category => 'Feature')
-        helper.to_postit(@task).should =~ /<p class='points'>\n {8}10\n {6}<\/p>/
+        helper.points(@task).should == 10
       end
     end
 
@@ -37,17 +73,8 @@ describe BoardsHelper do
         helper.stub(:link_to).with('Set points', path_stub).and_return('<the points link>')
         helper.stub(:link_to).with('', anything, anything)
         helper.stub(:link_to).with('Set sponsor', path_stub)
-        helper.to_postit(@task).should =~ /<the points link>/
+        helper.points(@task).should =~ /<the points link>/
       end
-    end
-
-    it 'shows task title as a link to task' do
-      the_title = 'the title'
-      stub_all(:title => the_title, :points => 0, :category => 'Feature')
-      helper.stub(:project_task_path).with(@project, @task).and_return(path_stub = stub)
-      helper.stub(:link_to).with(the_title, path_stub, {:class => :title}).and_return('<the link>')
-      helper.stub(:link_to).with('Set sponsor', anything)
-      helper.to_postit(@task).should =~ /<the link>/
     end
 
   end
