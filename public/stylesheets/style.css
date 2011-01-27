@@ -111,8 +111,13 @@ div.division {
     text-align: right;
 }
 
-.postit p.points {
+.postit p.top {
     text-align: left;
+}
+
+.postit p.top .comments_number {
+    float: right;
+    color: gray;
 }
 
 .comment {
