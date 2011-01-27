@@ -26,9 +26,15 @@ module BoardsHelper
     end
 
     sponsors_sentence = task.contributors.collect(&:name).to_sentence
-    title = sponsors_sentence.length > 25 ? " title='#{sponsors_sentence}'" : ''
-    return "<p class='sponsor help_cursor'#{title}>
-      #{truncate(task.contributors.collect(&:name).to_sentence, :length => 25)}
+
+    if sponsors_sentence.length > 25
+      p = "p class='sponsor help_cursor' title='#{sponsors_sentence}'"
+    else
+      p = "p class='sponsor'"
+    end
+
+    return "<#{p}>
+      #{truncate(sponsors_sentence, :length => 25)}
     </p>"
 
   end

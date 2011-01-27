@@ -65,7 +65,7 @@ describe BoardsHelper do
     end
 
     context 'for task with contributors' do
-      it 'shows contributors as sentence' do
+      it 'shows contributors as sentence without title and help cursor for tiny sentence' do
         stub_all(:points => 0,
                  :category => 'Feature',
                  :contributors => [stub(:name => 'Hugo'),
@@ -74,6 +74,8 @@ describe BoardsHelper do
         helper.sponsors(@task).should =~ /Hugo, Rodrigo, and Max/i
         helper.sponsors(@task).should_not =~ /Set sponsor/i
         helper.sponsors(@task).should_not =~ /title='Hugo, Rodrigo, and Max'/
+        helper.sponsors(@task).should=~ /class='sponsor'/
+        helper.sponsors(@task).should_not =~ /class='sponsor help_cursor'/
       end
 
       it 'shows contributors as sentence concatenated for long sentence' do
