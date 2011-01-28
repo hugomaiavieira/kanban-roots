@@ -20,13 +20,26 @@ describe BoardsHelper do
     helper.category_class(@task).should == ''
   end
 
-  it 'title returns the task title as a link to task' do
-    the_title = 'the title'
-    stub_all(:title => the_title, :points => 0, :category => 'Feature')
-    helper.stub(:project_task_path).with(@project, @task).and_return(path_stub = stub)
-    helper.stub(:link_to).with(the_title, path_stub, {:class => :title}).and_return('<the link>')
-    helper.stub(:link_to).with('Set sponsor', anything)
-    helper.title(@task).should =~ /<the link>/
+  describe 'title' do
+
+    it 'returns the task title as a link to task with title and help cursor for long title' do
+      the_title = 'this title has more than forty five characteres'
+      stub_all(:title => the_title, :points => 0, :category => 'Feature')
+      helper.stub(:project_task_path).with(@project, @task).and_return(path_stub = stub)
+      helper.stub(:link_to).with(
+        'this title has more than forty five charactere...',
+        path_stub,
+        {:class => 'title help_cursor',
+         :title => the_title})
+    end
+
+    it 'returns the task title as a link to task without title and help cursor for tiny title' do
+      the_title = 'this title has just forty five characteresss'
+      stub_all(:title => the_title, :points => 0, :category => 'Feature')
+      helper.stub(:project_task_path).with(@project, @task).and_return(path_stub = stub)
+      helper.stub(:link_to).with(the_title, path_stub, {:class => 'title'})
+    end
+
   end
 
   describe 'comments' do
@@ -100,12 +113,12 @@ describe BoardsHelper do
                                    stub(:name => 'Max')])
         helper.sponsors(@task).should =~ /Hugo, Rodrigo, and Max/i
         helper.sponsors(@task).should_not =~ /Set sponsor/i
-        helper.sponsors(@task).should_not =~ /title='Hugo, Rodrigo, and Max'/
+        helper.sponsors(@task).should_not =~ /title='.*'/
         helper.sponsors(@task).should=~ /class='sponsor'/
-        helper.sponsors(@task).should_not =~ /class='sponsor help_cursor'/
+        helper.sponsors(@task).should_not =~ /help_cursor/
       end
 
-      it 'shows contributors as sentence concatenated for long sentence' do
+      it 'shows contributors as sentence concatenated with title and help cursor for long sentence' do
         stub_all(:points => 0,
                  :category => 'Feature',
                  :contributors => [stub(:name => 'Hugo'),

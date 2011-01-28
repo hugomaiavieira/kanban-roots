@@ -30,9 +30,13 @@ module BoardsHelper
   end
 
   def title task
-    link_to truncate(task.title, :length => 45),
-      project_task_path(task.project, task),
-      :class => :title
+    if task.title.length > 45
+      link_to truncate(task.title, :length => 45),
+        project_task_path(task.project, task),
+        :class => 'title help_cursor', :title => task.title
+    else
+      link_to task.title, project_task_path(task.project, task), :class => :title
+    end
   end
 
   def sponsors task
