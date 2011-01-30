@@ -6,7 +6,7 @@ Feature: Manipulate tasks
   Scenario: Register task successfully
     Given I am a contributor of "Sgtran" project
     And I am authenticated
-    And I have a category with name "Feature" and color "#ffa5a5"
+    And I have a category with name "Feature" and color "ffa5a5"
     And I am on the "Sgtran" tasks page
     When I follow "New Task"
     And I fill in "Title" with "Create issues"

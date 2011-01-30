@@ -1,5 +1,5 @@
 Factory.define :category do |f|
   f.name "MyString"
-  f.color "#FFFFFF"
+  f.color "FFFFFF"
 end
 

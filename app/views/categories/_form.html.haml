@@ -8,8 +8,9 @@
 
   .field
     = f.input :name
+  = javascript_include_tag 'jscolor/jscolor.js'
   .field
-    = f.input :color
+    = f.input :color, :input_html => { :class => 'color', :autocomplete => 'off' }
   .actions
     = f.submit 'Save'
 

@@ -2,7 +2,7 @@
   %meta{ 'http-equiv' => 'Refresh', :content => '300' }
   %style
     - Category.all.each do |category|
-      = '.' + category.to_class + '{background-color:' + category.color + '}'
+      = '.' + category.to_class + '{background-color: #' + category.color + '}'
 
 %h1
   = @project.name

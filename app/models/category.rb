@@ -6,7 +6,7 @@ class Category < ActiveRecord::Base
   validate :validate_uniqueness_of_color_for_project,
            :validate_uniqueness_of_name_for_project
 
-  validates_format_of :color, :with => /^#[a-f0-9]{6}$/i
+  validates_format_of :color, :with => /^[a-f0-9]{6}$/i
   validates_format_of :name, :with => /^[a-z]+([ |_|-][a-z]+)*$/i
 
   def validate_uniqueness_of_color_for_project

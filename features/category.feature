@@ -9,18 +9,18 @@ Feature: Manipulate categories
     And I am on the "Sgtran" categories page
     When I follow "New Category"
     And I fill in "Name" with "Feature"
-    And I fill in "Color" with "#ffa5a5"
+    And I fill in "Color" with "ffa5a5"
     And I press "Save"
     Then I should see "Category was successfully created."
     And I should see "Feature"
-    And I should see "#ffa5a5"
+    And I should see "ffa5a5"
     And "Sgtran" project should have "1" category
 
   Scenario Outline: Try to register categories with errors
     Given I am a contributor of "Sgtran" project
     And I am authenticated
     And I am on the "Sgtran" categories page
-    And I have a category with name "Bug" and color "#ffa5a5"
+    And I have a category with name "Bug" and color "ffa5a5"
     When I follow "New Category"
     And I fill in "Name" with "<name>"
     And I fill in "Color" with "<color>"
@@ -30,17 +30,17 @@ Feature: Manipulate categories
 
     Examples:
     | name    | color   | sentence                         |
-    |         | #a5d2ff | Name can't be blank              |
+    |         | a5d2ff | Name can't be blank              |
     | Feature |         | Color can't be blank             |
-    | Feature | #ffa5a5 | Color should be uniq for project |
-    | Bug     | #a5d2ff | Name should be uniq for project  |
+    | Feature | ffa5a5 | Color should be uniq for project |
+    | Bug     | a5d2ff | Name should be uniq for project  |
     | Bug     | red     | Color is invalid                 |
-    | Bug 1   | #a5d2ff | Name is invalid                 |
+    | Bug 1   | a5d2ff | Name is invalid                 |
 
   Scenario: Edit a category
     Given I am a contributor of "Sgtran" project
     And I am authenticated
-    And I have a category with name "Feature" and color "#ffa5a5"
+    And I have a category with name "Feature" and color "ffa5a5"
     When I am on the category edit page
     And I fill in "Name" with "New feature"
     And I press "Save"
@@ -51,7 +51,7 @@ Feature: Manipulate categories
   Scenario: Destroy category
     Given I am a contributor of "Sgtran" project
     And I am authenticated
-    And I have a category with name "Feature" and color "#ffa5a5"
+    And I have a category with name "Feature" and color "ffa5a5"
     When I am on the "Sgtran" categories page
     And I follow "Destroy" and press ok at the pop-up
     And "Sgtran" project should have "0" categories
