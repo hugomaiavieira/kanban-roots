@@ -23,6 +23,11 @@ Then /^"([^"]*)" project should have "([^"]*)" task$/ do |project_name, tasks_nu
   project.tasks.count.should == tasks_number.to_i
 end
 
+Then /^"([^"]*)" project should have "([^"]*)" categor(?:y|ies)$/ do |project_name, categories_number|
+  project = Project.where(:name => project_name).first
+  project.categories.count.should == categories_number.to_i
+end
+
 Given /^I have a project named "([^"]*)"$/ do |name|
   Factory.create :project, :name => name
 end

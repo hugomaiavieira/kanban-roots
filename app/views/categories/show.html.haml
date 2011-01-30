@@ -1,0 +1,13 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @category.name
+%p
+  %b Color:
+  = @category.color
+
+= link_to 'Edit', edit_project_category_path(@project, @category)
+\|
+= link_to 'Back', project_categories_path
+

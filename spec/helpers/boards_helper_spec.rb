@@ -7,13 +7,14 @@ describe BoardsHelper do
     @task = stub(:project => @project,
                  :title => options[:title] || '',
                  :points => options[:points],
-                 :category => options[:category],
+                 :category => options[:category] || nil,
                  :contributors => options[:contributors] || [],
                  :comments => options[:comments] || [])
   end
 
   it "category_class generates the category class" do
-    stub_all(:category => 'Bug')
+    category = stub(:name => 'Bug', :to_class => 'bug')
+    stub_all(:category => category)
     helper.category_class(@task).should == ' bug'
 
     stub_all(:category => nil)
@@ -24,7 +25,7 @@ describe BoardsHelper do
 
     it 'returns the task title as a link to task with title and help cursor for long title' do
       the_title = 'this title has more than forty five characteres'
-      stub_all(:title => the_title, :points => 0, :category => 'Feature')
+      stub_all(:title => the_title, :points => 0)
       helper.stub(:project_task_path).with(@project, @task).and_return(path_stub = stub)
       helper.stub(:link_to).with(
         'this title has more than forty five charactere...',
@@ -35,7 +36,7 @@ describe BoardsHelper do
 
     it 'returns the task title as a link to task without title and help cursor for tiny title' do
       the_title = 'this title has just forty five characteresss'
-      stub_all(:title => the_title, :points => 0, :category => 'Feature')
+      stub_all(:title => the_title, :points => 0)
       helper.stub(:project_task_path).with(@project, @task).and_return(path_stub = stub)
       helper.stub(:link_to).with(the_title, path_stub, {:class => 'title'})
     end
@@ -74,14 +75,14 @@ describe BoardsHelper do
 
     context 'with seted points' do
       it 'shows task points' do
-        stub_all(:points => 10, :category => 'Feature')
+        stub_all(:points => 10)
         helper.points(@task).should == 10
       end
     end
 
     context 'without set points' do
       it "shows 'Set points' link" do
-        stub_all(:points => nil, :category => 'Feature')
+        stub_all(:points => nil)
         helper.stub(:edit_project_task_path).with(@project, @task).and_return(path_stub = stub)
         helper.stub(:link_to).with('Set points', path_stub).and_return('<the points link>')
         helper.stub(:link_to).with('', anything, anything)
@@ -96,7 +97,7 @@ describe BoardsHelper do
 
     context 'for task without sponsors' do
       it "shows 'Set sponsor' link" do
-        stub_all(:title => 'the title', :points => 0, :category => 'Feature')
+        stub_all(:title => 'the title', :points => 0)
         helper.stub(:link_to).with('the title', anything, anything)
         helper.stub(:edit_project_task_path).with(@project, @task).and_return(path_stub = stub)
         helper.stub(:link_to).with('Set sponsor', path_stub).and_return('<the sponsor link>')
@@ -107,7 +108,6 @@ describe BoardsHelper do
     context 'for task with contributors' do
       it 'shows contributors as sentence without title and help cursor for tiny sentence' do
         stub_all(:points => 0,
-                 :category => 'Feature',
                  :contributors => [stub(:name => 'Hugo'),
                                    stub(:name => 'Rodrigo'),
                                    stub(:name => 'Max')])
@@ -120,7 +120,6 @@ describe BoardsHelper do
 
       it 'shows contributors as sentence concatenated with title and help cursor for long sentence' do
         stub_all(:points => 0,
-                 :category => 'Feature',
                  :contributors => [stub(:name => 'Hugo'),
                                    stub(:name => 'Rodrigo'),
                                    stub(:name => 'Max'),

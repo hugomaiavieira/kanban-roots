@@ -32,6 +32,12 @@ module NavigationHelpers
     when /the task page/
       project_task_path(@project, @task)
 
+    when /the category edit page/
+      edit_project_category_path(@project, @category)
+
+    when /^the (.*) categories page$/i
+      project_categories_path(@project)
+
     when /the team page/
       team_path(@team)
 

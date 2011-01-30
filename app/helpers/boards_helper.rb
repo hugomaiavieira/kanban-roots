@@ -12,7 +12,7 @@ module BoardsHelper
   end
 
   def category_class task
-    category_class = task.category.nil? ? '' : " #{task.category.downcase}"
+    category_class = task.category.nil? ? '' : " #{task.category.to_class}"
   end
 
   def points task

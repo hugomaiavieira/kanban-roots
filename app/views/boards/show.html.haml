@@ -1,5 +1,8 @@
 - content_for :meta do
   %meta{ 'http-equiv' => 'Refresh', :content => '300' }
+  %style
+    - Category.all.each do |category|
+      = '.' + category.to_class + '{background-color:' + category.color + '}'
 
 %h1
   = @project.name
@@ -25,6 +28,8 @@
     = (to_postit task).html_safe
 
 %br
+= link_to 'Categories', project_categories_path
+\|
 = link_to 'New Task', new_project_task_path
 \|
 = link_to 'Clean up Done', clean_up_done_path

@@ -3,6 +3,14 @@ class TasksController < InheritedResources::Base
 
   belongs_to :project
 
+  def new
+    new! {@categories = Category.where(:project_id => @project.id) }
+  end
+
+  def edit
+    edit! {@categories = Category.where(:project_id => @project.id) }
+  end
+
   def create
     create! { project_board_path }
   end

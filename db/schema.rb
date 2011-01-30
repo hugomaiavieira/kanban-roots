@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110106023051) do
+ActiveRecord::Schema.define(:version => 20110128222606) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "color"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -61,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20110106023051) do
     t.string   "title"
     t.text     "description"
     t.integer  "points"
-    t.string   "category"
     t.string   "position",    :default => "Backlog"
+    t.integer  "category_id"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"

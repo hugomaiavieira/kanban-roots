@@ -74,17 +74,17 @@ div.division {
     -webkit-box-shadow: 3px 3px 3px #888;
 }
 
-.feature {
-    background-color: #a5ffb4;
-}
+/*.feature {*/
+/*    background-color: #a5ffb4;*/
+/*}*/
 
-.bug {
-    background-color: #ffa5a5;
-}
+/*.bug {*/
+/*    background-color: #ffa5a5;*/
+/*}*/
 
-.refactoring {
-    background-color: #a5d2ff;
-}
+/*.refactoring {*/
+/*    background-color: #a5d2ff;*/
+/*}*/
 
 .postit a.title {
     display: block;

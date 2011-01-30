@@ -16,7 +16,7 @@
       %td= task.title
       %td= task.description
       %td= task.points
-      %td= task.category
+      %td= task.category.name if task.category
       %td= task.position
       %td= link_to 'Show', project_task_path(@project, task)
       %td= link_to 'Edit', edit_project_task_path(@project, task)
@@ -26,3 +26,4 @@
 %br
 
 = link_to 'New Task', new_project_task_path
+

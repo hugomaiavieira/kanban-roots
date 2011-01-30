@@ -8,6 +8,7 @@ KanbanRoots::Application.routes.draw do
 
   resources :projects do
     resources :tasks
+    resources :categories
   end
 
   resources :tasks do

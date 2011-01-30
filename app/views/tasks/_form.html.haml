@@ -13,7 +13,7 @@
   .field
     = f.input :points, :as => 'select', :collection => Task::POINTS
   .field
-    = f.input :category, :as => 'select', :collection => Task::CATEGORIES
+    = f.input :category, :as => 'select', :collection => @categories
   .field
     = f.input :position, :as => 'select', :collection => Board::POSITIONS, :prompt => false
   .field

@@ -10,7 +10,7 @@
   = @task.points
 %p
   %b Category:
-  = @task.category
+  = @task.category.name if @task.category
 %p
   %b Position:
   = @task.position
