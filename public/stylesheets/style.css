@@ -74,18 +74,6 @@ div.division {
     -webkit-box-shadow: 3px 3px 3px #888;
 }
 
-/*.feature {*/
-/*    background-color: #a5ffb4;*/
-/*}*/
-
-/*.bug {*/
-/*    background-color: #ffa5a5;*/
-/*}*/
-
-/*.refactoring {*/
-/*    background-color: #a5d2ff;*/
-/*}*/
-
 .postit a.title {
     display: block;
     height: 63px;
@@ -130,5 +118,17 @@ div.division {
 .comment p {
     margin: 10px 2px 2px 2px;
     text-align: right;
+}
+
+ul.legends {
+    padding: 0px;
+    margin: 0px 0px 5px 10px;
+    font-size: 12px;
+}
+
+ul.legends li {
+    display: inline;
+    margin-right: 2px;
+    padding: 0px 3px;
 }
 

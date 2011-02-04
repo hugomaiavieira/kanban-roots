@@ -6,6 +6,7 @@ class BoardsController < InheritedResources::Base
   def show
     @project = Project.find(params[:project_id])
     @tasks = @project.tasks
+    @categories = Category.where(:project_id => @project.id)
   end
 
   def clean_up_done

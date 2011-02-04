@@ -1,12 +1,10 @@
 - content_for :meta do
   %meta{ 'http-equiv' => 'Refresh', :content => '300' }
   %style
-    - Category.all.each do |category|
+    - @categories.each do |category|
       = '.' + category.to_class + '{background-color: #' + category.color + '}'
 
-%h1
-  = @project.name
-  Board
+%h1= "#{@project.name} Board"
 
 .board
   .division
@@ -26,6 +24,11 @@
   %h3 Backlog
   - (@project.tasks_by_position Board::BACKLOG).each do |task|
     = (to_postit task).html_safe
+
+%ul.legends
+  %strong Legend:
+  - @categories.each do |category|
+    %li{:class => category.to_class}= category.name
 
 %br
 = link_to 'Categories', project_categories_path
