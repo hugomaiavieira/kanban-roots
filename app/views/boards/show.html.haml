@@ -27,6 +27,7 @@
 
 %ul.legends
   %strong Legend:
+  %li{:style => 'background-color: #ffffa5;'} None
   - @categories.each do |category|
     %li{:class => category.to_class}= category.name
 
