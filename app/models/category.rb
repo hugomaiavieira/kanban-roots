@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
            :validate_uniqueness_of_name_for_project
 
   validates_format_of :color, :with => /^[a-f0-9]{6}$/i
-  validates_format_of :name, :with => /^[a-z]+([ |_|-][a-z]+)*$/i
+  validates_format_of :name, :with => /^[a-z]+([\/| |_|-][a-z]+)*$/i
 
   def validate_uniqueness_of_color_for_project
     categories = Category.where(:project_id => self.project_id)
@@ -26,7 +26,7 @@ class Category < ActiveRecord::Base
   end
 
   def to_class
-    self.name.downcase.gsub(/ |-/, '_')
+    self.name.downcase.gsub(/\/| |-/, '_')
   end
 
 

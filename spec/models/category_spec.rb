@@ -32,6 +32,7 @@ describe Category do
     category = Factory.build :category, :project => @project, :name => 'Feature'
     category.save.should be_true
 
+    category.update_attributes(:name => 'Study/Research').should be_true
     category.update_attributes(:name => 'New Feature').should be_true
     category.update_attributes(:name => 'New_Feature').should be_true
     category.update_attributes(:name => 'New-Feature_again').should be_true
@@ -61,6 +62,9 @@ describe Category do
 
     category.name = 'Other-New Feature'
     category.to_class.should == 'other_new_feature'
+
+    category.name = 'Study/Research'
+    category.to_class.should == 'hard_study_research'
   end
 
 end
