@@ -4,3 +4,11 @@ Given /^I have a category with name "([^"]*)" and color "([^"]*)"$/ do |name, co
                                         :color => color
 end
 
+Given /^the following categories:$/ do |categories|
+  hash = categories.hashes
+  hash.each do |dict|
+    dict[:project] = @project
+  end
+  Category.create!(hash)
+end
+
