@@ -5,7 +5,7 @@ class CommentsController < InheritedResources::Base
 
   def edit
     edit! {
-      if current_contributor != @comment.contributor
+      unless current_contributor == @comment.contributor
         redirect_to(project_task_path(@comment.task.project, @comment.task)) and return
       end
       @project = @task.project
@@ -17,15 +17,15 @@ class CommentsController < InheritedResources::Base
   end
 
   def create
-    create! { redirect_to(project_task_path(@comment.task.project, @comment.task)) and return }
+    create! { project_task_path(@comment.task.project, @comment.task) }
   end
 
   def update
-    update! { redirect_to(project_task_path(@comment.task.project, @comment.task)) and return }
+    update! { project_task_path(@comment.task.project, @comment.task) }
   end
 
   def destroy
-    destroy! { redirect_to(project_task_path(@comment.task.project, @comment.task)) and return }
+    destroy! { project_task_path(@comment.task.project, @comment.task) }
   end
 
 end
