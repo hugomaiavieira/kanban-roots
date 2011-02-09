@@ -32,16 +32,6 @@ a {
     color: #005e9b;
 }
 
-p code, pre {
-    padding: 2px 5px;
-    border-radius: 6px;
-    -moz-border-radius: 6px;
-    background-color: #252525;
-    color: white;
-    font-size: 13px;
-    font-family: Monaco, Monospace;
-}
-
 .help_cursor {
     cursor: help;
 }
@@ -52,6 +42,26 @@ p code, pre {
     margin: 10px;
     padding: 5px;
     border: solid 1px #e6e6fa;
+}
+
+/* Coding */
+
+p code, pre {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    background-color: #EEEEEE;
+    border: 1px solid #DDDDDD;
+    color: #444444;
+    font-size: 13px;
+    font-family: Monaco, Monospace;
+}
+
+p code {
+    padding: 3px 5px;
+}
+
+pre {
+    padding: 5px 25px;
 }
 
 /* Board */

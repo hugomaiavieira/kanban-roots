@@ -29,6 +29,17 @@ Feature: Manipulate tasks
     And I press "Save"
     Then I should see "Title can't be blank"
 
+  Scenario: Tasks description should be rendered with Markdown syntax
+    Given I am a contributor of "Sgtran" project
+    And I am authenticated
+    And I have a task of "Sgtran" project
+    When I am on the task edit page
+    And I fill in "Description" with "## Some content here with _emphasis_"
+    And I press "Save"
+    And I go to the task page
+    And I should see "Some content here" within the "h2" tag
+    And I should see "emphasis" within the "em" tag
+
   Scenario: Edit a task
     Given I am a contributor of "Sgtran" project
     And I am authenticated

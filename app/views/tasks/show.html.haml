@@ -25,9 +25,8 @@
   - @task.comments.each do |comment|
     .comment_wrapper
       %b<= comment.contributor.name + ':'
-      %span
-        :markdown
-          #{comment.content}
+      :markdown
+        #{comment.content}
       - if comment.contributor == current_contributor
         %p#comments_menu
           = link_to 'Edit', edit_task_comment_path(@task, comment)

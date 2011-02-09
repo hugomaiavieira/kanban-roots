@@ -10,3 +10,11 @@ When /^I follow "([^"]*)" within "([^"]*)" and press ok at the pop\-up$/ do |lin
   end
 end
 
+When /^I should see "([^"]*)" within the "([^"]*)" tag$/ do |text, tag|
+  if page.respond_to? :should
+    page.should have_xpath("//#{tag}", :text => text)
+  else
+    assert page.has_xpath?("//#{tag}", :text => text)
+  end
+end
+

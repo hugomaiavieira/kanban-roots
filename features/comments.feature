@@ -22,7 +22,7 @@ Feature: Manipulate comments in tasks
     And I have a task of "Sgtran" project
     And I write a comment for this task
     When I am on the task page
-    And I follow "Edit" within "div.comment"
+    And I follow "Edit" within "div.comment_wrapper"
     And I fill in "Content" with "I'm editing this content"
     And I press "Save"
     Then I should be on the task page
@@ -42,7 +42,18 @@ Feature: Manipulate comments in tasks
     And I have a task of "Sgtran" project
     And there is a comment for this task
     When I am on the task page
-    Then I should not see "Edit" within "div.comment"
+    Then I should not see "Edit" within "div.comment_wrapper"
+
+  Scenario: Comments should be rendered with Markdown syntax
+    Given I am a contributor of "Sgtran" project
+    And I am authenticated
+    And I have a task of "Sgtran" project
+    When I am on the task page
+    And I follow "Add comment"
+    And I fill in "Content" with "# Some content here [link](http://exemplo.com)"
+    And I press "Save"
+    And I should see "Some content here" within the "h1" tag
+    And I should see "link" within the "a" tag
 
   @javascript
   Scenario: Destroy a comment
@@ -51,7 +62,7 @@ Feature: Manipulate comments in tasks
     And I have a task of "Sgtran" project
     And I write a comment for this task
     When I am on the task page
-    And I follow "Destroy" within "div.comment" and press ok at the pop-up
+    And I follow "Destroy" within "div.comment_wrapper" and press ok at the pop-up
     Then I should be on the task page
     And The comment should no longer exist
 
