@@ -3,8 +3,9 @@
   = @task.title
 %p
   %b Description:
-  %pre
-    = @task.description
+  .description
+    :markdown
+      #{@task.description}
 %p
   %b Points:
   = @task.points
@@ -22,12 +23,13 @@
   %hr
   %b Comments:
   - @task.comments.each do |comment|
-    .comment
+    .comment_wrapper
       %b<= comment.contributor.name + ':'
-      %pre
-        = comment.content
+      %span
+        :markdown
+          #{comment.content}
       - if comment.contributor == current_contributor
-        %p
+        %p#comments_menu
           = link_to 'Edit', edit_task_comment_path(@task, comment)
           \|
           = link_to 'Destroy', task_comment_path(@task, comment),

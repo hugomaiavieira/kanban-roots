@@ -64,7 +64,7 @@ describe Category do
     category.to_class.should == 'other_new_feature'
 
     category.name = 'Study/Research'
-    category.to_class.should == 'hard_study_research'
+    category.to_class.should == 'study_research'
   end
 
 end

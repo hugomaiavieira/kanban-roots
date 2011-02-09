@@ -10,6 +10,7 @@ gem 'formtastic'
 gem 'inherited_resources'
 gem 'escape_utils'
 gem 'devise'
+gem 'rdiscount'
 
 group :development, :test do
   gem 'factory_girl_rails'
@@ -29,4 +30,3 @@ group :cucumber do
 end
 
 gem 'rails3-generators', :group => :development
-

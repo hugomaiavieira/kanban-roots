@@ -8,16 +8,23 @@
 
   .field
     = f.input :title
+
   .field
     = f.input :description
+  = markdown_note('Tasks').html_safe
+
   .field
     = f.input :points, :as => 'select', :collection => Task::POINTS
+
   .field
     = f.input :category, :as => 'select', :collection => @categories
+
   .field
     = f.input :position, :as => 'select', :collection => Board::POSITIONS, :prompt => false
+
   .field
     = f.input :contributors, :label => 'Sponsors', :include_blank => true
+
   .actions
     = f.submit 'Save'
 

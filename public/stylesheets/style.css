@@ -32,8 +32,26 @@ a {
     color: #005e9b;
 }
 
+p code, pre {
+    padding: 2px 5px;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    background-color: #252525;
+    color: white;
+    font-size: 13px;
+    font-family: Monaco, Monospace;
+}
+
 .help_cursor {
     cursor: help;
+}
+
+.markdown_note {
+    display: inline-block;
+    font-size: 12px;
+    margin: 10px;
+    padding: 5px;
+    border: solid 1px #e6e6fa;
 }
 
 /* Board */
@@ -109,17 +127,21 @@ div.division {
     color: gray;
 }
 
-.comment {
+/* Comments */
+
+.comment_wrapper {
     margin: 20px;
     padding: 10px;
     border: solid 1px #e6e6fa;
     width: 700px;
 }
 
-.comment p {
+.comment_wrapper #comments_menu {
     margin: 10px 2px 2px 2px;
     text-align: right;
 }
+
+/* Legends */
 
 ul.legends {
     padding: 0px;
@@ -131,5 +153,12 @@ ul.legends li {
     display: inline;
     margin-right: 2px;
     padding: 0px 3px;
+}
+
+/* Description */
+
+.description {
+    width: 700px;
+    margin-left: 20px;
 }
 
