@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 gem 'mysql2'
 gem 'sqlite3-ruby'
 
@@ -14,16 +14,16 @@ gem 'rdiscount'
 
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'rspec-rails', '~>2.3.1'
-  gem 'remarkable_activerecord', '~>4.0.0.alpha4'
-  gem 'remarkable_activemodel', '~>4.0.0.alpha4'
+  gem 'rspec-rails', '>=2.5.0'
+  gem 'remarkable_activerecord', '>=4.0.0.alpha4'
+  gem 'remarkable_activemodel', '>=4.0.0.alpha4'
 end
 
 group :cucumber do
   gem 'launchy'
   gem 'capybara'
   gem 'rspec'
-  gem "rspec-rails", "~>2.3.1"
+  gem "rspec-rails", ">=2.5.0"
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'spork'
