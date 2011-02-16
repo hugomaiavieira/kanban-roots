@@ -233,3 +233,7 @@ div.actions input {
     float: right;
 }
 
+abbr {
+    color: red;
+}
+
