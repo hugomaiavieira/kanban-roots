@@ -1,4 +1,4 @@
-= form_for @team do |f|
+= semantic_form_for @team do |f|
   -if @team.errors.any?
     #error_explanation
       %h2= "#{pluralize(@team.errors.count, "error")} prohibited this team from being saved:"
@@ -7,7 +7,8 @@
           %li= msg
 
   .field
-    = f.label :name
-    = f.text_field :name
+    = f.input :name
+
   .actions
     = f.submit 'Save'
+
