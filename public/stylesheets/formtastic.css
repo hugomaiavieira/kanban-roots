@@ -38,13 +38,13 @@ form.formtastic fieldset.buttons li { float:left; padding-right:0.5em; }
 
 /* INPUT LIs
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li { margin-bottom:1.5em; }
+form.formtastic fieldset > ol > li { padding:0.5em 0; margin-top:-0.5em; margin-bottom:1em; } /* padding and negative margin juggling is for Firefox */
 form.formtastic fieldset > ol > li { overflow:auto; } /* clearing contained floats */
 
 form.formtastic fieldset > ol > li.required { }
 form.formtastic fieldset > ol > li.optional { }
 form.formtastic fieldset > ol > li.error { }
-  
+
 
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
@@ -56,7 +56,7 @@ form.formtastic fieldset > ol > li > li label input { line-height:100%; vertical
 /* NESTED FIELDSETS AND LEGENDS (radio, check boxes and date/time inputs use nested fieldsets)
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li fieldset { position:relative; }
-form.formtastic fieldset > ol > li fieldset legend { position:absolute; width:95%; padding-top:0.1em; left: 0px; }
+form.formtastic fieldset > ol > li fieldset legend { position:absolute; width:95%; left: 0px; }
 form.formtastic fieldset > ol > li fieldset legend span { position:absolute; }
 form.formtastic fieldset > ol > li fieldset legend.label label { position:absolute; }
 form.formtastic fieldset > ol > li fieldset ol { float:left; width:74%; margin:0; padding:0 0 0 25%; }
@@ -75,16 +75,29 @@ form.formtastic fieldset > ol > li ul.errors { color:#cc0000; margin:0.5em 0 0 2
 form.formtastic fieldset > ol > li ul.errors li { padding:0; border:none; display:list-item; }
 
 
-/* STRING & NUMERIC OVERRIDES
+/* STRING, NUMERIC, PASSWORD, EMAIL, URL, PHONE & SEARCH OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.string input { max-width:74%; }
-form.formtastic fieldset > ol > li.password input { max-width: 13em; }
-form.formtastic fieldset > ol > li.numeric input { max-width:74%; }
+form.formtastic fieldset > ol > li.string input,
+form.formtastic fieldset > ol > li.password input,
+form.formtastic fieldset > ol > li.numeric input,
+form.formtastic fieldset > ol > li.email input,
+form.formtastic fieldset > ol > li.url input,
+form.formtastic fieldset > ol > li.phone input,
+form.formtastic fieldset > ol > li.search input { width:72%; }
+
+form.formtastic fieldset > ol > li.string input[size],
+form.formtastic fieldset > ol > li.password input[size],
+form.formtastic fieldset > ol > li.numeric input[size],
+form.formtastic fieldset > ol > li.email input[size],
+form.formtastic fieldset > ol > li.url input[size],
+form.formtastic fieldset > ol > li.phone input[size],
+form.formtastic fieldset > ol > li.search input[size] { width:auto; max-width:72%; }
 
 
 /* TEXTAREA OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.text textarea { width:74%; }
+form.formtastic fieldset > ol > li.text textarea { width:72%; }
+form.formtastic fieldset > ol > li.text textarea[cols] { width:auto; max-width:72%; }
 
 
 /* HIDDEN OVERRIDES
@@ -100,8 +113,9 @@ form.formtastic fieldset > ol > li.boolean label input { margin:0 0.5em 0 0.2em;
 /* RADIO OVERRIDES
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li.radio { }
-form.formtastic fieldset > ol > li.radio fieldset ol { margin-bottom:-0.6em; }
-form.formtastic fieldset > ol > li.radio fieldset ol li { margin:0.1em 0 0.5em 0; }
+form.formtastic fieldset > ol > li.radio fieldset { overflow:visible; }
+form.formtastic fieldset > ol > li.radio fieldset ol { margin-bottom:-0.5em; }
+form.formtastic fieldset > ol > li.radio fieldset ol li { margin:0.1em 0 0.5em 0; overflow:visible; }
 form.formtastic fieldset > ol > li.radio fieldset ol li label { float:none; width:100%; }
 form.formtastic fieldset > ol > li.radio fieldset ol li label input { margin-right:0.2em; }
 
@@ -109,11 +123,11 @@ form.formtastic fieldset > ol > li.radio fieldset ol li label input { margin-rig
 /* CHECK BOXES (COLLECTION) OVERRIDES
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li.check_boxes { }
-form.formtastic fieldset > ol > li.check_boxes fieldset ol { margin-bottom:-0.6em; }
-form.formtastic fieldset > ol > li.check_boxes fieldset ol li { margin:0.1em 0 0.5em 0; }
+form.formtastic fieldset > ol > li.check_boxes fieldset { overflow:visible; }
+form.formtastic fieldset > ol > li.check_boxes fieldset ol { margin-bottom:-0.5em; }
+form.formtastic fieldset > ol > li.check_boxes fieldset ol li { margin:0.1em 0 0.5em 0; overflow:visible; }
 form.formtastic fieldset > ol > li.check_boxes fieldset ol li label { float:none; width:100%; }
 form.formtastic fieldset > ol > li.check_boxes fieldset ol li label input { margin-right:0.2em; }
-
 
 
 /* DATE & TIME OVERRIDES
@@ -126,6 +140,7 @@ form.formtastic fieldset > ol > li.date fieldset ol li label,
 form.formtastic fieldset > ol > li.time fieldset ol li label,
 form.formtastic fieldset > ol > li.datetime fieldset ol li label { display:none; }
 
-form.formtastic fieldset > ol > li.date fieldset ol li label input, 
-form.formtastic fieldset > ol > li.time fieldset ol li label input, 
+form.formtastic fieldset > ol > li.date fieldset ol li label input,
+form.formtastic fieldset > ol > li.time fieldset ol li label input,
 form.formtastic fieldset > ol > li.datetime fieldset ol li label input { display:inline; margin:0; padding:0;  }
+
