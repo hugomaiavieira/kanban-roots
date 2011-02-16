@@ -15,7 +15,7 @@
 Formtastic::SemanticFormBuilder.default_text_area_height = 10
 
 # Set the default text area width when input is a text. Default is nil.
-Formtastic::SemanticFormBuilder.default_text_area_width = 100
+Formtastic::SemanticFormBuilder.default_text_area_width = 60
 
 # Should all fields be considered "required" by default?
 # Rails 2 only, ignored by Rails 3 because it will never fall back to this default.

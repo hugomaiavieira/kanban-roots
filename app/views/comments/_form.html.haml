@@ -8,11 +8,10 @@
 
   .field
     = f.input :content
+  = markdown_note('Comments').html_safe
 
   = hidden_field_tag "comment[contributor_id]", current_contributor.id
 
   .actions
     = f.submit 'Save'
-
-= markdown_note('Comments').html_safe
 

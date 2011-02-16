@@ -39,7 +39,7 @@ a {
 .markdown_note {
     display: inline-block;
     font-size: 12px;
-    margin: 10px;
+    margin: 5px 0px 8px 105px;
     padding: 5px;
     border: solid 1px #e6e6fa;
 }
@@ -193,5 +193,43 @@ ul.legends li {
 .description {
     width: 700px;
     margin-left: 20px;
+}
+
+/* Forms */
+
+div.field {
+    margin: 2px 0px;
+}
+
+div.field li {
+    list-style: none;
+}
+
+div.field li label {
+    float: left;
+    margin-right: 5px;
+    text-align: right;
+    width: 100px;
+}
+
+div.field li label:after {
+    content: ':';
+}
+
+div.actions {
+    width: 100px;
+}
+
+div.actions:after {
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+div.actions input {
+    margin: 15px 0px;
+    float: right;
 }
 
