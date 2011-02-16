@@ -237,3 +237,35 @@ abbr {
     color: red;
 }
 
+.registrations div.field i {
+    float: left;
+    margin-left: 5px;
+}
+
+.registrations div.field input {
+    float: left;
+}
+
+.registrations div.field:after {
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+.registrations div.field li label {
+    float: left;
+    margin-right: 5px;
+    text-align: right;
+    width: 170px;
+}
+
+.registrations div.actions {
+    width: 170px;
+}
+
+.remember_me {
+    margin-left: 105px;
+}
+

@@ -1,15 +1,24 @@
 %h2 Sign up
+
 = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = devise_error_messages!
-  %p
-    = f.input :name
-  %p
-    = f.input :email, :label => 'E-mail'
-  %p
-    = f.input :password, :as => :password
-  %p
-    = f.input :password_confirmation, :as => :password
 
-  %p= f.submit "Sign up"
+  .registrations
+
+    .field
+      = f.input :name
+
+    .field
+      = f.input :email, :label => 'E-mail'
+
+    .field
+      = f.input :password, :as => :password
+
+    .field
+      = f.input :password_confirmation, :as => :password
+
+    .actions
+      = f.submit "Sign up"
+
 = render :partial => "devise/shared/links"
 
