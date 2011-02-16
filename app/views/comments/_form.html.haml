@@ -7,9 +7,9 @@
           %li= msg
 
   .field
-    = f.label :content
-    = f.text_area :content
-    = hidden_field_tag "comment[contributor_id]", current_contributor.id
+    = f.input :content
+
+  = hidden_field_tag "comment[contributor_id]", current_contributor.id
 
   .actions
     = f.submit 'Save'
