@@ -6,6 +6,12 @@
 
 %h1= "#{@project.name} Board"
 
+%ul.legends
+  %strong Legend:
+  %li{:style => 'background-color: #ffffa5;'} None
+  - @categories.each do |category|
+    %li{:class => category.to_class}= category.name
+
 .board
   .division
     %h3 To Do
@@ -24,12 +30,6 @@
   %h3 Backlog
   - (@project.tasks_by_position Board::BACKLOG).each do |task|
     = (to_postit task).html_safe
-
-%ul.legends
-  %strong Legend:
-  %li{:style => 'background-color: #ffffa5;'} None
-  - @categories.each do |category|
-    %li{:class => category.to_class}= category.name
 
 %br
 = link_to 'Categories', project_categories_path
