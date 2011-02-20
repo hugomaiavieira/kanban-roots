@@ -58,5 +58,17 @@ describe Project do
     project.count_points(Board::DONE).should == 0
   end
 
+  it 'should be sorted by name' do
+    project_z = Factory.create :project, :name => 'Zoo'
+    project_a = Factory.create :project, :name => 'Anything'
+    project_b = Factory.create :project, :name => 'BatleField'
+
+    projects = [project_b, project_z, project_a]
+    projects.sort.should == [project_a, project_b, project_z]
+
+    projects = [project_z, project_a, project_b]
+    projects.sort.should == [project_a, project_b, project_z]
+  end
+
 end
 

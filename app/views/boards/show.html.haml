@@ -4,6 +4,10 @@
     - @categories.each do |category|
       = '.' + category.to_class + '{background-color: #' + category.color + '}'
 
+%p
+  My projects:
+  = my_projects
+
 %h1= "#{@project.name} Board"
 
 %ul.legends

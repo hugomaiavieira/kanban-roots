@@ -20,5 +20,10 @@ class Project < ActiveRecord::Base
     points
   end
 
+  def <=> project
+    self.name <=> project.name
+  end
+
+
 end
 
