@@ -13,5 +13,12 @@ class Project < ActiveRecord::Base
     done_tasks = self.tasks_by_position Board::DONE
     done_tasks.each { |task| task.update_attributes :position => Board::OUT }
   end
+
+  def count_points position
+    points = 0
+    self.tasks_by_position(position).each { |task| points += task.points }
+    points
+  end
+
 end
 

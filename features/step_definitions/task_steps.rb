@@ -6,8 +6,8 @@ Given /^the following tasks:$/ do |tasks|
   hash = tasks.hashes
   hash.each do |dict|
     dict[:project] = @project
+    Factory.create :task, dict
   end
-  Task.create!(hash)
 end
 
 Given /^I have a task of "([^"]*)" project$/ do |project_name|

@@ -43,5 +43,20 @@ describe Project do
     out_tasks.should include(*tasks[1..4])
     out_tasks.should have(4).tasks
   end
+
+  it 'returns the task points sum for a given position of the board' do
+    tasks = [stub_model(Task, :points => 1, :position => Board::DOING),
+             stub_model(Task, :points => 2, :position => Board::DOING),
+             stub_model(Task, :points => 8, :position => Board::TODO),
+             stub_model(Task, :points => 3, :position => Board::DOING),
+             stub_model(Task, :points => 5, :position => Board::TODO)]
+    project = Project.new
+    project.tasks.<<(*tasks)
+
+    project.count_points(Board::TODO).should == 13
+    project.count_points(Board::DOING).should == 6
+    project.count_points(Board::DONE).should == 0
+  end
+
 end
 
