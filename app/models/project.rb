@@ -16,7 +16,9 @@ class Project < ActiveRecord::Base
 
   def count_points position
     points = 0
-    self.tasks_by_position(position).each { |task| points += task.points }
+    self.tasks_by_position(position).each do |task|
+      points += task.points if task.points
+    end
     points
   end
 

@@ -48,6 +48,7 @@ describe Project do
     tasks = [stub_model(Task, :points => 1, :position => Board::DOING),
              stub_model(Task, :points => 2, :position => Board::DOING),
              stub_model(Task, :points => 8, :position => Board::TODO),
+             stub_model(Task, :points => nil, :position => Board::TODO),
              stub_model(Task, :points => 3, :position => Board::DOING),
              stub_model(Task, :points => 5, :position => Board::TODO)]
     project = Project.new
