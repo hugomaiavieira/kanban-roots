@@ -9,7 +9,7 @@ gem 'haml-rails'
 gem 'formtastic'
 gem 'inherited_resources'
 gem 'escape_utils'
-gem 'devise'
+gem 'devise', '>= 1.2.rc2'
 gem 'rdiscount'
 
 group :development, :test do
@@ -23,7 +23,7 @@ group :cucumber do
   gem 'launchy'
   gem 'capybara'
   gem 'rspec'
-  gem "rspec-rails", ">=2.5.0"
+  gem 'rspec-rails', '>=2.5.0'
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'spork'
