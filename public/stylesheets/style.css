@@ -168,7 +168,7 @@ div.board ul {
 /* Board drag and drop */
 
 .droppable {
-    min-height: 200px;
+    min-height: 150px;
     display: block;
 }
 

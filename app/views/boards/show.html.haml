@@ -22,7 +22,7 @@
 .board
   .division
     %h3="To Do (#{@project.count_points(Board::TODO)})"
-    %ul.droppable#todo
+    %ul.droppable
       - (@project.tasks_by_position Board::TODO).each do |task|
         = (to_postit task).html_safe
   .division
