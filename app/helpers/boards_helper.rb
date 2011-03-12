@@ -3,7 +3,8 @@ module BoardsHelper
   def to_postit task
     "<div class='postit#{category_class(task)}'>
       <p class='top'>
-        #{points(task)}
+        <span class='points'>#{points(task)}</span>
+        <img src='/images/pin.png' class='grabber' height='16' width='16' alt='Move' title='Move'></img>
         #{comments(task)}
       </p>
       #{title(task)}
@@ -24,9 +25,7 @@ module BoardsHelper
   end
 
   def comments task
-    number = task.comments.count
-    return "<span class ='comments_number'>#{number} comment</span>" if number == 1
-    "<span class ='comments_number'>#{number} comments</span>"
+    "<span class ='comments_number'>#{task.comments.count}</span>"
   end
 
   def title task

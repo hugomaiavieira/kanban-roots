@@ -1,8 +1,11 @@
-- content_for :meta do
+- content_for :head do
   %meta{ 'http-equiv' => 'Refresh', :content => '300' }
   %style
     - @categories.each do |category|
       = '.' + category.to_class + '{background-color: #' + category.color + '}'
+
+- content_for :javascript do
+  = javascript_include_tag 'postit.js'
 
 %p
   My projects:
@@ -17,23 +20,24 @@
     %li{:class => category.to_class}= category.name
 
 .board
-  .division
+  .division.droppable
     %h3="To Do (#{@project.count_points(Board::TODO)})"
     - (@project.tasks_by_position Board::TODO).each do |task|
       = (to_postit task).html_safe
-  .division
+  .division.droppable
     %h3="Doing (#{@project.count_points(Board::DOING)})"
     - (@project.tasks_by_position Board::DOING).each do |task|
       = (to_postit task).html_safe
-  .division
+  .division.droppable
     %h3="Done (#{@project.count_points(Board::DONE)})"
     - (@project.tasks_by_position Board::DONE).each do |task|
       = (to_postit task).html_safe
 
 .board
-  %h3 Backlog
-  - (@project.tasks_by_position Board::BACKLOG).each do |task|
-    = (to_postit task).html_safe
+  .droppable
+    %h3 Backlog
+    - (@project.tasks_by_position Board::BACKLOG).each do |task|
+      = (to_postit task).html_safe
 
 %br
 = link_to 'Categories', project_categories_path
@@ -41,4 +45,3 @@
 = link_to 'New Task', new_project_task_path
 \|
 = link_to 'Clean up Done', clean_up_done_path
-

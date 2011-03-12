@@ -94,7 +94,6 @@ div.board {
     width: 1174px;
     margin: 10px;
     border: solid 2px #bfbfbf;
-    padding-bottom: 5px;
 }
 
 div.board h3 {
@@ -151,13 +150,27 @@ div.division {
     text-align: right;
 }
 
-.postit p.top {
-    text-align: left;
-}
-
 .postit p.top .comments_number {
     float: right;
     color: gray;
+}
+
+.postit p.top .points {
+    float: left;
+}
+
+/* Board drag and drop */
+
+div.droppable {
+    min-height: 200px;
+}
+
+div.ui-state-hover {
+    background-color: #e3e9ff;
+}
+
+.grabber {
+    cursor: move;
 }
 
 /* Comments */
