@@ -108,6 +108,11 @@ div.division {
     width: 390px;
 }
 
+div.board ul {
+    margin: 0px;
+    padding: 0px;
+}
+
 .postit {
     float: left;
     padding: 7px 15px;
@@ -123,6 +128,7 @@ div.division {
     box-shadow: 3px 3px 3px #888;
     -moz-box-shadow: 3px 3px 3px #888;
     -webkit-box-shadow: 3px 3px 3px #888;
+    list-style: none;
 }
 
 .postit a.title {
@@ -161,11 +167,12 @@ div.division {
 
 /* Board drag and drop */
 
-div.droppable {
+.droppable {
     min-height: 200px;
+    display: block;
 }
 
-div.ui-state-hover {
+.ui-state-hover {
     background-color: #e3e9ff;
 }
 

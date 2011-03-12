@@ -20,22 +20,25 @@
     %li{:class => category.to_class}= category.name
 
 .board
-  .division.droppable
+  .division
     %h3="To Do (#{@project.count_points(Board::TODO)})"
-    - (@project.tasks_by_position Board::TODO).each do |task|
-      = (to_postit task).html_safe
-  .division.droppable
+    %ul.droppable#todo
+      - (@project.tasks_by_position Board::TODO).each do |task|
+        = (to_postit task).html_safe
+  .division
     %h3="Doing (#{@project.count_points(Board::DOING)})"
-    - (@project.tasks_by_position Board::DOING).each do |task|
-      = (to_postit task).html_safe
-  .division.droppable
+    %ul.droppable
+      - (@project.tasks_by_position Board::DOING).each do |task|
+        = (to_postit task).html_safe
+  .division
     %h3="Done (#{@project.count_points(Board::DONE)})"
-    - (@project.tasks_by_position Board::DONE).each do |task|
-      = (to_postit task).html_safe
+    %ul.droppable
+      - (@project.tasks_by_position Board::DONE).each do |task|
+        = (to_postit task).html_safe
 
 .board
-  .droppable
-    %h3 Backlog
+  %h3 Backlog
+  %ul.droppable
     - (@project.tasks_by_position Board::BACKLOG).each do |task|
       = (to_postit task).html_safe
 

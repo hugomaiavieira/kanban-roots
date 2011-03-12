@@ -1,8 +1,7 @@
 $(function() {
     $(".postit").draggable({
         handle: "img",
-        revert: "invalid",
-        appendTo: '.droppable'
+        revert: "invalid"
     });
 
     $( ".droppable" ).droppable({

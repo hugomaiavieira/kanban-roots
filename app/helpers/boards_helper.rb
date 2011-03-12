@@ -1,7 +1,7 @@
 module BoardsHelper
 
   def to_postit task
-    "<div class='postit#{category_class(task)}'>
+    "<li class='postit#{category_class(task)}'>
       <p class='top'>
         <span class='points'>#{points(task)}</span>
         <img src='/images/pin.png' class='grabber' height='16' width='16' alt='Move' title='Move'></img>
@@ -9,7 +9,7 @@ module BoardsHelper
       </p>
       #{title(task)}
       #{sponsors(task)}
-    </div>"
+    </li>"
   end
 
   def category_class task
