@@ -118,10 +118,6 @@ div.board ul {
     padding: 7px 15px;
     margin: 7px;
     width: 150px;
-    border-radius: 0px;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
     text-align: center;
     color: black;
     background-color: #ffffa5;
@@ -156,6 +152,10 @@ div.board ul {
     text-align: right;
 }
 
+p.top {
+    min-height: 16px;
+}
+
 .postit p.top .comments_number {
     float: right;
     color: gray;
@@ -169,16 +169,13 @@ div.board ul {
 
 .droppable {
     min-height: 150px;
-    display: block;
 }
 
 .ui-state-hover {
     background-color: #e3e9ff;
 }
 
-.grabber {
-    cursor: move;
-}
+.nada { color: blue; }
 
 /* Comments */
 

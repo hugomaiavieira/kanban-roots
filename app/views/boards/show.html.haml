@@ -7,9 +7,10 @@
 - content_for :javascript do
   = javascript_include_tag 'postit.js'
 
-%p
-  My projects:
-  = my_projects
+- unless my_projects.empty?
+  %p
+    My projects:
+    = my_projects
 
 %h1= "#{@project.name} Board"
 
@@ -22,25 +23,29 @@
 .board
   .division
     %h3="To Do (#{@project.count_points(Board::TODO)})"
-    %ul.droppable
-      - (@project.tasks_by_position Board::TODO).each do |task|
-        = (to_postit task).html_safe
+    #todo.droppable
+      %ul
+        - (@project.tasks_by_position Board::TODO).each do |task|
+          = (to_postit task).html_safe
   .division
     %h3="Doing (#{@project.count_points(Board::DOING)})"
-    %ul.droppable
-      - (@project.tasks_by_position Board::DOING).each do |task|
-        = (to_postit task).html_safe
+    #doing.droppable
+      %ul
+        - (@project.tasks_by_position Board::DOING).each do |task|
+          = (to_postit task).html_safe
   .division
     %h3="Done (#{@project.count_points(Board::DONE)})"
-    %ul.droppable
-      - (@project.tasks_by_position Board::DONE).each do |task|
-        = (to_postit task).html_safe
+    #done.droppable
+      %ul
+        - (@project.tasks_by_position Board::DONE).each do |task|
+          = (to_postit task).html_safe
 
 .board
   %h3 Backlog
-  %ul.droppable
-    - (@project.tasks_by_position Board::BACKLOG).each do |task|
-      = (to_postit task).html_safe
+  #backlog.droppable
+    %ul
+      - (@project.tasks_by_position Board::BACKLOG).each do |task|
+        = (to_postit task).html_safe
 
 %br
 = link_to 'Categories', project_categories_path

@@ -4,7 +4,6 @@ module BoardsHelper
     "<li class='postit#{category_class(task)}'>
       <p class='top'>
         <span class='points'>#{points(task)}</span>
-        <img src='/images/pin.png' class='grabber' height='16' width='16' alt='Move' title='Move'></img>
         #{comments(task)}
       </p>
       #{title(task)}
