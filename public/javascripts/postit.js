@@ -5,10 +5,10 @@ $(function() {
        $done = $('#done');
        $backlog = $('#backlog');
        $accepted_by = {
-        todo: '#doing > ul > li, #done > ul > li, #backlog > ul > li',
-        doing: '#todo > ul > li, #done > ul > li, #backlog > ul > li',
-        done: '#todo > ul > li, #doing > ul > li, #backlog > ul > li',
-        backlog: '#todo > ul > li, #doing > ul > li, #done > ul > li'
+        todo: '#doing > li, #done > li, #backlog > li',
+        doing: '#todo > li, #done > li, #backlog > li',
+        done: '#todo > li, #doing > li, #backlog > li',
+        backlog: '#todo > li, #doing > li, #done > li'
        }
 
   // let the post-its be draggable
@@ -67,7 +67,6 @@ $(function() {
 
 });
 
-function movePostit ($postit, $div) {
-  var $list = $('ul', $div);
-  $postit.appendTo($list);
- }
+function movePostit ($postit, $ul) {
+  $postit.appendTo($ul);
+}

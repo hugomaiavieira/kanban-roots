@@ -169,13 +169,12 @@ p.top {
 
 .droppable {
     min-height: 150px;
+    height: inherit
 }
 
 .ui-state-hover {
     background-color: #e3e9ff;
 }
-
-.nada { color: blue; }
 
 /* Comments */
 
