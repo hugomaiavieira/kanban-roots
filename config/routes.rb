@@ -7,12 +7,10 @@ KanbanRoots::Application.routes.draw do
   resources :teams
 
   resources :projects do
-    resources :tasks
+    resources :tasks do
+      resources :comments
+    end
     resources :categories
-  end
-
-  resources :tasks do
-    resources :comments
   end
 
   match 'teams/:id/manage_contributors' => 'teams#manage_contributors',  :as => :manage_contributors

@@ -1,4 +1,4 @@
-= semantic_form_for [@task, @comment] do |f|
+= semantic_form_for [@project, @task, @comment] do |f|
   -if @comment.errors.any?
     #error_explanation
       %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
@@ -14,4 +14,3 @@
 
   .actions
     = f.submit 'Save'
-

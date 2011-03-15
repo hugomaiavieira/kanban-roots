@@ -1,7 +1,7 @@
 module BoardsHelper
 
   def to_postit task
-    "<li class='postit#{category_class(task)}'>
+    "<li id='#{task.id}' class='postit#{category_class(task)}'>
       <p class='top'>
         <span class='points'>#{points(task)}</span>
         #{comments(task)}
@@ -24,7 +24,9 @@ module BoardsHelper
   end
 
   def comments task
-    "<span class ='comments_number'>#{task.comments.count}</span>"
+    number = task.comments.count
+    return "<span class ='comments_number'>#{number} comment</span>" if number == 1
+    "<span class ='comments_number'>#{number} comments</span>"
   end
 
   def title task

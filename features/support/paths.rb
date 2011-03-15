@@ -45,7 +45,7 @@ module NavigationHelpers
       new_contributor_session_path
 
     when /the edit comment page/
-      edit_task_comment_path(@task, @comment)
+      edit_project_task_comment_path(@project, @task, @comment)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
