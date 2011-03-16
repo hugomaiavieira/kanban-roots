@@ -67,16 +67,16 @@ $(function() {
 
 });
 
-function movePostit ($postit, $ul) {
-  var $task_id = $postit.attr('id'),
-      $position = $ul.attr('id')
+function movePostit (postit, ul) {
+  var task_id = postit.attr('id'),
+      task_position = ul.attr('id')
 
-  $postit.appendTo($ul);
+  postit.appendTo(ul);
 
   $.ajax({
     type: "PUT",
-    url: "/tasks/" + $task_id + "/update_position",
-    data: ({ position : $position }),
+    url: "/tasks/" + task_id + "/update_position",
+    data: ({ position : task_position }),
     async: false
   });
 }
