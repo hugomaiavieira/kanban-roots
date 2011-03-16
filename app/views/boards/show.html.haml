@@ -22,25 +22,25 @@
 
 .board
   .division
-    %h3="To Do (#{@project.count_points(Board::TODO)})"
+    %h3="To Do (#{@project.count_points(Board::POSITIONS['todo'])})"
     %ul#todo.droppable
-      - (@project.tasks_by_position Board::TODO).each do |task|
+      - (@project.tasks_by_position Board::POSITIONS['todo']).each do |task|
         = (to_postit task).html_safe
   .division
-    %h3="Doing (#{@project.count_points(Board::DOING)})"
+    %h3="Doing (#{@project.count_points(Board::POSITIONS['doing'])})"
     %ul#doing.droppable
-      - (@project.tasks_by_position Board::DOING).each do |task|
+      - (@project.tasks_by_position Board::POSITIONS['doing']).each do |task|
         = (to_postit task).html_safe
   .division
-    %h3="Done (#{@project.count_points(Board::DONE)})"
+    %h3="Done (#{@project.count_points(Board::POSITIONS['done'])})"
     %ul#done.droppable
-      - (@project.tasks_by_position Board::DONE).each do |task|
+      - (@project.tasks_by_position Board::POSITIONS['done']).each do |task|
         = (to_postit task).html_safe
 
 .board
   %h3 Backlog
   %ul#backlog.droppable
-    - (@project.tasks_by_position Board::BACKLOG).each do |task|
+    - (@project.tasks_by_position Board::POSITIONS['backlog']).each do |task|
       = (to_postit task).html_safe
 
 %br

@@ -27,36 +27,36 @@ describe Project do
   end
 
   it 'cleanup all Done tasks' do
-    tasks = [stub_model(Task, :position => Board::DOING),
-             stub_model(Task, :position => Board::DONE),
-             stub_model(Task, :position => Board::DONE),
-             stub_model(Task, :position => Board::DONE),
-             stub_model(Task, :position => Board::DONE)]
+    tasks = [stub_model(Task, :position => Board::POSITIONS['doing']),
+             stub_model(Task, :position => Board::POSITIONS['done']),
+             stub_model(Task, :position => Board::POSITIONS['done']),
+             stub_model(Task, :position => Board::POSITIONS['done']),
+             stub_model(Task, :position => Board::POSITIONS['done'])]
     project = Project.new
     project.tasks.<<(*tasks)
 
     project.clean_up_done_tasks
-    done_tasks = project.tasks.select {|item| item.position == Board::DONE }
+    done_tasks = project.tasks.select {|item| item.position == Board::POSITIONS['done'] }
     done_tasks.should be_empty
 
-    out_tasks = project.tasks.select {|item| item.position == Board::OUT }
+    out_tasks = project.tasks.select {|item| item.position == Board::POSITIONS['out'] }
     out_tasks.should include(*tasks[1..4])
     out_tasks.should have(4).tasks
   end
 
   it 'returns the task points sum for a given position of the board' do
-    tasks = [stub_model(Task, :points => 1, :position => Board::DOING),
-             stub_model(Task, :points => 2, :position => Board::DOING),
-             stub_model(Task, :points => 8, :position => Board::TODO),
-             stub_model(Task, :points => nil, :position => Board::TODO),
-             stub_model(Task, :points => 3, :position => Board::DOING),
-             stub_model(Task, :points => 5, :position => Board::TODO)]
+    tasks = [stub_model(Task, :points => 1, :position => Board::POSITIONS['doing']),
+             stub_model(Task, :points => 2, :position => Board::POSITIONS['doing']),
+             stub_model(Task, :points => 8, :position => Board::POSITIONS['todo']),
+             stub_model(Task, :points => nil, :position => Board::POSITIONS['todo']),
+             stub_model(Task, :points => 3, :position => Board::POSITIONS['doing']),
+             stub_model(Task, :points => 5, :position => Board::POSITIONS['todo'])]
     project = Project.new
     project.tasks.<<(*tasks)
 
-    project.count_points(Board::TODO).should == 13
-    project.count_points(Board::DOING).should == 6
-    project.count_points(Board::DONE).should == 0
+    project.count_points(Board::POSITIONS['todo']).should == 13
+    project.count_points(Board::POSITIONS['doing']).should == 6
+    project.count_points(Board::POSITIONS['done']).should == 0
   end
 
   it 'should be sorted by name' do

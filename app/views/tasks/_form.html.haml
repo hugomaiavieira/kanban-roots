@@ -20,11 +20,10 @@
     = f.input :category, :as => 'select', :collection => @categories
 
   .field
-    = f.input :position, :as => 'select', :collection => Board::POSITIONS, :prompt => false
+    = f.input :position, :as => 'select', :collection => Board::POSITIONS.values, :prompt => false
 
   .field
     = f.input :contributors, :label => 'Sponsors', :include_blank => true
 
   .actions
     = f.submit 'Save'
-

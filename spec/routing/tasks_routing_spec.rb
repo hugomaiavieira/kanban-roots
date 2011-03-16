@@ -31,6 +31,10 @@ describe TasksController do
       { :delete => "projects/5/tasks/1" }.should route_to(:controller => "tasks", :action => "destroy", :id => "1", :project_id => "5" )
     end
 
+    it "recognizes and generates #update_position" do
+      { :put => "tasks/1/update_position" }.should route_to(:controller => "tasks", :action => "update_position", :id => "1" )
+    end
+
   end
 end
 

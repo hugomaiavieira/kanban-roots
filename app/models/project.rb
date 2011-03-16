@@ -10,8 +10,8 @@ class Project < ActiveRecord::Base
   end
 
   def clean_up_done_tasks
-    done_tasks = self.tasks_by_position Board::DONE
-    done_tasks.each { |task| task.update_attributes :position => Board::OUT }
+    done_tasks = self.tasks_by_position Board::POSITIONS['done']
+    done_tasks.each { |task| task.update_attributes :position => Board::POSITIONS['out'] }
   end
 
   def count_points position

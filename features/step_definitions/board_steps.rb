@@ -3,6 +3,6 @@ Then /^I should see a board like this:$/ do |table|
 end
 
 Then /^the Done division should be cleaned$/ do
-  @project.tasks_by_position(Board::DONE).should be_empty
+  @project.tasks_by_position(Board::POSITIONS['done']).should be_empty
 end
 

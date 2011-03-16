@@ -13,6 +13,8 @@ KanbanRoots::Application.routes.draw do
     resources :categories
   end
 
+  match 'tasks/:id/update_position' => 'tasks#update_position'
+
   match 'teams/:id/manage_contributors' => 'teams#manage_contributors',  :as => :manage_contributors
   match 'teams/:id/manage_projects' => 'teams#manage_projects',  :as => :manage_projects
   match 'projects/:project_id/board' => 'boards#show',  :as => :project_board

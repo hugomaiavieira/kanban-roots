@@ -22,5 +22,12 @@ class TasksController < InheritedResources::Base
   def destroy
     destroy! { project_board_path }
   end
+
+  # TODO: Make test
+  def update_position
+    task = Task.find(params[:id])
+    task.update_attribute(:position, Board::POSITIONS[params[:position]])
+    return
+  end
 end
 

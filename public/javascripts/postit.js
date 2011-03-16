@@ -18,14 +18,14 @@ $(function() {
     revert: 'invalid'
   });
 
-  // TODO: Make this work and remove the others methods. The this.id do not
-  // return what I whant. Yeah, I don't know javascript. Shame on me.
-  // let the divisions be droppable, accepting the post-its from others divisions
+  // TODO: Make this work and remove the others methods. The $(this).attr('id')
+  //       do not return what I whant. Yeah, I don't know javascript. Shame on me.
+//  // let the divisions be droppable, accepting the post-its from others divisions
 //  $('.droppable').droppable({
-//    accept: $accepted_by[this.id],
+//    accept: $accepted_by[$(this).attr('id')],
 //		hoverClass: 'ui-state-hover',
 //    drop: function(event, ui) {
-//      movePostit(ui.draggable, this);
+//      movePostit(ui.draggable, $(this));
 //    }
 //  });
 
@@ -34,7 +34,7 @@ $(function() {
     accept: $accepted_by['todo'],
 		hoverClass: 'ui-state-hover',
     drop: function(event, ui) {
-      movePostit(ui.draggable, this);
+      movePostit(ui.draggable, $(this));
     }
   });
 
@@ -43,7 +43,7 @@ $(function() {
     accept: $accepted_by['doing'],
 		hoverClass: 'ui-state-hover',
     drop: function(event, ui) {
-      movePostit(ui.draggable, this);
+      movePostit(ui.draggable, $(this));
     }
   });
 
@@ -52,7 +52,7 @@ $(function() {
     accept: $accepted_by['done'],
 		hoverClass: 'ui-state-hover',
     drop: function(event, ui) {
-      movePostit(ui.draggable, this);
+      movePostit(ui.draggable, $(this));
     }
   });
 
@@ -61,12 +61,22 @@ $(function() {
     accept: $accepted_by['backlog'],
 		hoverClass: 'ui-state-hover',
     drop: function(event, ui) {
-      movePostit(ui.draggable, this);
+      movePostit(ui.draggable, $(this));
     }
   });
 
 });
 
 function movePostit ($postit, $ul) {
+  var $task_id = $postit.attr('id'),
+      $position = $ul.attr('id')
+
   $postit.appendTo($ul);
+
+  $.ajax({
+    type: "PUT",
+    url: "/tasks/" + $task_id + "/update_position",
+    data: ({ position : $position }),
+    async: false
+  });
 }
