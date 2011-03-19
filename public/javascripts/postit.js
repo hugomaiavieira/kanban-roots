@@ -1,9 +1,9 @@
 $(function() {
 
    var $todo = $('#todo'),
-       $doing = $('#doing');
-       $done = $('#done');
-       $backlog = $('#backlog');
+       $doing = $('#doing'),
+       $done = $('#done'),
+       $backlog = $('#backlog'),
        $accepted_by = {
         todo: '#doing > li, #done > li, #backlog > li',
         doing: '#todo > li, #done > li, #backlog > li',
