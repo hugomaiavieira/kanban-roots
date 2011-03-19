@@ -12,11 +12,10 @@ describe Category do
 
   it 'should validate uniqueness of name for project' do
     saved = Factory.create :category, :project => @project, :name => 'Feature'
-    saved.update_attributes!(:name => 'Feature').should be_true
 
     category = Factory.build :category, :project => @project, :name => 'Feature'
     category.save.should be_false
-    # errors[:name].should == 'Name should be uniq for project'
+    category.errors[:name].should include 'should be uniq for project'
   end
 
   it 'should validate uniqueness of color for project' do
@@ -25,7 +24,7 @@ describe Category do
 
     category = Factory.build :category, :project => @project, :color => 'ffa5a5'
     category.save.should be_false
-    # errors[:color].should == 'Color should be uniq for project'
+    category.errors[:color].should include 'should be uniq for project'
   end
 
   it 'should validate format of name' do
@@ -39,10 +38,10 @@ describe Category do
 
     category.update_attributes(:name => 'Feature 1').should be_false
     category.update_attributes(:name => '#Feature').should be_false
-    # errors[:name].should == 'Name is invalid'
+    category.errors[:name].should include 'is invalid'
   end
 
-  it 'should validate format of name' do
+  it 'should validate format of color' do
     category = Factory.build :category, :project => @project, :color => 'ffa5a5'
     category.save.should be_true
 
@@ -50,7 +49,7 @@ describe Category do
 
     category.update_attributes(:color => '#FFFFFF').should be_false
     category.update_attributes(:color => 'red').should be_false
-    # errors[:name].should == 'Color is invalid'
+    category.errors[:color].should include 'is invalid'
   end
 
   it 'should return the name as a css class' do
