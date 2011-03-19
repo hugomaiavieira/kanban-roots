@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Molengo';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Molengo'), url('../fonts/Molengo-Regular.ttf') format('woff');
+}
+
 body {
     font-family: Molengo, Ubuntu, Monaco, Verdana, Helvetica;
     margin-bottom: 30px;
