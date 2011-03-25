@@ -5,6 +5,30 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def contributors
+    project_list = []
+    self.teams.each do |team|
+      project_list << team.contributors
+    end
+    project_list.flatten
+  end
+
+  def contributors_scores
+    list = []
+    tasks = self.tasks_by_position Board::POSITIONS['done']
+
+    self.contributors.each do |contributor|
+      tasks_for_contributor = tasks.select { |task| task.contributors.include? contributor }
+      points = 0
+      tasks_for_contributor.each do |task|
+        points += task.points
+      end
+      list << { :contributor => contributor, :scores => points}
+    end
+
+    list.sort { |x, y| y[:scores] <=> x[:scores] }
+  end
+
   def tasks_by_position position
     self.tasks.select {|item| item.position == position }
   end

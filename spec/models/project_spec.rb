@@ -71,5 +71,60 @@ describe Project do
     projects.sort.should == [project_a, project_b, project_z]
   end
 
+  it "should know his contributors" do
+    hugo = Factory.create :contributor, :email => 'hugo@email.com'
+    dudu = Factory.create :contributor, :email => 'dudu@email.com'
+    max = Factory.create :contributor, :email => 'max@email.com'
+    rodrigo = Factory.create :contributor, :email => 'rodrigo@email.com'
+
+    project1 = Factory.create :project
+    project2 = Factory.create :project
+
+    team1 = Factory.create :team,
+                           :projects => [project1],
+                           :contributors => [hugo, max]
+    team2 = Factory.create :team,
+                           :projects => [project2],
+                           :contributors => [dudu]
+    team3 = Factory.create :team,
+                           :projects => [project1, project2],
+                           :contributors => [rodrigo]
+
+    project1.contributors.should include hugo, max, rodrigo
+    project2.contributors.should include dudu, rodrigo
+  end
+
+  it "should return a list o of hashs {contributor, scores} ordered by scores" do
+    dudu = Factory.create :contributor, :email => 'dudu@email.com'
+    max = Factory.create :contributor, :email => 'max@email.com'
+    hugo = Factory.create :contributor, :email => 'hugo@email.com'
+
+    project = Factory.create :project
+    Factory.create :team, :projects => [project], :contributors => [hugo, dudu, max]
+
+    Factory.create :task, :project => project, :position => Board::POSITIONS['doing'], :contributors => [dudu], :points => 13
+    Factory.create :task, :project => project, :position => Board::POSITIONS['todo'], :contributors => [hugo], :points => 5
+    Factory.create :task, :project => project, :position => Board::POSITIONS['backlog'], :contributors => [max], :points => 8
+    Factory.create :task, :project => project, :position => Board::POSITIONS['out'], :contributors => [dudu, hugo, max], :points => 1
+
+    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [dudu], :points => 1
+    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo, dudu], :points => 3
+    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [max], :points => 2
+    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 5
+    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [dudu, max], :points => 3
+    project.update_attribute(:tasks, Task.all)
+
+    project.contributors_scores.should == [{ :contributor => hugo, :scores => 8 },
+                                           { :contributor => dudu, :scores => 7 },
+                                           { :contributor => max, :scores =>  5}]
+
+    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [max], :points => 13
+    project.update_attribute(:tasks, Task.all)
+
+    project.contributors_scores.should == [{ :contributor => max, :scores => 18 },
+                                           { :contributor => hugo, :scores => 8 },
+                                           { :contributor => dudu, :scores =>  7}]
+  end
+
 end
 

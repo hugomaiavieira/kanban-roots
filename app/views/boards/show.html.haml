@@ -43,6 +43,12 @@
     - (@project.tasks_by_position Board::POSITIONS['backlog']).each do |task|
       = (to_postit task).html_safe
 
+.score
+  %h3 Scores
+  %ul
+    - @project.contributors_scores.each do |item|
+      %li="#{item[:contributor].name} (#{item[:scores]})"
+
 %br
 = link_to 'Categories', project_categories_path
 \|

@@ -172,6 +172,27 @@ p.top {
     float: left;
 }
 
+/* Board score */
+
+div.score {
+    width: 220px;
+    margin: 10px;
+    border: solid 2px #bfbfbf;
+    padding: 5px 20px;
+}
+
+div.score h3 {
+    margin: 0px;
+    padding: 7px 0px 2px 40px;
+    height: 32px;
+    background: transparent url(../images/trophy.png) no-repeat scroll 	0px 50%;
+}
+
+div.score ul {
+    margin: 10px 0px;
+    list-style: decimal;
+}
+
 /* Board drag and drop */
 
 .droppable {
