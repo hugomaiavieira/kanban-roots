@@ -94,36 +94,53 @@ describe Project do
     project2.contributors.should include dudu, rodrigo
   end
 
-  it "should return a list o of hashs {contributor, scores} ordered by scores" do
-    dudu = Factory.create :contributor, :email => 'dudu@email.com'
-    max = Factory.create :contributor, :email => 'max@email.com'
-    hugo = Factory.create :contributor, :email => 'hugo@email.com'
+  context 'contributors scores should be ordered by score' do
 
-    project = Factory.create :project
-    Factory.create :team, :projects => [project], :contributors => [hugo, dudu, max]
+    it "should return a list of hashs {contributor, scores} ordered by scores" do
+      dudu = Factory.create :contributor, :email => 'dudu@email.com'
+      max = Factory.create :contributor, :email => 'max@email.com'
+      hugo = Factory.create :contributor, :email => 'hugo@email.com'
 
-    Factory.create :task, :project => project, :position => Board::POSITIONS['doing'], :contributors => [dudu], :points => 13
-    Factory.create :task, :project => project, :position => Board::POSITIONS['todo'], :contributors => [hugo], :points => 5
-    Factory.create :task, :project => project, :position => Board::POSITIONS['backlog'], :contributors => [max], :points => 8
-    Factory.create :task, :project => project, :position => Board::POSITIONS['out'], :contributors => [dudu, hugo, max], :points => 1
+      project = Factory.create :project
+      Factory.create :team, :projects => [project], :contributors => [hugo, dudu, max]
 
-    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [dudu], :points => 1
-    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo, dudu], :points => 3
-    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [max], :points => 2
-    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 5
-    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [dudu, max], :points => 3
-    project.update_attribute(:tasks, Task.all)
+      Factory.create :task, :project => project, :position => Board::POSITIONS['doing'], :contributors => [dudu], :points => 13
+      Factory.create :task, :project => project, :position => Board::POSITIONS['todo'], :contributors => [hugo], :points => 5
+      Factory.create :task, :project => project, :position => Board::POSITIONS['backlog'], :contributors => [max], :points => 8
+      Factory.create :task, :project => project, :position => Board::POSITIONS['out'], :contributors => [dudu, hugo, max], :points => 1
 
-    project.contributors_scores.should == [{ :contributor => hugo, :scores => 8 },
-                                           { :contributor => dudu, :scores => 7 },
-                                           { :contributor => max, :scores =>  5}]
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [dudu], :points => 1
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo, dudu], :points => 3
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [max], :points => 2
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 5
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [dudu, max], :points => 3
+      project.update_attribute(:tasks, Task.all)
 
-    Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [max], :points => 13
-    project.update_attribute(:tasks, Task.all)
+      project.contributors_scores.should == [{ :contributor => hugo, :scores => 8 },
+                                             { :contributor => dudu, :scores => 7 },
+                                             { :contributor => max, :scores =>  5}]
 
-    project.contributors_scores.should == [{ :contributor => max, :scores => 18 },
-                                           { :contributor => hugo, :scores => 8 },
-                                           { :contributor => dudu, :scores =>  7}]
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [max], :points => 13
+      project.update_attribute(:tasks, Task.all)
+
+      project.contributors_scores.should == [{ :contributor => max, :scores => 18 },
+                                             { :contributor => hugo, :scores => 8 },
+                                             { :contributor => dudu, :scores =>  7}]
+    end
+
+    it 'should ignore taks without points' do
+      hugo = Factory.create :contributor, :email => 'hugo@email.com'
+
+      project = Factory.create :project
+      Factory.create :team, :projects => [project], :contributors => [hugo]
+
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => nil
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 3
+      project.update_attribute(:tasks, Task.all)
+
+      project.contributors_scores.should == [{ :contributor => hugo, :scores => 3 }]
+    end
+
   end
 
 end

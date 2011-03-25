@@ -21,7 +21,7 @@ class Project < ActiveRecord::Base
       tasks_for_contributor = tasks.select { |task| task.contributors.include? contributor }
       points = 0
       tasks_for_contributor.each do |task|
-        points += task.points
+        points += task.points if task.points
       end
       list << { :contributor => contributor, :scores => points}
     end
