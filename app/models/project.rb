@@ -25,7 +25,8 @@ class Project < ActiveRecord::Base
           task.points.zero? ? points += 0.1 : points += task.points
         end
       end
-      list << { :contributor => contributor, :scores => points.round(1)}
+      points = points.zero? ? 0 : points.round(1)
+      list << { :contributor => contributor, :scores => points }
     end
 
     list.sort { |x, y| y[:scores] <=> x[:scores] }
