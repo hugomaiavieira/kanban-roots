@@ -1,15 +1,16 @@
 $(function() {
 
-   var $todo = $('#todo'),
-       $doing = $('#doing'),
-       $done = $('#done'),
-       $backlog = $('#backlog'),
-       $accepted_by = {
+  var $todo = $('#todo'),
+      $doing = $('#doing'),
+      $done = $('#done'),
+      $backlog = $('#backlog'),
+      // the divisions should accept post-its from all divisions, except from itself
+      $accepted_by = {
         todo: '#doing > li, #done > li, #backlog > li',
         doing: '#todo > li, #done > li, #backlog > li',
         done: '#todo > li, #doing > li, #backlog > li',
         backlog: '#todo > li, #doing > li, #done > li'
-       }
+      }
 
   // let the post-its be draggable
   $('.postit').draggable({
@@ -67,16 +68,34 @@ $(function() {
 
 });
 
+
 function movePostit (postit, ul) {
   var task_id = postit.attr('id'),
-      task_position = ul.attr('id')
+      new_position = ul.attr('id')
 
   postit.appendTo(ul);
 
   $.ajax({
     type: "PUT",
-    url: "/tasks/" + task_id + "/update_position",
-    data: ({ position : task_position }),
-    async: false
+    url: "/board/update",
+    data: ({ new_position: new_position, task_id: task_id }),
+    dataType: 'json',
+    async: false,
+    success: function updateBoard(data) {
+      // update divisions points
+      old_division = $('#'.concat(data.old_position, '_points'));
+      new_division = $('#'.concat(new_position, '_points'));
+      old_division_points = parseInt(old_division.text());
+      new_division_points = parseInt(new_division.text());
+      new_division.text(new_division_points + data.task_points);
+      old_division.text(old_division_points - data.task_points);
+      // update scores
+      $.each(data.contributors, function(index, id) {
+        contributor = $('#contributor_'.concat(id));
+        contributor_points = parseFloat(contributor.text());
+        contributor.text((contributor_points + data.score).toFixed(1));
+        // TODO: sort of the scores list
+      });
+    }
   });
 }

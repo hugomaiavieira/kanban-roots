@@ -5,14 +5,12 @@
       = '.' + category.to_class + '{background-color: #' + category.color + '}'
 
 - content_for :javascript do
-  = javascript_include_tag 'postit.js'
+  = javascript_include_tag 'board.js'
 
 - unless my_projects.empty?
-  %p
-    My projects:
-    = my_projects
+  %p== My projects: #{my_projects}
 
-%h1= "#{@project.name} Board"
+%h1== #{@project.name} Board
 
 %ul.legends
   %strong Legend:
@@ -21,33 +19,26 @@
     %li{:class => category.to_class}= category.name
 
 .board
-  .division
-    %h3="To Do (#{@project.count_points(Board::POSITIONS['todo'])})"
-    %ul#todo.droppable
-      - (@project.tasks_by_position Board::POSITIONS['todo']).each do |task|
-        = (to_postit task).html_safe
-  .division
-    %h3="Doing (#{@project.count_points(Board::POSITIONS['doing'])})"
-    %ul#doing.droppable
-      - (@project.tasks_by_position Board::POSITIONS['doing']).each do |task|
-        = (to_postit task).html_safe
-  .division
-    %h3="Done (#{@project.count_points(Board::POSITIONS['done'])})"
-    %ul#done.droppable
-      - (@project.tasks_by_position Board::POSITIONS['done']).each do |task|
-        = (to_postit task).html_safe
+  - ['todo', 'doing', 'done'].each do |division|
+    .division
+      - division_name = Board::POSITIONS[division]
+      %h3== #{division_name} (<span id='#{division}_points'>#{@project.count_points(division_name)}</span>)
+
+      %ul.droppable{:id => division}
+        - @project.tasks_by_position(division_name).each do |task|
+          = to_postit(task).html_safe
 
 .board
   %h3 Backlog
   %ul#backlog.droppable
-    - (@project.tasks_by_position Board::POSITIONS['backlog']).each do |task|
-      = (to_postit task).html_safe
+    - @project.tasks_by_position(Board::POSITIONS['backlog']).each do |task|
+      = to_postit(task).html_safe
 
 .score
   %h3 Scores
-  %ul
+  %ol#score_list
     - @project.contributors_scores.each do |item|
-      %li="#{item[:contributor].name} (#{item[:scores]})"
+      %li== #{item[:contributor].name} (<span id='contributor_#{item[:contributor].id}'>#{item[:scores]}</span>)
 
 %br
 = link_to 'Categories', project_categories_path

@@ -12,6 +12,7 @@ gem 'escape_utils'
 gem 'devise', '>= 1.2.rc2'
 gem 'rdiscount' # Markdown
 gem 'jquery-rails'
+gem 'ruby-json'
 
 group :development, :test do
   gem 'factory_girl_rails'
@@ -27,7 +28,7 @@ group :cucumber do
   gem 'rspec-rails', '>=2.5.0'
   gem 'cucumber-rails'
   gem 'database_cleaner'
-  gem 'spork'
+  gem 'spork' # Run unit tests quickly. See: http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
 end
 
 gem 'rails3-generators', :group => :development

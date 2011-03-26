@@ -188,9 +188,8 @@ div.score h3 {
     background: transparent url(../images/trophy.png) no-repeat scroll 	0px 50%;
 }
 
-div.score ul {
+div.score ol {
     margin: 10px 0px;
-    list-style: decimal;
 }
 
 /* Board drag and drop */

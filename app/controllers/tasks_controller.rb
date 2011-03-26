@@ -23,12 +23,5 @@ class TasksController < InheritedResources::Base
     destroy! { project_board_path }
   end
 
-  # TODO: Make test
-  def update_position
-    task = Task.find(params[:id])
-    task.update_attribute(:position, Board::POSITIONS[params[:position]])
-    # TODO: Find a way to not do this and don't get an ActionView::MissingTemplate
-    render :text => 'Just to no get an ActionView::MissingTemplate'
-  end
 end
 

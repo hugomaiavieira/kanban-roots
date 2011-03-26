@@ -15,5 +15,31 @@ class BoardsController < InheritedResources::Base
     flash[:notice] = 'Done division was cleaned up.'
     redirect_to :action => :show, :project_id => @project.id
   end
+
+  # TODO: Make test and refactor
+  def update
+    task = Task.find(params[:task_id])
+
+    old_position = Board::POSITIONS.key(task.position)
+    contributors = task.contributor_ids
+
+    if task.points.nil?
+      task_points = 0
+      score = 0
+    else
+      task_points = task.points
+      score = task.points.zero? ? 0.1 : task.points
+      if old_position == 'done'
+        score = -score
+      elsif params[:new_position] != 'done'
+        score = 0
+      end
+    end
+
+    task.update_attribute(:position, Board::POSITIONS[params[:new_position]])
+
+    data = { :old_position => old_position, :task_points => task_points, :score => score, :contributors => contributors }
+    render :text => data.to_json
+  end
 end
 
