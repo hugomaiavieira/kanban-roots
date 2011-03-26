@@ -21,9 +21,11 @@ class Project < ActiveRecord::Base
       tasks_for_contributor = tasks.select { |task| task.contributors.include? contributor }
       points = 0
       tasks_for_contributor.each do |task|
-        points += task.points if task.points
+        if task.points
+          task.points.zero? ? points += 0.01 : points += task.points
+        end
       end
-      list << { :contributor => contributor, :scores => points}
+      list << { :contributor => contributor, :scores => points.round(2)}
     end
 
     list.sort { |x, y| y[:scores] <=> x[:scores] }

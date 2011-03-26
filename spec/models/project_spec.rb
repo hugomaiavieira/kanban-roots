@@ -141,6 +141,24 @@ describe Project do
       project.contributors_scores.should == [{ :contributor => hugo, :scores => 3 }]
     end
 
+    it 'should sum 0.01 for taks with 0 points' do
+      hugo = Factory.create :contributor, :email => 'hugo@email.com'
+
+      project = Factory.create :project
+      Factory.create :team, :projects => [project], :contributors => [hugo]
+
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 0
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 3
+      project.update_attribute(:tasks, Task.all)
+
+      project.contributors_scores[0][:scores].should == 3.01
+
+      Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 0
+      project.update_attribute(:tasks, Task.all)
+
+      project.contributors_scores[0][:scores].should == 3.02
+    end
+
   end
 
 end
