@@ -7,6 +7,12 @@
 - content_for :javascript do
   = javascript_include_tag 'board.js'
 
+.score
+  %h3 Scores
+  %ol#score_list
+    - @project.contributors_scores.each do |item|
+      %li== #{item[:contributor].name} (<span id='contributor_#{item[:contributor].id}'>#{item[:scores]}</span>)
+
 - unless my_projects.empty?
   %p== My projects: #{my_projects}
 
@@ -33,12 +39,6 @@
   %ul#backlog.droppable
     - @project.tasks_by_position(Board::POSITIONS['backlog']).each do |task|
       = to_postit(task).html_safe
-
-.score
-  %h3 Scores
-  %ol#score_list
-    - @project.contributors_scores.each do |item|
-      %li== #{item[:contributor].name} (<span id='contributor_#{item[:contributor].id}'>#{item[:scores]}</span>)
 
 %br
 = link_to 'Categories', project_categories_path
