@@ -27,6 +27,7 @@ $(function() {
 //		hoverClass: 'ui-state-hover',
 //    drop: function(event, ui) {
 //      movePostit(ui.draggable, $(this));
+//      defineHeight();
 //    }
 //  });
 
@@ -36,6 +37,7 @@ $(function() {
 		hoverClass: 'ui-state-hover',
     drop: function(event, ui) {
       movePostit(ui.draggable, $(this));
+      defineHeight();
     }
   });
 
@@ -45,6 +47,7 @@ $(function() {
 		hoverClass: 'ui-state-hover',
     drop: function(event, ui) {
       movePostit(ui.draggable, $(this));
+      defineHeight();
     }
   });
 
@@ -54,6 +57,7 @@ $(function() {
 		hoverClass: 'ui-state-hover',
     drop: function(event, ui) {
       movePostit(ui.draggable, $(this));
+      defineHeight();
     }
   });
 
@@ -63,6 +67,7 @@ $(function() {
 		hoverClass: 'ui-state-hover',
     drop: function(event, ui) {
       movePostit(ui.draggable, $(this));
+      defineHeight();
     }
   });
 
@@ -99,3 +104,40 @@ function movePostit (postit, ul) {
     }
   });
 }
+
+function defineHeight() {
+  var max_line_number = 0,
+      division_postit_per_line = 2,
+      backlog_postit_per_line = 6,
+      postit_height = $('.postit').get(0).clientHeight,
+      postit_margin = 14,
+      // TODO: Make this work
+      // margin_top + margin_bottom == margin * 2
+      // postit_margin = $('.postit').css('margin') * 2,
+      divisions = [$('#todo'), $('#doing'), $('#done')]
+
+  // get the maximum divisions height
+  $.each(divisions, function(index, division) {
+    line_number = Math.ceil(division.children().length / division_postit_per_line)
+    if ( line_number > max_line_number ) {
+      max_line_number = line_number;
+    }
+  });
+
+  // set the divisions height as the maximumdefineHeight();
+  $.each(divisions, function(index, division) {
+    division.css('height', function(index, value) {
+      return max_line_number * ( postit_height + postit_margin );
+    });
+  });
+
+  // set the backlog height
+  backlog = $('#backlog');
+  line_number = Math.ceil(backlog.children().length / backlog_postit_per_line);
+  backlog.css('height', function(index, value) {
+    return line_number * ( postit_height + postit_margin );
+  });
+}
+
+// define the divisions and board height on page load
+window.onload(defineHeight());
