@@ -168,8 +168,16 @@ p.top {
     color: gray;
 }
 
-.postit p.top .points {
+.postit p.top span.points {
+    cursor: pointer;
     float: left;
+    padding: 0px 7px;
+}
+
+select.points {
+    display: none;
+    float: left;
+    font-size: 12px;
 }
 
 /* Board score */

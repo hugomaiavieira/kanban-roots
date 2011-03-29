@@ -17,7 +17,7 @@ class BoardsController < InheritedResources::Base
   end
 
   # TODO: Make test and refactor
-  def update
+  def update_position
     task = Task.find(params[:task_id])
 
     old_position = Board::POSITIONS.key(task.position)
@@ -40,6 +40,14 @@ class BoardsController < InheritedResources::Base
 
     data = { :old_position => old_position, :task_points => task_points, :score => score, :contributors => contributors }
     render :text => data.to_json
+  end
+
+  # TODO: Make test and refactor
+  def update_points
+    task = Task.find(params[:task_id])
+    points = params[:points] == '-' ? nil : params[:points]
+    task.update_attribute(:points, points)
+    render :nothing => true
   end
 end
 

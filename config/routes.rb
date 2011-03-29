@@ -15,9 +15,12 @@ KanbanRoots::Application.routes.draw do
 
   match 'teams/:id/manage_contributors' => 'teams#manage_contributors',  :as => :manage_contributors
   match 'teams/:id/manage_projects' => 'teams#manage_projects',  :as => :manage_projects
+
   match 'projects/:project_id/board' => 'boards#show',  :as => :project_board
   match 'projects/:project_id/clean_up_done' => 'boards#clean_up_done',  :as => :clean_up_done
-  match 'board/update' => 'boards#update'
+
+  match 'board/update_position' => 'boards#update_position'
+  match 'board/update_points' => 'boards#update_points'
 
   root :to => 'contributors#home'
 

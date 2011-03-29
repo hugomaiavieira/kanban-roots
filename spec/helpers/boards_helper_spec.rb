@@ -43,6 +43,31 @@ describe BoardsHelper do
 
   end
 
+  describe 'select for points' do
+
+    it 'generates an select tag for the task points' do
+      stub_all(:points => nil)
+      helper.select_for_points(@task).should =~ /<select class='points'>/
+      helper.select_for_points(@task).should =~ /<option value='-'>-<\/option>/
+      helper.select_for_points(@task).should =~ /<option value='1'>1<\/option>/
+      helper.select_for_points(@task).should =~ /<option value='2'>2<\/option>/
+      helper.select_for_points(@task).should =~ /<option value='3'>3<\/option>/
+      helper.select_for_points(@task).should =~ /<option value='5'>5<\/option>/
+      helper.select_for_points(@task).should =~ /<option value='8'>8<\/option>/
+      helper.select_for_points(@task).should =~ /<option value='13'>13<\/option>/
+      helper.select_for_points(@task).should =~ /<\/select>/
+    end
+
+    it 'set the selected option' do
+      stub_all(:points => 5)
+      helper.select_for_points(@task).should =~ /<option selected='selected' value='5'>5<\/option>/
+
+      stub_all(:points => 8)
+      helper.select_for_points(@task).should =~ /<option selected='selected' value='8'>8<\/option>/
+    end
+
+  end
+
   describe 'comments' do
 
     context 'with 0 or >= 2 comments' do
@@ -81,13 +106,9 @@ describe BoardsHelper do
     end
 
     context 'without set points' do
-      it "shows 'Set points' link" do
+      it "shows a dash" do
         stub_all(:points => nil)
-        helper.stub(:edit_project_task_path).with(@project, @task).and_return(path_stub = stub)
-        helper.stub(:link_to).with('Set points', path_stub).and_return('<the points link>')
-        helper.stub(:link_to).with('', anything, anything)
-        helper.stub(:link_to).with('Set sponsor', path_stub)
-        helper.points(@task).should =~ /<the points link>/
+        helper.points(@task).should == '-'
       end
     end
 

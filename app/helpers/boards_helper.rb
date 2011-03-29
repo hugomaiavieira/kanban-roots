@@ -4,6 +4,7 @@ module BoardsHelper
     "<li id='#{task.id}' class='postit#{category_class(task)}'>
       <p class='top'>
         <span class='points'>#{points(task)}</span>
+        #{select_for_points(task)}
         #{comments(task)}
       </p>
       #{title(task)}
@@ -11,16 +12,22 @@ module BoardsHelper
     </li>"
   end
 
+  def select_for_points task
+    string = "<select class='points'>"
+    string += "<option value='-'>-</option>"
+    Task::POINTS.each do |point|
+      selected = task.points == point ? " selected='selected'" : ''
+      string += "<option#{selected} value='#{point}'>#{point}</option>"
+    end
+    string += "</select>"
+  end
+
   def category_class task
     category_class = task.category.nil? ? '' : " #{task.category.to_class}"
   end
 
   def points task
-    if task.points.nil?
-      link_to 'Set points', edit_project_task_path(task.project, task)
-    else
-      task.points
-    end
+    task.points.nil? ? '-' : task.points
   end
 
   def comments task

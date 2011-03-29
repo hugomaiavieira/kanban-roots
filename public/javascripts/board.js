@@ -73,7 +73,39 @@ $(function() {
 
 });
 
+// slide points select
+$(function() {
+  $("span.points").click(function () {
+    var task = $(this).parents('li'),
+        select = task.find('select.points');
+    select.toggle("slide", {}, 200);
+  });
+});
 
+// TODO: Update the points in the board divisions and score
+// change task points and slide back the select
+$(function() {
+  $("select > option").click(function () {
+    var select = $(this).parents('select'),
+        span_points = select.siblings('span.points');
+        task = select.parents('li'),
+        task_id = task.attr('id'),
+    points = select.find('option:selected').attr('value');
+    if (points != span_points.text()) {
+      $.ajax({
+        type: "PUT",
+        url: "/board/update_points",
+        data: ({ task_id: task_id, points: points }),
+        success: function() {
+          span_points.text(points);
+        }
+      });
+    }
+    select.toggle("slide", {}, 200);
+  });
+});
+
+// move the post-its between the board divisions
 function movePostit (postit, ul) {
   var task_id = postit.attr('id'),
       new_position = ul.attr('id')
@@ -82,7 +114,7 @@ function movePostit (postit, ul) {
 
   $.ajax({
     type: "PUT",
-    url: "/board/update",
+    url: "/board/update_position",
     data: ({ new_position: new_position, task_id: task_id }),
     dataType: 'json',
     success: function updateBoard(data) {
@@ -123,7 +155,7 @@ function defineHeight() {
     }
   });
 
-  // set the divisions height as the maximumdefineHeight();
+  // set the divisions height as the maximum height
   $.each(divisions, function(index, division) {
     division.css('height', function(index, value) {
       return max_line_number * ( postit_height + postit_margin );
