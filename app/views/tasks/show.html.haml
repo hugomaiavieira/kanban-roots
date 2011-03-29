@@ -35,12 +35,11 @@
             :confirm => 'Are you sure?',
             :method => :delete
 
-%div#task_menu
-  = link_to 'Edit', edit_project_task_path(@project, @task)
-  \|
-  = link_to 'Destroy', project_task_path(@project, @task),
-    :confirm => 'Are you sure?',
-    :method => :delete
-  \|
-  = link_to 'Add comment', new_project_task_comment_path(@project, @task)
+= link_to 'Edit', edit_project_task_path(@project, @task)
+\|
+= link_to 'Destroy', project_task_path(@project, @task),
+:confirm => 'Are you sure?',
+:method => :delete
+\|
+= link_to 'Add comment', new_project_task_comment_path(@project, @task)
 
