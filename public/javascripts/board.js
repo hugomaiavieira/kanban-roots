@@ -85,7 +85,6 @@ function movePostit (postit, ul) {
     url: "/board/update",
     data: ({ new_position: new_position, task_id: task_id }),
     dataType: 'json',
-    async: false,
     success: function updateBoard(data) {
       // update divisions points
       old_division = $('#'.concat(data.old_position, '_points'));
