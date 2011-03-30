@@ -49,5 +49,24 @@ class BoardsController < InheritedResources::Base
     task.update_attribute(:points, points)
     render :nothing => true
   end
+
+  # TODO: Make test and refactor
+  # Fazer com que o '-' apareça selecionado caso n tenha nenhum contributor
+  def update_sponsors
+    task = Task.find(params[:task_id])
+    params[:sponsors].delete '-'
+    params[:sponsors] = nil if params[:sponsors].empty?
+    task.update_attribute(:contributor_ids, params[:sponsors])
+    sponsors_sentence = params[:sponsors].nil? ? '-' : task.contributors.collect(&:name).to_sentence
+
+    if sponsors_sentence.length > 25
+      long_sentence = true
+      sponsors_long_sentence = sponsors_sentence
+      sponsors_sentence = sponsors_sentence.truncate(25)
+    end
+
+    data = { :sponsors_sentence => sponsors_sentence, :long_sentence => long_sentence, :sponsors_long_sentence => sponsors_long_sentence }
+    render :text => data.to_json
+  end
 end
 

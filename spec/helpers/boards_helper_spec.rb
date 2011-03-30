@@ -43,31 +43,6 @@ describe BoardsHelper do
 
   end
 
-  describe 'select for points' do
-
-    it 'generates an select tag for the task points' do
-      stub_all(:points => nil)
-      helper.select_for_points(@task).should =~ /<select class='points'>/
-      helper.select_for_points(@task).should =~ /<option value='-'>-<\/option>/
-      helper.select_for_points(@task).should =~ /<option value='1'>1<\/option>/
-      helper.select_for_points(@task).should =~ /<option value='2'>2<\/option>/
-      helper.select_for_points(@task).should =~ /<option value='3'>3<\/option>/
-      helper.select_for_points(@task).should =~ /<option value='5'>5<\/option>/
-      helper.select_for_points(@task).should =~ /<option value='8'>8<\/option>/
-      helper.select_for_points(@task).should =~ /<option value='13'>13<\/option>/
-      helper.select_for_points(@task).should =~ /<\/select>/
-    end
-
-    it 'set the selected option' do
-      stub_all(:points => 5)
-      helper.select_for_points(@task).should =~ /<option selected='selected' value='5'>5<\/option>/
-
-      stub_all(:points => 8)
-      helper.select_for_points(@task).should =~ /<option selected='selected' value='8'>8<\/option>/
-    end
-
-  end
-
   describe 'comments' do
 
     context 'with 0 or >= 2 comments' do
@@ -112,17 +87,39 @@ describe BoardsHelper do
       end
     end
 
+    context 'select for' do
+
+      it 'generates an select tag for the task points' do
+        stub_all(:points => nil)
+        helper.select_for_points(@task).should =~ /<select class='points_select'>/
+        helper.select_for_points(@task).should =~ /<option value='-'>-<\/option>/
+        helper.select_for_points(@task).should =~ /<option value='1'>1<\/option>/
+        helper.select_for_points(@task).should =~ /<option value='2'>2<\/option>/
+        helper.select_for_points(@task).should =~ /<option value='3'>3<\/option>/
+        helper.select_for_points(@task).should =~ /<option value='5'>5<\/option>/
+        helper.select_for_points(@task).should =~ /<option value='8'>8<\/option>/
+        helper.select_for_points(@task).should =~ /<option value='13'>13<\/option>/
+        helper.select_for_points(@task).should =~ /<\/select>/
+      end
+
+      it 'set the selected option' do
+        stub_all(:points => 5)
+        helper.select_for_points(@task).should =~ /<option selected='selected' value='5'>5<\/option>/
+
+        stub_all(:points => 8)
+        helper.select_for_points(@task).should =~ /<option selected='selected' value='8'>8<\/option>/
+      end
+
+    end
+
   end
 
   describe 'sponsors' do
 
     context 'for task without sponsors' do
-      it "shows 'Set sponsor' link" do
-        stub_all(:title => 'the title', :points => 0)
-        helper.stub(:link_to).with('the title', anything, anything)
-        helper.stub(:edit_project_task_path).with(@project, @task).and_return(path_stub = stub)
-        helper.stub(:link_to).with('Set sponsor', path_stub).and_return('<the sponsor link>')
-        helper.sponsors(@task).should =~ /<the sponsor link>/
+      it "shows a dash" do
+        stub_all(:points => 0)
+        helper.sponsors(@task).should =~ /<span class='show_sponsors'>-<\/span>/
       end
     end
 
@@ -133,9 +130,9 @@ describe BoardsHelper do
                                    stub(:name => 'Rodrigo'),
                                    stub(:name => 'Max')])
         helper.sponsors(@task).should =~ /Hugo, Rodrigo, and Max/i
-        helper.sponsors(@task).should_not =~ /Set sponsor/i
+        helper.sponsors(@task).should_not =~ /<span class='show_sponsors'>-<\/span>/
         helper.sponsors(@task).should_not =~ /title='.*'/
-        helper.sponsors(@task).should=~ /class='sponsor'/
+        helper.sponsors(@task).should =~ /class='show_sponsors'/
         helper.sponsors(@task).should_not =~ /help_cursor/
       end
 
@@ -150,6 +147,41 @@ describe BoardsHelper do
         helper.sponsors(@task).should_not =~ /Set sponsor/i
       end
     end
+
+    context 'form for' do
+
+      it 'generates an multiple select and an buttom for the task sponsors' do
+        hugo = stub(:name => 'Hugo', :id => 1)
+        rodrigo = stub(:name => 'Rodrigo', :id => 2)
+        max = stub(:name => 'Max', :id => 3)
+        stub_all(:points => nil)
+        @project.stub(:contributors).and_return([hugo, rodrigo, max])
+        helper.form_for_sponsors(@task).should =~ /<select multiple='multiple' size='5'>/
+        helper.form_for_sponsors(@task).should =~ /<option value='-'>-<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option value='1'>Hugo<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option value='2'>Rodrigo<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option value='3'>Max<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<\/select>/
+        helper.form_for_sponsors(@task).should =~ /<input type='submit' value='ok' \/>/
+      end
+
+      it 'set the selected options' do
+        hugo = stub(:name => 'Hugo', :id => 1)
+        rodrigo = stub(:name => 'Rodrigo', :id => 2)
+        max = stub(:name => 'Max', :id => 3)
+        stub_all(:points => nil, :contributors => [hugo])
+        @project.stub(:contributors).and_return([hugo])
+        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='1'>Hugo<\/option>/
+
+        stub_all(:points => nil, :contributors => [hugo, rodrigo, max])
+        @project.stub(:contributors).and_return([hugo, rodrigo, max])
+        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='\d+'>Hugo<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='\d+'>Rodrigo<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='\d+'>Max<\/option>/
+      end
+
+    end
+
   end
 end
 

@@ -23,7 +23,7 @@
     = f.input :position, :as => 'select', :collection => Board::POSITIONS.values, :prompt => false
 
   .field
-    = f.input :contributors, :label => 'Sponsors', :include_blank => true
+    = f.input :contributors, :label => 'Sponsors', :include_blank => true, :collection => @project.contributors
 
   .actions
     = f.submit 'Save'

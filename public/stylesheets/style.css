@@ -155,29 +155,44 @@ div.board ul {
     background-color: inherit;
 }
 
-.postit p.sponsor {
+.postit p.postit_bottom {
     text-align: right;
 }
 
-p.top {
+p.postit_top {
     min-height: 16px;
 }
 
-.postit p.top .comments_number {
+.postit p.postit_top .comments_number {
     float: right;
     color: gray;
 }
 
-.postit p.top span.points {
+.postit p.postit_top span.show_points {
     cursor: pointer;
     float: left;
     padding: 0px 7px;
 }
 
-select.points {
+select.points_select {
     display: none;
     float: left;
     font-size: 12px;
+}
+
+span.show_sponsors {
+    cursor: pointer;
+    padding-left: 7px;
+}
+
+span.sponsors_form {
+    font-size: 12px;
+    position: absolute;
+    display: none;
+}
+
+span.sponsors_form input {
+    float: right
 }
 
 /* Board score */

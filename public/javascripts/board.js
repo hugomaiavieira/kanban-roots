@@ -75,33 +75,73 @@ $(function() {
 
 // slide points select
 $(function() {
-  $("span.points").click(function () {
+  $(".show_points").click(function () {
     var task = $(this).parents('li'),
-        select = task.find('select.points');
-    select.toggle("slide", {}, 200);
+        select = task.find('.points_select');
+    select.fadeToggle("fast");
   });
 });
 
 // TODO: Update the points in the board divisions and score
 // change task points and slide back the select
 $(function() {
-  $("select > option").click(function () {
-    var select = $(this).parents('select'),
-        span_points = select.siblings('span.points');
-        task = select.parents('li'),
+  $('.points_select').change(function () {
+    var show_points = $(this).siblings('.show_points'),
+        task = $(this).parents('li'),
         task_id = task.attr('id'),
-    points = select.find('option:selected').attr('value');
-    if (points != span_points.text()) {
+    points = $(this).children(':selected').attr('value');
+    if (points != show_points.text()) {
       $.ajax({
         type: "PUT",
         url: "/board/update_points",
         data: ({ task_id: task_id, points: points }),
         success: function() {
-          span_points.text(points);
+          show_points.text(points);
         }
       });
     }
-    select.toggle("slide", {}, 200);
+    $(this).fadeToggle("fast");
+  });
+});
+
+// slide sponsors form
+$(function() {
+  $(".show_sponsors").click(function () {
+    var task = $(this).parents('li'),
+        form = task.find('.sponsors_form');
+    form.fadeToggle("fast");
+  });
+});
+
+// TODO: Update the points in the board divisions and score
+// change task sponsors and slide back the sponsors form
+$(function() {
+  $(".sponsors_form > input").click(function () {
+    var form = $(this).parents('.sponsors_form'),
+        show_sponsors = form.siblings('.show_sponsors');
+        task = form.parents('li'),
+        task_id = task.attr('id'),
+    sponsors = [];
+    form.find('option:selected').each(function() {
+      sponsors.push($(this).attr('value'))
+    });
+    $.ajax({
+      type: "PUT",
+      url: "/board/update_sponsors",
+      data: ({ task_id: task_id, sponsors: sponsors }),
+      dataType: 'json',
+      success: function(data) {
+        if (data.long_sentence == true) {
+          show_sponsors.attr('title', data.sponsors_long_sentence);
+        }
+        else {
+          show_sponsors.removeClass('help_cursor');
+          show_sponsors.removeAttr('title');
+        }
+        show_sponsors.text(data.sponsors_sentence);
+      }
+    });
+    form.fadeToggle("fast");
   });
 });
 

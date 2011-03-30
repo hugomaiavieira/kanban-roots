@@ -2,24 +2,38 @@ module BoardsHelper
 
   def to_postit task
     "<li id='#{task.id}' class='postit#{category_class(task)}'>
-      <p class='top'>
-        <span class='points'>#{points(task)}</span>
+      <p class='postit_top'>
+        <span class='show_points'>#{points(task)}</span>
         #{select_for_points(task)}
         #{comments(task)}
       </p>
       #{title(task)}
-      #{sponsors(task)}
+      <p class='postit_bottom'>
+        #{sponsors(task)}
+        <span class='sponsors_form'>#{form_for_sponsors(task)}</span>
+      </p>
     </li>"
   end
 
   def select_for_points task
-    string = "<select class='points'>"
+    string = "<select class='points_select'>"
     string += "<option value='-'>-</option>"
     Task::POINTS.each do |point|
       selected = task.points == point ? " selected='selected'" : ''
       string += "<option#{selected} value='#{point}'>#{point}</option>"
     end
     string += "</select>"
+  end
+
+  def form_for_sponsors task
+    string = "<select multiple='multiple' size='5'>"
+    string += "<option value='-'>-</option>"
+    task.project.contributors.each do |contributor|
+      selected = task.contributors.include?(contributor) ? " selected='selected'" : ''
+      string += "<option#{selected} value='#{contributor.id}'>#{contributor.name}</option>"
+    end
+    string += "</select>"
+    string += "<input type='submit' value='ok' />"
   end
 
   def category_class task
@@ -47,23 +61,19 @@ module BoardsHelper
   end
 
   def sponsors task
-    if task.contributors.empty?
-      return "<p class='sponsor'>
-        #{link_to 'Set sponsor', edit_project_task_path(task.project, task)}
-      </p>"
-    end
+    return "<span class='show_sponsors'>-</span>" if task.contributors.empty?
 
     sponsors_sentence = task.contributors.collect(&:name).to_sentence
 
     if sponsors_sentence.length > 25
-      p = "p class='sponsor help_cursor' title='#{sponsors_sentence}'"
+      span = "span class='show_sponsors' title='#{sponsors_sentence}'"
     else
-      p = "p class='sponsor'"
+      span = "span class='show_sponsors'"
     end
 
-    return "<#{p}>
+    return "<#{span}>
       #{truncate(sponsors_sentence, :length => 25)}
-    </p>"
+    </span>"
   end
 
   def my_projects
