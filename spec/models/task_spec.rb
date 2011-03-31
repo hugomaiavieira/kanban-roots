@@ -12,5 +12,18 @@ describe Task do
     task.save
     task.position.should == 'Backlog'
   end
+
+  it 'delete comments when the task is deleted' do
+    project = Factory.create :project
+    task = Factory.create :task, :project => project
+    comments = []
+    5.times { comments << (Factory.create :comment, :task => task) }
+
+    task.destroy
+
+    5.times do |i|
+      lambda { comments[i].reload }.should raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
 end
 
