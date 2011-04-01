@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
-  has_and_belongs_to_many :teams
-  has_many :tasks
-  has_many :categories
+  has_and_belongs_to_many :teams, :before_remove => :remove_from_teams
+  has_many :tasks, :dependent => :destroy
+  has_many :categories, :dependent => :delete_all
 
   validates_presence_of :name
 
@@ -51,6 +51,11 @@ class Project < ActiveRecord::Base
 
   def <=> project
     self.name <=> project.name
+  end
+
+  def remove_from_teams(team)
+    team.projects.delete(self)
+    team.save
   end
 
 

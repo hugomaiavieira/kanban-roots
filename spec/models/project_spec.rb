@@ -161,5 +161,22 @@ describe Project do
 
   end
 
+  it 'when delete a project, delete all its dependencies' do
+    project = Factory.create :project
+    task = Factory.create :task, :project => project
+    comment = Factory.create :comment, :task => task
+    team = Factory.create :team, :projects => [project]
+    team2 = Factory.create :team, :projects => [project]
+    category = Factory.create :category, :project => project
+
+    project.destroy
+
+    team.reload.projects.should_not include(project)
+    team2.reload.projects.should_not include(project)
+    lambda { task.reload }.should raise_error(ActiveRecord::RecordNotFound)
+    lambda { comment.reload }.should raise_error(ActiveRecord::RecordNotFound)
+    lambda { category.reload }.should raise_error(ActiveRecord::RecordNotFound)
+  end
+
 end
 
