@@ -24,8 +24,7 @@ class BoardsController < InheritedResources::Base
     contributors = task.contributor_ids
 
     if task.points.nil?
-      task_points = 0
-      score = 0
+      task_points = score = 0
     else
       task_points = task.points
       score = task.points.zero? ? 0.1 : task.points
