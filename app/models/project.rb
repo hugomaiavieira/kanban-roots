@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
           task.points.zero? ? points += 0.1 : points += task.points
         end
       end
-      points = points.zero? ? 0 : points.round(1)
+      points = points.round(1) if not points.zero?
       list << { :contributor => contributor, :scores => points }
     end
 
