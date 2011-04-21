@@ -3,7 +3,7 @@ class ContributorsController < InheritedResources::Base
 
   before_filter :authenticate_contributor!
 
-  def home
+  def dashboard
   end
 end
 

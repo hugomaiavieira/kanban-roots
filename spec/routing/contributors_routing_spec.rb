@@ -7,8 +7,8 @@ describe ContributorsController do
       { :get => "/contributors/1" }.should route_to(:controller => "contributors", :action => "show", :id => "1")
     end
 
-    it "recognizes and generates #home" do
-      { :get => "/" }.should route_to(:controller => "contributors", :action => "home")
+    it "recognizes and generates #dashboard" do
+      { :get => "/" }.should route_to(:controller => "contributors", :action => "dashboard")
     end
   end
 end

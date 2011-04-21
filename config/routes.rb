@@ -18,7 +18,7 @@ KanbanRoots::Application.routes.draw do
   match 'board/update_points' => 'boards#update_points'
   match 'board/update_sponsors' => 'boards#update_sponsors'
 
-  root :to => 'contributors#home'
+  root :to => 'contributors#dashboard'
 
 end
 
