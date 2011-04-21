@@ -15,8 +15,8 @@ end
 
 Given /^I am a contributor of "([^"]*)" project$/ do |name|
   @project = Factory.create :project, :name => name
-  @contributor = Factory.create :contributor
-  @team = Factory.create :team, :projects => [@project], :contributors => [@contributor]
+  @contributor = Factory.create :contributor, :projects => [@project]
+  @project.update_attribute(:contributors, [@contributor])
 end
 
 Given /^I am contributor with password "([^\"]*)" and email "([^\"]*)"$/ do |password, email|
@@ -33,5 +33,11 @@ Given /^I am an authenticated contributor$/ do
   And %{I fill in "contributor_email" with "#{@contributor.email}"}
   And %{I fill in "contributor_password" with "#{@contributor.password}"}
   And %{I press "Sign in"}
+end
+
+Given /^"([^"]*)" is a contributor of the project$/ do |name|
+  contributor = Factory.create :contributor, :name => name, :projects => [@project]
+  @project.contributors << contributor
+  @project.save
 end
 

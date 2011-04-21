@@ -38,9 +38,6 @@ module NavigationHelpers
     when /^the (.*) categories page$/i
       project_categories_path(@project)
 
-    when /the team page/
-      team_path(@team)
-
     when /the sign in page/
       new_contributor_session_path
 

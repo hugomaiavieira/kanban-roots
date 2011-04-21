@@ -5,19 +5,11 @@ class Contributor < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model (devise stuff)
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
-  has_and_belongs_to_many :teams
+  has_and_belongs_to_many :projects
   has_and_belongs_to_many :tasks
   has_many :comments
 
   validates_presence_of :name
-
-  def projects
-    project_list = []
-    self.teams.each do |team|
-      project_list << team.projects
-    end
-    project_list.flatten
-  end
 
 end
 

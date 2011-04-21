@@ -11,17 +11,3 @@
   = link_to 'New project', new_project_path
   \|
   = link_to 'All projects', projects_path
-
-
-%h2 My teams
-
-%ul
-  - current_contributor.teams.each do |team|
-    %li
-      = link_to team.name, team_path(team)
-
-%p
-  = link_to 'New team', new_team_path
-  \|
-  = link_to 'All teams', teams_path
-

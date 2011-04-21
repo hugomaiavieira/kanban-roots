@@ -2,9 +2,8 @@ require 'spec_helper'
 
 describe Project do
   should_validate_presence_of :name
-  should_have_many :tasks
-  should_have_many :categories
-  should_have_and_belong_to_many :teams
+  should_have_many :tasks, :categories
+  should_have_and_belong_to_many :contributors
 
   it 'returns all related tasks matching a given position' do
     tasks = [stub_model(Task, :position => 1),
@@ -71,38 +70,14 @@ describe Project do
     projects.sort.should == [project_a, project_b, project_z]
   end
 
-  it "should know his contributors" do
-    hugo = Factory.create :contributor, :email => 'hugo@email.com'
-    dudu = Factory.create :contributor, :email => 'dudu@email.com'
-    max = Factory.create :contributor, :email => 'max@email.com'
-    rodrigo = Factory.create :contributor, :email => 'rodrigo@email.com'
-
-    project1 = Factory.create :project
-    project2 = Factory.create :project
-
-    team1 = Factory.create :team,
-                           :projects => [project1],
-                           :contributors => [hugo, max]
-    team2 = Factory.create :team,
-                           :projects => [project2],
-                           :contributors => [dudu]
-    team3 = Factory.create :team,
-                           :projects => [project1, project2],
-                           :contributors => [rodrigo]
-
-    project1.contributors.should include hugo, max, rodrigo
-    project2.contributors.should include dudu, rodrigo
-  end
-
   context 'contributors scores should be ordered by score' do
 
     it "should return a list of hashs {contributor, scores} ordered by scores" do
-      dudu = Factory.create :contributor, :email => 'dudu@email.com'
-      max = Factory.create :contributor, :email => 'max@email.com'
-      hugo = Factory.create :contributor, :email => 'hugo@email.com'
+      dudu = Factory.create :contributor
+      max = Factory.create :contributor
+      hugo = Factory.create :contributor
 
-      project = Factory.create :project
-      Factory.create :team, :projects => [project], :contributors => [hugo, dudu, max]
+      project = Factory.create :project, :contributors => [hugo, dudu, max]
 
       Factory.create :task, :project => project, :position => Board::POSITIONS['doing'], :contributors => [dudu], :points => 13
       Factory.create :task, :project => project, :position => Board::POSITIONS['todo'], :contributors => [hugo], :points => 5
@@ -129,10 +104,9 @@ describe Project do
     end
 
     it 'should ignore taks without points' do
-      hugo = Factory.create :contributor, :email => 'hugo@email.com'
+      hugo = Factory.create :contributor
 
-      project = Factory.create :project
-      Factory.create :team, :projects => [project], :contributors => [hugo]
+      project = Factory.create :project, :contributors => [hugo]
 
       Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => nil
       Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 3
@@ -142,10 +116,9 @@ describe Project do
     end
 
     it 'should sum 0.1 for taks with 0 points' do
-      hugo = Factory.create :contributor, :email => 'hugo@email.com'
+      hugo = Factory.create :contributor
 
-      project = Factory.create :project
-      Factory.create :team, :projects => [project], :contributors => [hugo]
+      project = Factory.create :project, :contributors => [hugo]
 
       Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 0
       Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 3
@@ -165,14 +138,10 @@ describe Project do
     project = Factory.create :project
     task = Factory.create :task, :project => project
     comment = Factory.create :comment, :task => task
-    team = Factory.create :team, :projects => [project]
-    team2 = Factory.create :team, :projects => [project]
     category = Factory.create :category, :project => project
 
     project.destroy
 
-    team.reload.projects.should_not include(project)
-    team2.reload.projects.should_not include(project)
     lambda { task.reload }.should raise_error(ActiveRecord::RecordNotFound)
     lambda { comment.reload }.should raise_error(ActiveRecord::RecordNotFound)
     lambda { category.reload }.should raise_error(ActiveRecord::RecordNotFound)

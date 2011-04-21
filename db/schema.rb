@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110128222606) do
+ActiveRecord::Schema.define(:version => 20110421121043) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -42,14 +42,14 @@ ActiveRecord::Schema.define(:version => 20110128222606) do
   add_index "contributors", ["email"], :name => "index_contributors_on_email", :unique => true
   add_index "contributors", ["reset_password_token"], :name => "index_contributors_on_reset_password_token", :unique => true
 
+  create_table "contributors_projects", :id => false, :force => true do |t|
+    t.integer "contributor_id"
+    t.integer "project_id"
+  end
+
   create_table "contributors_tasks", :id => false, :force => true do |t|
     t.integer "contributor_id"
     t.integer "task_id"
-  end
-
-  create_table "contributors_teams", :id => false, :force => true do |t|
-    t.integer "contributor_id"
-    t.integer "team_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -59,11 +59,6 @@ ActiveRecord::Schema.define(:version => 20110128222606) do
     t.datetime "updated_at"
   end
 
-  create_table "projects_teams", :id => false, :force => true do |t|
-    t.integer "project_id"
-    t.integer "team_id"
-  end
-
   create_table "tasks", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -71,12 +66,6 @@ ActiveRecord::Schema.define(:version => 20110128222606) do
     t.string   "position",    :default => "Backlog"
     t.integer  "category_id"
     t.integer  "project_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "teams", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

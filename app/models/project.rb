@@ -1,17 +1,9 @@
 class Project < ActiveRecord::Base
-  has_and_belongs_to_many :teams, :before_remove => :remove_from_teams
+  has_and_belongs_to_many :contributors
   has_many :tasks, :dependent => :destroy
   has_many :categories, :dependent => :delete_all
 
   validates_presence_of :name
-
-  def contributors
-    project_list = []
-    self.teams.each do |team|
-      project_list << team.contributors
-    end
-    project_list.flatten
-  end
 
   def contributors_scores
     list = []
@@ -52,12 +44,6 @@ class Project < ActiveRecord::Base
   def <=> project
     self.name <=> project.name
   end
-
-  def remove_from_teams(team)
-    team.projects.delete(self)
-    team.save
-  end
-
 
 end
 

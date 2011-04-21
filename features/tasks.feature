@@ -64,10 +64,8 @@ Feature: Manipulate tasks
     Given I am a contributor of "Sgtran" project
     And I am authenticated
     And I have a task of "Sgtran" project
-    And I have a team
-    And "Hugo Maia" belongs to the team
-    And "Rodrigo Manhães" belongs to the team
-    And the team works on this project
+    And "Hugo Maia" is a contributor of the project
+    And "Rodrigo Manhães" is a contributor of the project
     When I am on the task edit page
     And I select "Hugo Maia" from "Sponsors"
     And I select "Rodrigo Manhães" from "Sponsors"
