@@ -1,4 +1,6 @@
 class ProjectsController < InheritedResources::Base
+  actions :all, :except => [ :index ]
+
   before_filter :authenticate_contributor!
 
   def create

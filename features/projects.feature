@@ -29,7 +29,7 @@ Feature: Manipulate projects
     And I press "Save"
     Then I should see "Some name"
     And I should see "Any description"
-
+@now
   Scenario: Delete project
     Given I am an authenticated contributor
     And the following projects:
@@ -38,11 +38,10 @@ Feature: Manipulate projects
       | name 2 | description 2 |
       | name 3 | description 3 |
       | name 4 | description 4 |
-    And I am on the projects page
     When I delete the 3rd project
-    Then I should see the following projects:
-      | Name   | Description   |
-      | name 1 | description 1 |
-      | name 2 | description 2 |
-      | name 4 | description 4 |
+    And I am on the dashboard page
+    Then I should see "name 1"
+    And I should see "name 2"
+    And I should see "name 4"
+    And I should not see "name 3"
 

@@ -3,10 +3,6 @@ require "spec_helper"
 describe ProjectsController do
   describe "routing" do
 
-    it "recognizes and generates #index" do
-      { :get => "/projects" }.should route_to(:controller => "projects", :action => "index")
-    end
-
     it "recognizes and generates #new" do
       { :get => "/projects/new" }.should route_to(:controller => "projects", :action => "new")
     end
@@ -33,3 +29,4 @@ describe ProjectsController do
 
   end
 end
+
