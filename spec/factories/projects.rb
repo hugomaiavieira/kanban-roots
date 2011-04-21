@@ -3,5 +3,6 @@
 Factory.define :project do |f|
   f.name "Kanban-roots"
   f.description "A kanban board that keeps the simplicity."
+  f.association :owner, :factory => :contributor
 end
 

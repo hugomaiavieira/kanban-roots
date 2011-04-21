@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Project do
-  should_validate_presence_of :name
+  should_validate_presence_of :name, :owner
   should_have_many :tasks, :categories
   should_have_and_belong_to_many :contributors
 

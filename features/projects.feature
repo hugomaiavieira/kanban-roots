@@ -11,6 +11,7 @@ Feature: Manipulate projects
     And I press "Save"
     Then I should see "name 1"
     And I should see "description 1"
+    And I should be the project's owner
 
   Scenario: Try to register projects with erros
     Given I am an authenticated contributor
@@ -28,6 +29,7 @@ Feature: Manipulate projects
     Then I should see "Some name"
     And I should see "Any description"
 
+@now
   Scenario: Delete project
     Given I am an authenticated contributor
     And the following projects:

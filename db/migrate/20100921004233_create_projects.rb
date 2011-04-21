@@ -2,6 +2,7 @@ class CreateProjects < ActiveRecord::Migration
   def self.up
     create_table :projects do |t|
       t.string :name
+      t.integer :owner_id
       t.string :description
 
       t.timestamps
@@ -12,3 +13,4 @@ class CreateProjects < ActiveRecord::Migration
     drop_table :projects
   end
 end
+

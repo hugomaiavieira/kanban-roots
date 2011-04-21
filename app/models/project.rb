@@ -1,9 +1,10 @@
 class Project < ActiveRecord::Base
+  belongs_to :owner, :class_name => 'Contributor'
   has_and_belongs_to_many :contributors
   has_many :tasks, :dependent => :destroy
   has_many :categories, :dependent => :delete_all
 
-  validates_presence_of :name
+  validates_presence_of :name, :owner
 
   def contributors_scores
     list = []

@@ -3,6 +3,7 @@ Given /^I have a project$/ do
 end
 
 Given /^the following projects:$/ do |projects|
+  projects.hashes.collect { |p| p[:owner_id] = @contributor.id }
   Project.create!(projects.hashes)
 end
 
@@ -30,5 +31,11 @@ end
 
 Given /^I have a project named "([^"]*)"$/ do |name|
   Factory.create :project, :name => name
+end
+
+Then /^I should be the project's owner$/ do
+  project = Project.all.first
+  project.owner.should == @contributor
+  project.owner_id.should == @contributor.id
 end
 
