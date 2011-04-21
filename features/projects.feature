@@ -18,6 +18,7 @@ Feature: Manipulate projects
     And I am on the new project page
     And I press "Save"
     Then I should see "Name can't be blank"
+    And I should not have any project
 
   Scenario: Edit a project
     Given I am an authenticated contributor
@@ -29,7 +30,6 @@ Feature: Manipulate projects
     Then I should see "Some name"
     And I should see "Any description"
 
-@now
   Scenario: Delete project
     Given I am an authenticated contributor
     And the following projects:

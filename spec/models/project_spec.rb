@@ -5,6 +5,12 @@ describe Project do
   should_have_many :tasks, :categories
   should_have_and_belong_to_many :contributors
 
+  it 'should set itself as project of its owner' do
+    contributor = Factory.create :contributor
+    project = Factory.create :project, :owner => contributor
+    contributor.projects.should include(project)
+  end
+
   it 'returns all related tasks matching a given position' do
     tasks = [stub_model(Task, :position => 1),
              stub_model(Task, :position => 1),

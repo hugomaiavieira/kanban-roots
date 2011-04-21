@@ -37,5 +37,10 @@ Then /^I should be the project's owner$/ do
   project = Project.all.first
   project.owner.should == @contributor
   project.owner_id.should == @contributor.id
+  @contributor.projects.should include(project)
+end
+
+Then /^I should not have any project$/ do
+  @contributor.projects.should be_empty
 end
 

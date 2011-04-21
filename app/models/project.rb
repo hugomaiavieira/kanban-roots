@@ -6,6 +6,14 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name, :owner
 
+  after_create :set_as_owner_project
+
+  def set_as_owner_project
+    contributor = Contributor.find(self.owner_id)
+    contributor.projects << self
+    contributor.save
+  end
+
   def contributors_scores
     list = []
     tasks = self.tasks_by_position Board::POSITIONS['done']
