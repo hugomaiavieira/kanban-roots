@@ -144,7 +144,7 @@ describe BoardsHelper do
                                    stub(:username => 'eduardo')])
         helper.sponsors(@task).should =~ /title='hugo, rodrigo, max, and eduardo'/
         helper.sponsors(@task).should =~ /hugo, rodrigo, max.../i
-        helper.sponsors(@task).should_not =~ /Set sponsor/i
+        helper.sponsors(@task).should_not =~ /-/
       end
     end
 
