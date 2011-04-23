@@ -76,17 +76,5 @@ module BoardsHelper
     </span>"
   end
 
-  def my_projects
-    projects = current_contributor.projects.sort
-    str=''
-    projects.each do |project|
-      unless project == @project
-        str += link_to project.name, project_board_path(project)
-        str += ' | '
-      end
-    end
-    str[0..-4].html_safe
-  end
-
 end
 

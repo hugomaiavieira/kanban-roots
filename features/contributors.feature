@@ -35,10 +35,11 @@ Feature: Manipulate contributors
     And I am authenticated
     And I am on my details page
     When I follow "Edit"
-    And I fill in "Name" with "Someone of Something"
+    And I fill in "Username" with "hugomaiavieira"
     And I fill in "Current password" with "123456"
     And I press "Update"
-    Then I should see "Someone of Something"
+    Then show me the page
+    Then I should see "hugomaiavieira"
 
   Scenario: Sign in with username successfully
     Given I am contributor with password "123456" and username "someone"
