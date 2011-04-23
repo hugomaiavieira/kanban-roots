@@ -211,6 +211,10 @@ span.sponsors_form {
     font-size: 12px;
     position: absolute;
     display: none;
+    margin-left: 7px;
+    padding: 5px;
+    background-color: #ff4b00;
+    border-radius: 5px;
 }
 
 span.sponsors_form input {
