@@ -11,7 +11,7 @@ Contributor.delete_all
 
 Contributor.create!(
   :name => 'John Doe',
-  :username => 'jonhdoe',
+  :username => 'johndoe',
   :email => 'johndoe@example.com',
   :password => '123456',
   :password_confirmation => '123456'
