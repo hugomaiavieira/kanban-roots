@@ -9,6 +9,10 @@
       = f.input :name
 
     .field
+      = f.input :username
+      %i (just letters, numbers and _)
+
+    .field
       = f.input :email, :label => 'E-mail'
 
     .field
@@ -21,4 +25,3 @@
       = f.submit "Sign up"
 
 = render :partial => "devise/shared/links"
-

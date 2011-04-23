@@ -2,7 +2,7 @@
 = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
 
   .field
-    = f.input :email, :required => false
+    = f.input :login, :required => false
 
   .field
     = f.input :password, :as => :password, :required => false
@@ -16,4 +16,3 @@
     = f.submit "Sign in"
 
 = render :partial => "devise/shared/links"
-
