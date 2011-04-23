@@ -11,10 +11,6 @@ describe CategoriesController do
       { :get => "projects/5/categories/new" }.should route_to(:controller => "categories", :action => "new", :project_id => "5")
     end
 
-    it "recognizes and generates #show" do
-      { :get => "projects/5/categories/1" }.should route_to(:controller => "categories", :action => "show", :id => "1", :project_id => "5")
-    end
-
     it "recognizes and generates #edit" do
       { :get => "projects/5/categories/1/edit" }.should route_to(:controller => "categories", :action => "edit", :id => "1", :project_id => "5")
     end
