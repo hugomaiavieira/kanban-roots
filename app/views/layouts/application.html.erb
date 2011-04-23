@@ -34,7 +34,7 @@
         <%= link_to 'List Tasks', project_tasks_path(@project) %>
         <%= link_to 'Admin', edit_project_path(@project) %>
         <%= link_to 'Manage Categories', project_categories_path(@project) %>
-        <%= link_to 'Clean up Done', clean_up_done_path(@project), :confirm => 'Are you sure?' %>
+        <%= yield :project_nav %>
       </nav>
     <% end %>
 
