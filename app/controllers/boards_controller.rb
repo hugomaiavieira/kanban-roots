@@ -56,7 +56,7 @@ class BoardsController < InheritedResources::Base
     params[:sponsors].delete '-'
     params[:sponsors] = nil if params[:sponsors].empty?
     task.update_attribute(:contributor_ids, params[:sponsors])
-    sponsors_sentence = params[:sponsors].nil? ? '-' : task.contributors.collect(&:name).to_sentence
+    sponsors_sentence = params[:sponsors].nil? ? '-' : task.contributors.collect(&:username).to_sentence
 
     if sponsors_sentence.length > 25
       long_sentence = true

@@ -30,7 +30,7 @@ module BoardsHelper
     string += "<option value='-'>-</option>"
     task.project.contributors.each do |contributor|
       selected = task.contributors.include?(contributor) ? " selected='selected'" : ''
-      string += "<option#{selected} value='#{contributor.id}'>#{contributor.name}</option>"
+      string += "<option#{selected} value='#{contributor.id}'>#{contributor.username}</option>"
     end
     string += "</select>"
     string += "<input type='submit' value='ok' />"
@@ -63,7 +63,7 @@ module BoardsHelper
   def sponsors task
     return "<span class='show_sponsors'>-</span>" if task.contributors.empty?
 
-    sponsors_sentence = task.contributors.collect(&:name).to_sentence
+    sponsors_sentence = task.contributors.collect(&:username).to_sentence
 
     if sponsors_sentence.length > 25
       span = "span class='show_sponsors' title='#{sponsors_sentence}'"

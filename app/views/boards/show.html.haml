@@ -14,7 +14,7 @@
   %h3 Scores
   %ol#score_list
     - @project.contributors_scores.each do |item|
-      %li== #{item[:contributor].name} (<span id='contributor_#{item[:contributor].id}'>#{item[:scores]}</span>)
+      %li== #{item[:contributor].username} (<span id='contributor_#{item[:contributor].id}'>#{item[:scores]}</span>)
 
 %h1= "#{@project.name} Board"
 

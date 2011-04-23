@@ -126,10 +126,10 @@ describe BoardsHelper do
     context 'for task with contributors' do
       it 'shows contributors as sentence without title and help cursor for tiny sentence' do
         stub_all(:points => 0,
-                 :contributors => [stub(:name => 'Hugo'),
-                                   stub(:name => 'Rodrigo'),
-                                   stub(:name => 'Max')])
-        helper.sponsors(@task).should =~ /Hugo, Rodrigo, and Max/i
+                 :contributors => [stub(:username => 'hugo'),
+                                   stub(:username => 'rodrigo'),
+                                   stub(:username => 'max')])
+        helper.sponsors(@task).should =~ /hugo, rodrigo, and max/i
         helper.sponsors(@task).should_not =~ /<span class='show_sponsors'>-<\/span>/
         helper.sponsors(@task).should_not =~ /title='.*'/
         helper.sponsors(@task).should =~ /class='show_sponsors'/
@@ -138,12 +138,12 @@ describe BoardsHelper do
 
       it 'shows contributors as sentence concatenated with title and help cursor for long sentence' do
         stub_all(:points => 0,
-                 :contributors => [stub(:name => 'Hugo'),
-                                   stub(:name => 'Rodrigo'),
-                                   stub(:name => 'Max'),
-                                   stub(:name => 'Eduardo')])
-        helper.sponsors(@task).should =~ /title='Hugo, Rodrigo, Max, and Eduardo'/
-        helper.sponsors(@task).should =~ /Hugo, Rodrigo, Max.../i
+                 :contributors => [stub(:username => 'hugo'),
+                                   stub(:username => 'rodrigo'),
+                                   stub(:username => 'max'),
+                                   stub(:username => 'eduardo')])
+        helper.sponsors(@task).should =~ /title='hugo, rodrigo, max, and eduardo'/
+        helper.sponsors(@task).should =~ /hugo, rodrigo, max.../i
         helper.sponsors(@task).should_not =~ /Set sponsor/i
       end
     end
@@ -151,33 +151,33 @@ describe BoardsHelper do
     context 'form for' do
 
       it 'generates an multiple select and an buttom for the task sponsors' do
-        hugo = stub(:name => 'Hugo', :id => 1)
-        rodrigo = stub(:name => 'Rodrigo', :id => 2)
-        max = stub(:name => 'Max', :id => 3)
+        hugo = stub(:username => 'hugo', :id => 1)
+        rodrigo = stub(:username => 'rodrigo', :id => 2)
+        max = stub(:username => 'max', :id => 3)
         stub_all(:points => nil)
         @project.stub(:contributors).and_return([hugo, rodrigo, max])
         helper.form_for_sponsors(@task).should =~ /<select multiple='multiple' size='5'>/
         helper.form_for_sponsors(@task).should =~ /<option value='-'>-<\/option>/
-        helper.form_for_sponsors(@task).should =~ /<option value='1'>Hugo<\/option>/
-        helper.form_for_sponsors(@task).should =~ /<option value='2'>Rodrigo<\/option>/
-        helper.form_for_sponsors(@task).should =~ /<option value='3'>Max<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option value='1'>hugo<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option value='2'>rodrigo<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option value='3'>max<\/option>/
         helper.form_for_sponsors(@task).should =~ /<\/select>/
         helper.form_for_sponsors(@task).should =~ /<input type='submit' value='ok' \/>/
       end
 
       it 'set the selected options' do
-        hugo = stub(:name => 'Hugo', :id => 1)
-        rodrigo = stub(:name => 'Rodrigo', :id => 2)
-        max = stub(:name => 'Max', :id => 3)
+        hugo = stub(:username => 'hugo', :id => 1)
+        rodrigo = stub(:username => 'rodrigo', :id => 2)
+        max = stub(:username => 'max', :id => 3)
         stub_all(:points => nil, :contributors => [hugo])
         @project.stub(:contributors).and_return([hugo])
-        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='1'>Hugo<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='1'>hugo<\/option>/
 
         stub_all(:points => nil, :contributors => [hugo, rodrigo, max])
         @project.stub(:contributors).and_return([hugo, rodrigo, max])
-        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='\d+'>Hugo<\/option>/
-        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='\d+'>Rodrigo<\/option>/
-        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='\d+'>Max<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='\d+'>hugo<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='\d+'>rodrigo<\/option>/
+        helper.form_for_sponsors(@task).should =~ /<option selected='selected' value='\d+'>max<\/option>/
       end
 
     end
