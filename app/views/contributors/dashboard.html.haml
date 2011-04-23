@@ -6,6 +6,8 @@
   - current_contributor.projects.each do |project|
     %li
       = link_to project.name, project_board_path(project)
+      %br
+      = project.description
 
 %p
   = link_to 'New project', new_project_path

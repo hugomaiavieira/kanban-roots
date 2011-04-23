@@ -8,6 +8,16 @@ describe CommentsController do
         :controller => "comments", :action => "new", :project_id => "1", :task_id => "5")
     end
 
+    it "recognizes and generates #show" do
+      { :get => "/projects/1/tasks/5/comments/2" }.should route_to(
+        :controller => "comments", :action => "show", :project_id => "1", :task_id => "5", :id => "2")
+    end
+
+    it "recognizes and generates #edit" do
+      { :get => "/projects/1/tasks/5/comments/2/edit" }.should route_to(
+        :controller => "comments", :action => "edit", :project_id => "1", :task_id => "5", :id => "2")
+    end
+
     it "recognizes and generates #create" do
       { :post => "/projects/1/tasks/5/comments" }.should route_to(
         :controller => "comments", :action => "create", :project_id => "1", :task_id => "5")

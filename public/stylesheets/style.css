@@ -94,6 +94,28 @@ pre {
     color: #ea002a;
 }
 
+/* Navigation */
+
+#project_nav {
+    margin: 30px 5px;
+}
+
+#project_nav a {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 3px 8px;
+    text-decoration: none;
+    background-color: #dccbf6;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    color: #2483c0;
+}
+
+#project_nav a:hover {
+    background-color: #ae8ae5;
+    color: #005e9b;
+}
+
 /* Board */
 
 div.board {

@@ -29,7 +29,7 @@ Feature: Manipulate projects
     And I press "Save"
     Then I should see "Some name"
     And I should see "Any description"
-@now
+
   Scenario: Delete project
     Given I am an authenticated contributor
     And the following projects:

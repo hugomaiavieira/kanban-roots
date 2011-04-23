@@ -13,10 +13,7 @@
     - @project.contributors_scores.each do |item|
       %li== #{item[:contributor].name} (<span id='contributor_#{item[:contributor].id}'>#{item[:scores]}</span>)
 
-- unless my_projects.empty?
-  %p== My projects: #{my_projects}
-
-%h1== #{@project.name} Board
+%h1= "#{@project.name} Board"
 
 %ul.legends
   %strong Legend:
@@ -39,10 +36,3 @@
   %ul#backlog.droppable
     - @project.tasks_by_position(Board::POSITIONS['backlog']).each do |task|
       = to_postit(task).html_safe
-
-%br
-= link_to 'Categories', project_categories_path
-\|
-= link_to 'New Task', new_project_task_path
-\|
-= link_to 'Clean up Done', clean_up_done_path, :confirm => 'Are you sure?'

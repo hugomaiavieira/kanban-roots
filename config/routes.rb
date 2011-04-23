@@ -4,11 +4,11 @@ KanbanRoots::Application.routes.draw do
 
   get 'contributors/:id/' => 'contributors#show',  :as => :contributor
 
-  resources :projects do
-    resources :tasks do
+  resources :projects, :path_names => { :edit => 'admin' } do
+    resources :tasks, :path_names => { :edit => 'edit' } do
       resources :comments
     end
-    resources :categories
+    resources :categories, :path_names => { :edit => 'edit' }
   end
 
   match 'projects/:project_id/board' => 'boards#show',  :as => :project_board

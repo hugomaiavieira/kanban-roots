@@ -12,7 +12,7 @@ describe ProjectsController do
     end
 
     it "recognizes and generates #edit" do
-      { :get => "/projects/1/edit" }.should route_to(:controller => "projects", :action => "edit", :id => "1")
+      { :get => "/projects/1/admin" }.should route_to(:controller => "projects", :action => "edit", :id => "1")
     end
 
     it "recognizes and generates #create" do
