@@ -38,7 +38,6 @@ Feature: Manipulate contributors
     And I fill in "Username" with "hugomaiavieira"
     And I fill in "Current password" with "123456"
     And I press "Update"
-    Then show me the page
     Then I should see "hugomaiavieira"
 
   Scenario: Sign in with username successfully
