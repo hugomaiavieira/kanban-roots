@@ -54,8 +54,8 @@ Feature: Manipulate comments in tasks
     And I follow "Add comment"
     And I fill in "Content" with "# Some content here [link](http://exemplo.com)"
     And I press "Save"
-    And I should see "Some content here" within the "h1" tag
-    And I should see "link" within the "a" tag
+    And I should see "Some content here" in a "h1" tag
+    And I should see "link" in an "a" tag
 
   @javascript
   Scenario: Destroy a comment
@@ -64,7 +64,7 @@ Feature: Manipulate comments in tasks
     And I have a task of "Sgtran" project
     And I write a comment for this task
     When I am on the task page
-    And I follow "Destroy" within "div.comment_wrapper" and press ok at the pop-up
+    And I follow "Destroy" within "my comment box" and press ok at the alert
     Then I should be on the task page
     And The comment should no longer exist
     And I should see "Comment was successfully destroyed."

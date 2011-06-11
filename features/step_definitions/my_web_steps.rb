@@ -3,14 +3,14 @@ When /^I follow "([^\"]*)" and press ok at the pop-up$/ do |link|
   click_link(link)
 end
 
-When /^I follow "([^"]*)" within "([^"]*)" and press ok at the pop\-up$/ do |link, selector|
+When /^I follow "([^"]*)" within "([^"]*)" and press ok at the alert$/ do |link, selector|
   page.evaluate_script("window.confirm = function() { return true; }")
   with_scope(selector) do
     click_link(link)
   end
 end
 
-When /^I should see "([^"]*)" within the "([^"]*)" tag$/ do |text, tag|
+When /^I should see "([^"]*)" in a(?:|n) "([^"]*)" tag$/ do |text, tag|
   if page.respond_to? :should
     page.should have_xpath("//#{tag}", :text => text)
   else
