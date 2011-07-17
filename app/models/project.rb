@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :categories, :dependent => :delete_all
 
-  validates_presence_of :name, :owner
+  validates_presence_of :name, :owner_id
 
   after_create :set_as_owner_project
 
@@ -53,6 +53,5 @@ class Project < ActiveRecord::Base
   def <=> project
     self.name <=> project.name
   end
-
 end
 

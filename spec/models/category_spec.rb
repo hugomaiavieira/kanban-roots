@@ -1,14 +1,22 @@
 require 'spec_helper'
 
 describe Category do
-
   before(:each) do
     @project = Factory.create :project
   end
 
-  should_have_many :tasks
-  should_belong_to :project
-  should_validate_presence_of :project_id
+  it { should_not have_valid(:project_id).when(nil, '') }
+
+  it 'should validate format of name' do
+    should have_valid(:name).when('Feature', 'New Feature', 'New-Feature_again',
+                                  'New_Feature', 'Study/Research', 'bug')
+    should_not have_valid(:name).when('Feature 1', '#Feature', '', nil)
+  end
+
+  it 'should validate format of color' do
+    should have_valid(:color).when('ffa5a5', 'FFFFFF')
+    should_not have_valid(:color).when('FFF', '#FFFFFF', 'red', '', nil)
+  end
 
   it 'should validate uniqueness of name for project' do
     saved = Factory.create :category, :project => @project, :name => 'Feature'
@@ -27,31 +35,6 @@ describe Category do
     category.errors[:color].should include 'should be uniq for project'
   end
 
-  it 'should validate format of name' do
-    category = Factory.build :category, :project => @project, :name => 'Feature'
-    category.save.should be_true
-
-    category.update_attributes(:name => 'Study/Research').should be_true
-    category.update_attributes(:name => 'New Feature').should be_true
-    category.update_attributes(:name => 'New_Feature').should be_true
-    category.update_attributes(:name => 'New-Feature_again').should be_true
-
-    category.update_attributes(:name => 'Feature 1').should be_false
-    category.update_attributes(:name => '#Feature').should be_false
-    category.errors[:name].should include 'is invalid'
-  end
-
-  it 'should validate format of color' do
-    category = Factory.build :category, :project => @project, :color => 'ffa5a5'
-    category.save.should be_true
-
-    category.update_attributes(:color => 'FFFFFF').should be_true
-
-    category.update_attributes(:color => '#FFFFFF').should be_false
-    category.update_attributes(:color => 'red').should be_false
-    category.errors[:color].should include 'is invalid'
-  end
-
   it 'should return the name as a css class' do
     category = Factory.build :category, :name => 'Feature'
     category.to_class.should == 'feature'
@@ -65,6 +48,5 @@ describe Category do
     category.name = 'Study/Research'
     category.to_class.should == 'study_research'
   end
-
 end
 

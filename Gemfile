@@ -17,8 +17,7 @@ gem 'ruby-json'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '>=2.5.0'
-  gem 'remarkable_activerecord', '>=4.0.0.alpha4'
-  gem 'remarkable_activemodel', '>=4.0.0.alpha4'
+  gem 'valid_attribute', '~>1.1.0'
 end
 
 group :cucumber do

@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe Task do
-  should_validate_presence_of :title, :project
-  should_belong_to :project
-  should_belong_to :category
-  should_have_and_belong_to_many :contributors
-  should_have_many :comments
+  it { should_not have_valid(:project_id).when('', nil) }
+
+  it 'should have a valide title' do
+    it { should have_valid(:title).when('Use valid_attribute gem') }
+    it { should_not have_valid(:title).when('', nil) }
+  end
 
   it "default position should be Backlog" do
     task = Factory.build :task

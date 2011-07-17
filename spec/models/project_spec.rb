@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe Project do
-  should_validate_presence_of :name, :owner
-  should_have_many :tasks, :categories
-  should_have_and_belong_to_many :contributors
+  it { should_not have_valid(:owner_id).when('', nil) }
+
+  it 'should have a valid name' do
+    it { should have_valid(:name).when('Kanban roots') }
+    it { should_not have_valid(:name).when('', nil) }
+  end
 
   it 'should set itself as project of its owner' do
     contributor = Factory.create :contributor
@@ -77,7 +80,6 @@ describe Project do
   end
 
   context 'contributors scores should be ordered by score' do
-
     it "should return a list of hashs {contributor, scores} ordered by scores" do
       dudu = Factory.create :contributor
       max = Factory.create :contributor
@@ -152,6 +154,5 @@ describe Project do
     lambda { comment.reload }.should raise_error(ActiveRecord::RecordNotFound)
     lambda { category.reload }.should raise_error(ActiveRecord::RecordNotFound)
   end
-
 end
 

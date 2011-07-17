@@ -28,7 +28,5 @@ class Category < ActiveRecord::Base
   def to_class
     self.name.downcase.gsub(/\/| |-/, '_')
   end
-
-
 end
 
