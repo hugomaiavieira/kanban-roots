@@ -4,8 +4,8 @@ describe Task do
   it { should_not have_valid(:project_id).when('', nil) }
 
   it 'should have a valide title' do
-    it { should have_valid(:title).when('Use valid_attribute gem') }
-    it { should_not have_valid(:title).when('', nil) }
+    should have_valid(:title).when('Use valid_attribute gem')
+    should_not have_valid(:title).when('', nil)
   end
 
   it "default position should be Backlog" do

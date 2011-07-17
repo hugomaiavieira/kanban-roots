@@ -4,8 +4,8 @@ describe Project do
   it { should_not have_valid(:owner_id).when('', nil) }
 
   it 'should have a valid name' do
-    it { should have_valid(:name).when('Kanban roots') }
-    it { should_not have_valid(:name).when('', nil) }
+    should have_valid(:name).when('Kanban roots')
+    should_not have_valid(:name).when('', nil)
   end
 
   it 'should set itself as project of its owner' do
