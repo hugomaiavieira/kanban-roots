@@ -20,17 +20,17 @@ namespace :travis do
   namespace :cucumber do
 
     desc 'run cucumber specs without javascript'
-    task :nojavascript
+    task :nojavascript do
       sh 'cucumber features --tag ~@javascript --format progress'
     end
 
     desc 'run cucumber specs with javascript'
-    task :javascript
+    task :javascript do
       sh 'cucumber features --tag @javascript --format progress'
     end
 
     desc 'run all cucumber specs'
-    tasks :all => ['nojavascript', 'javascript']
+    task :all => ['nojavascript', 'javascript']
 
   end
 
