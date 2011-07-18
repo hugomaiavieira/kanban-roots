@@ -4,6 +4,8 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
+KanbanRoots::Application.load_tasks
+
 desc 'run all specs in development mode'
 task :dev => ['dev:rspec', 'dev:cucumber:all']
 
