@@ -13,16 +13,29 @@ namespace :travis do
 
   desc 'run rspec specs'
   task :rspec do
-    sh 'rspec spec'
+    sh 'rspec spec --format progress'
   end
 
   desc 'run cucumber specs'
-  task :cucumber do
-    sh 'cucumber features'
+  namespace :cucumber do
+
+    desc 'run cucumber specs without javascript'
+    task :nojavascript
+      sh 'cucumber features --tag ~@javascript --format progress'
+    end
+
+    desc 'run cucumber specs with javascript'
+    task :javascript
+      sh 'cucumber features --tag @javascript --format progress'
+    end
+
+    desc 'run all cucumber specs'
+    tasks :all => ['nojavascript', 'javascript']
+
   end
 
   desc 'run all tasks'
-  task :all => ['database', 'rspec', 'cucumber']
+  task :all => ['database', 'rspec', 'cucumber:nojavascript']
 
 end
 
