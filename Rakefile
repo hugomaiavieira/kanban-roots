@@ -4,12 +4,13 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-KanbanRoots::Application.load_tasks
+desc 'run all specs in development mode'
+task :dev => ['dev:rspec', 'dev:cucumber:all']
 
-namespace :travis do
+namespace :dev do
 
   desc 'reset the database'
-  task :database => ['db:drop', 'db:create', 'db:migrate']
+  task :database => ['db:drop:all', 'db:create:all', 'db:migrate', ':db:test:clone']
 
   desc 'run rspec specs'
   task :rspec do
@@ -19,23 +20,34 @@ namespace :travis do
   desc 'run cucumber specs'
   namespace :cucumber do
 
-    desc 'run cucumber specs without javascript'
+    desc 'without javascript'
     task :nojavascript do
       sh 'cucumber features --tag ~@javascript --format progress'
     end
 
-    desc 'run cucumber specs with javascript'
+    desc 'with javascript'
     task :javascript do
       sh 'cucumber features --tag @javascript --format progress'
     end
 
-    desc 'run all cucumber specs'
+    desc 'run all specs, with and without javascript'
     task :all => ['nojavascript', 'javascript']
 
   end
 
-  desc 'run all tasks'
-  task :all => ['database', 'rspec', 'cucumber:nojavascript']
+end
+
+
+desc 'run all specs in travis-ci mode'
+task :travis => ['travis:database', 'travis:specs']
+
+namespace :travis do
+
+  desc 'run rspec and cucumber specs'
+  task :specs => ['dev:rspec', 'dev:cucumber:nojavascript']
+
+  desc 'reset the database'
+  task :database => ['db:drop', 'db:create', 'db:migrate']
 
 end
 
