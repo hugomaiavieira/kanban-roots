@@ -2,3 +2,7 @@
 
 A kanban board that keep the simplicity as well as the roots of the concept.
 
+## System dependencies
+
+- [pygments](http://pygments.org/): for markdown syntax highlighting.
+

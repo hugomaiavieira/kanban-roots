@@ -10,7 +10,9 @@ gem 'formtastic'
 gem 'inherited_resources'
 gem 'escape_utils'
 gem 'devise', '>= 1.2.rc2'
-gem 'rdiscount' # Markdown
+gem 'redcarpet' # Markdown
+gem 'albino' # Markdown syntax highlighting
+gem 'nokogiri' # Parse the html for markdown syntax highlighting
 gem 'jquery-rails'
 gem 'ruby-json'
 
