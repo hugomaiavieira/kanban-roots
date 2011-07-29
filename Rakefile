@@ -3,6 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+require 'rake/dsl_definition' # http://migre.me/5nonc
 
 KanbanRoots::Application.load_tasks
 
