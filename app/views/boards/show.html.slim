@@ -14,10 +14,7 @@
   h3 Scores
   ol#score_list
     - @project.contributors_scores.each do |item|
-      li
-        = "#{item[:contributor].username} ("
-        span(id="contributor_#{item[:contributor].id}")= item[:scores]
-        | )
+      li #{item[:contributor].username} (<span id="contributor_#{item[:contributor].id}">#{item[:scores]}</span>)
 
 h1 #{@project.name} Board
 
@@ -31,12 +28,9 @@ ul.legends
   - ['todo', 'doing', 'done'].each do |division|
     .division
       - division_name = Board::POSITIONS[division]
-      h3
-        = "#{division_name} ("
-        span(id="#{division}_points")= @project.count_points(division_name)
-        | )
+      h3 #{division_name} (<span id="#{division}_points">#{@project.count_points(division_name)}</span>)
 
-      ul class="droppable" id=division
+      ul.droppable id=division
         - @project.tasks_by_position(division_name).each do |task|
           = to_postit(task).html_safe
 
