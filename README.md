@@ -2,6 +2,12 @@
 
 A kanban board that keep the simplicity as well as the roots of the concept.
 
+## Example
+
+[http://kanban-roots.heroku.com](http://kanban-roots.heroku.com)
+
+_Obs.:_ the database of this example is regularly cleaned up.
+
 ## System dependencies
 
 ### pygments
