@@ -12,7 +12,7 @@ table
       td= category.name
       td(style="background-color:##{category.color}")= category.color
       td= link_to 'Edit', edit_project_category_path(@project, category)
-      td= link_to 'Destroy', project_category_path(@project, category), :confirm => 'Are you sure?', :method => :delete
+      td= link_to 'Destroy', project_category_path(@project, category), :confirm => 'Are you sure?', :method => 'delete'
 
 br
 = link_to 'New Category', new_project_category_path

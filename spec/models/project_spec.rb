@@ -139,7 +139,6 @@ describe Project do
 
       project.contributors_scores[0][:scores].should == 3.2
     end
-
   end
 
   it 'when delete a project, delete all its dependencies' do
