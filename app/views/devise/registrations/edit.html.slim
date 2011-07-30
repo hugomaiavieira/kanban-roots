@@ -1,5 +1,5 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
+h2
+  | Edit #{resource_name.to_s.humanize}
 
 = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
@@ -11,26 +11,26 @@
 
     .field
       = f.input :username
-      %i (just letters, numbers and _)
+      i (just letters, numbers and _)
 
     .field
       = f.input :email
 
     .field
       = f.input :password, :as => :password
-      %i (leave blank if you don't want to change it)
+      i (leave blank if you don't want to change it)
 
     .field
       = f.input :password_confirmation, :as => :password
 
     .field
       = f.input :current_password, :as => :password
-      %i (we need your current password to confirm your changes)
+      i (we need your current password to confirm your changes)
 
     .actions
       = f.submit "Update"
 
-%h3 Cancel my account
+h3 Cancel my account
 
-%p
-  Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.
+p
+  | Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.

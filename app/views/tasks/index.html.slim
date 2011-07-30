@@ -1,0 +1,25 @@
+h1 Listing tasks
+
+table
+  tr
+    th Title
+    th Description
+    th Points
+    th Category
+    th Position
+    th
+    th
+    th
+
+  - @tasks.each do |task|
+    tr
+      td= task.title
+      td= task.description
+      td= task.points
+      td= task.category.name if task.category
+      td= task.position
+      td= link_to 'Show', project_task_path(@project, task)
+      td= link_to 'Edit', edit_project_task_path(@project, task)
+      td= link_to 'Destroy', project_task_path(@project, task), \
+                            :confirm => 'Are you sure?', :method => :delete
+

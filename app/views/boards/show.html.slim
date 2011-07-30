@@ -1,6 +1,6 @@
 - content_for :head do
-  %meta{ 'http-equiv' => 'Refresh', :content => '300' }
-  %style
+  meta  http-equiv='Refresh' content='300'
+  style
     - @categories.each do |category|
       = '.' + category.to_class + '{background-color: #' + category.color + '}'
 
@@ -11,31 +11,38 @@
   = link_to 'Clean up Done', clean_up_done_path(@project), :confirm => 'Are you sure?'
 
 .score
-  %h3 Scores
-  %ol#score_list
+  h3 Scores
+  ol#score_list
     - @project.contributors_scores.each do |item|
-      %li== #{item[:contributor].username} (<span id='contributor_#{item[:contributor].id}'>#{item[:scores]}</span>)
+      li
+        = "#{item[:contributor].username} ("
+        span(id="contributor_#{item[:contributor].id}")= item[:scores]
+        | )
 
-%h1= "#{@project.name} Board"
+h1 #{@project.name} Board
 
-%ul.legends
-  %strong Legend:
-  %li{:style => 'background-color: #ffffa5;'} None
+ul.legends
+  strong Legend:
+  li(style="background-color: #ffffa5;") None
   - @categories.each do |category|
-    %li{:class => category.to_class}= category.name
+    li(class=category.to_class)= category.name
 
 .board
   - ['todo', 'doing', 'done'].each do |division|
     .division
       - division_name = Board::POSITIONS[division]
-      %h3== #{division_name} (<span id='#{division}_points'>#{@project.count_points(division_name)}</span>)
+      h3
+        = "#{division_name} ("
+        span(id="#{division}_points")= @project.count_points(division_name)
+        | )
 
-      %ul.droppable{:id => division}
+      ul class="droppable" id=division
         - @project.tasks_by_position(division_name).each do |task|
           = to_postit(task).html_safe
 
 .board
-  %h3 Backlog
-  %ul#backlog.droppable
+  h3 Backlog
+  ul#backlog.droppable
     - @project.tasks_by_position(Board::POSITIONS['backlog']).each do |task|
       = to_postit(task).html_safe
+

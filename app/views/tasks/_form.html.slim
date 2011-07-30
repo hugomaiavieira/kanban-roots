@@ -1,10 +1,10 @@
 = semantic_form_for [@project, @task] do |f|
   -if @task.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
-      %ul
+      h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+      ul
         - @task.errors.full_messages.each do |msg|
-          %li= msg
+          li= msg
 
   .field
     = f.input :title
@@ -27,3 +27,4 @@
 
   .actions
     = f.submit 'Save'
+

@@ -1,13 +1,13 @@
-%h1 Kanban-roots
+h1 Kanban-roots
 
-%h2 Your projects
+h2 Your projects
 
-%ul
+ul
   - current_contributor.projects.each do |project|
-    %li
+    li
       = link_to project.name, project_board_path(project)
-      %br
+      br
       = project.description
 
-%p
+p
   = link_to 'New project', new_project_path

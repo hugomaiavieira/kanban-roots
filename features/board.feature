@@ -26,8 +26,7 @@ Feature: Use the board
       | Refactoring | fff000 |
       | Bug         | 000fff |
     When I am on the projects board page
-    Then I should see "Legend: None Bug Feature Refactoring"
-
+    Then I should see "Legend:NoneBugFeatureRefactoring"
 
   @javascript
   Scenario: Drag and drop a task to another board position

@@ -1,32 +1,31 @@
-%p
-  %b Title:
+p
+  b Title:
   = @task.title
-%p
-  %b Description:
+p
+  b Description:
   .description
-    :markdown
-      #{@task.description}
-%p
-  %b Points:
+    = markdown(@task.description)
+p
+  b Points:
   = @task.points
-%p
-  %b Category:
+p
+  b Category:
   = @task.category.name if @task.category
-%p
-  %b Position:
+p
+  b Position:
   = @task.position
-%p
-  %b Sponsors:
+p
+  b Sponsors:
   = @task.contributors.collect(&:name).to_sentence
 
 - if !@task.comments.empty?
   = render '/comments/list'
 
 = link_to 'Edit', edit_project_task_path(@project, @task)
-\|
-= link_to 'Destroy', project_task_path(@project, @task),
-:confirm => 'Are you sure?',
-:method => :delete
-\|
+||
+= link_to 'Destroy', project_task_path(@project, @task), \
+                    :confirm => 'Are you sure?', \
+                    :method => :delete
+||
 = link_to 'Add comment', new_project_task_comment_path(@project, @task)
 
