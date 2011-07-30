@@ -18,15 +18,11 @@ gem 'ruby-json'
 
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'rspec-rails', '>=2.5.0'
-  gem 'valid_attribute', '~>1.1.0'
-end
-
-group :cucumber do
-  gem 'launchy'
-  gem 'capybara', '>=1.0.0'
   gem 'rspec'
   gem 'rspec-rails', '>=2.5.0'
+  gem 'valid_attribute', '~>1.1.0'
+  gem 'capybara', '>=1.0.0'
+  gem 'launchy' # save_and_open_page
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'spork' # Run unit tests quickly. See: http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
