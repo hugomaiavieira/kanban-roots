@@ -1,7 +1,7 @@
 When /^I drag "([^"]*)" task to "([^"]*)" position$/ do |task_title, position|
   task = Task.find_by_title(task_title)
   postit = find_by_id(task.id)
-  target_position = find_by_id(position.downcase)
+  target_position = find_by_id(position.gsub(/ /, '').downcase)
   postit.drag_to(target_position)
 end
 

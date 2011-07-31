@@ -40,3 +40,38 @@ Feature: Use the board
     When I drag "task 1" task to "Done" position
     Then I should see "task 1" task at "Done" position
 
+
+  Scenario: Positions shows the points at their titles
+    Given I am an authenticated contributor
+    And I have a project
+    And the following tasks:
+      | title  | position | points |
+      | task 1 | To Do    | 5      |
+      | task 2 | Doing    | 3      |
+      | task 3 | Done     | 4      |
+    And I am on the projects board page
+    Then I should see "To Do (5)"
+    And I should see "Doing (3)"
+    And I should see "Done (4)"
+
+
+  @javascript
+  Scenario: Changing tasks from a position to another updates the position points
+    Given I am an authenticated contributor
+    And I have a project
+    And the following tasks:
+      | title  | position | points |
+      | task 1 | Backlog  | 5      |
+      | task 2 | Backlog  | 3      |
+    And I am on the projects board page
+    When I drag "task 1" task to "To Do" position
+    Then I should see "To Do (5)"
+    When I drag "task 2" task to "To Do" position
+    Then I should see "To Do (8)"
+    When I drag "task 2" task to "Doing" position
+    Then I should see "To Do (5)"
+    And I should see "Doing (3)"
+    When I drag "task 2" task to "Done" position
+    Then I should see "Doing (0)"
+    And I should see "Done (3)"
+
