@@ -265,12 +265,12 @@ select.points_select {
     font-size: 12px;
 }
 
-span.show_sponsors {
+span.show_assignees {
     cursor: pointer;
     padding-left: 7px;
 }
 
-span.sponsors_form {
+span.assignees_form {
     font-size: 12px;
     position: absolute;
     display: none;
@@ -280,7 +280,7 @@ span.sponsors_form {
     border-radius: 5px;
 }
 
-span.sponsors_form input {
+span.assignees_form input {
     float: right
 }
 

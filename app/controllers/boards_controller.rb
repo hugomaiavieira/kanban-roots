@@ -51,20 +51,20 @@ class BoardsController < InheritedResources::Base
 
   # TODO: Make test and refactor
   # Fazer com que o '-' apareça selecionado caso n tenha nenhum contributor
-  def update_sponsors
+  def update_assignees
     task = Task.find(params[:task_id])
-    params[:sponsors].delete '-'
-    params[:sponsors] = nil if params[:sponsors].empty?
-    task.update_attribute(:contributor_ids, params[:sponsors])
-    sponsors_sentence = params[:sponsors].nil? ? '-' : task.contributors.collect(&:username).to_sentence
+    params[:assignees].delete '-'
+    params[:assignees] = nil if params[:assignees].empty?
+    task.update_attribute(:contributor_ids, params[:assignees])
+    assignees_sentence = params[:assignees].nil? ? '-' : task.contributors.collect(&:username).to_sentence
 
-    if sponsors_sentence.length > 25
+    if assignees_sentence.length > 25
       long_sentence = true
-      sponsors_long_sentence = sponsors_sentence
-      sponsors_sentence = sponsors_sentence.truncate(25)
+      assignees_long_sentence = assignees_sentence
+      assignees_sentence = assignees_sentence.truncate(25)
     end
 
-    data = { :sponsors_sentence => sponsors_sentence, :long_sentence => long_sentence, :sponsors_long_sentence => sponsors_long_sentence }
+    data = { :assignees_sentence => assignees_sentence, :long_sentence => long_sentence, :assignees_long_sentence => assignees_long_sentence }
     render :text => data.to_json
   end
 end

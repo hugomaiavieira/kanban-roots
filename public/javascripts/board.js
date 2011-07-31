@@ -104,41 +104,41 @@ $(function() {
   });
 });
 
-// slide sponsors form
+// slide assignees form
 $(function() {
-  $(".show_sponsors").click(function () {
+  $(".show_assignees").click(function () {
     var task = $(this).parents('li'),
-        form = task.find('.sponsors_form');
+        form = task.find('.assignees_form');
     form.fadeToggle("fast");
   });
 });
 
 // TODO: Update the points in the board divisions and score
-// change task sponsors and slide back the sponsors form
+// change task assignees and slide back the assignees form
 $(function() {
-  $(".sponsors_form > input").click(function () {
-    var form = $(this).parents('.sponsors_form'),
-        show_sponsors = form.siblings('.show_sponsors');
+  $(".assignees_form > input").click(function () {
+    var form = $(this).parents('.assignees_form'),
+        show_assignees = form.siblings('.show_assignees');
         task = form.parents('li'),
         task_id = task.attr('id'),
-    sponsors = [];
+    assignees = [];
     form.find('option:selected').each(function() {
-      sponsors.push($(this).attr('value'))
+      assignees.push($(this).attr('value'))
     });
     $.ajax({
       type: "PUT",
-      url: "/board/update_sponsors",
-      data: ({ task_id: task_id, sponsors: sponsors }),
+      url: "/board/update_assignees",
+      data: ({ task_id: task_id, assignees: assignees }),
       dataType: 'json',
       success: function(data) {
         if (data.long_sentence == true) {
-          show_sponsors.attr('title', data.sponsors_long_sentence);
+          show_assignees.attr('title', data.assignees_long_sentence);
         }
         else {
-          show_sponsors.removeClass('help_cursor');
-          show_sponsors.removeAttr('title');
+          show_assignees.removeClass('help_cursor');
+          show_assignees.removeAttr('title');
         }
-        show_sponsors.text(data.sponsors_sentence);
+        show_assignees.text(data.assignees_sentence);
       }
     });
     form.fadeToggle("fast");

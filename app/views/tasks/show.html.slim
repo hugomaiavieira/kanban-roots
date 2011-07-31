@@ -15,7 +15,7 @@ p
   b Position:
   = @task.position
 p
-  b Sponsors:
+  b Assignees:
   = @task.contributors.collect(&:name).to_sentence
 
 - if !@task.comments.empty?

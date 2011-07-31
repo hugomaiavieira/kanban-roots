@@ -1,7 +1,7 @@
 Feature: Manipulate comments in tasks
   As a user
   I want manipulate comments in tasks
-  In order to help other sponsors in their job
+  In order to help other assignees in their job
 
   Scenario: Create a comment in a task
     Given I am a contributor of "Sgtran" project

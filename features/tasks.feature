@@ -60,18 +60,18 @@ Feature: Manipulate tasks
     Then I should be on the projects board page
     And The task should no longer exist
 
-  Scenario: Add sponsors for a task
+  Scenario: Add assignees for a task
     Given I am a contributor of "Sgtran" project
     And I am authenticated
     And I have a task of "Sgtran" project
     And "Hugo Maia" is a contributor of the project
     And "Rodrigo Manhães" is a contributor of the project
     When I am on the task edit page
-    And I select "Hugo Maia" from "Sponsors"
-    And I select "Rodrigo Manhães" from "Sponsors"
+    And I select "Hugo Maia" from "Assignees"
+    And I select "Rodrigo Manhães" from "Assignees"
     And I press "Save"
     Then I should be on the projects board page
     And I should see "Task was successfully updated."
-    And "Hugo Maia" should be a sponsor of the task
-    And "Rodrigo Manhães" should be a sponsor of the task
+    And "Hugo Maia" should be a assignee of the task
+    And "Rodrigo Manhães" should be a assignee of the task
 

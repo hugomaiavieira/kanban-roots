@@ -9,8 +9,8 @@ module BoardsHelper
       </p>
       #{title(task)}
       <p class='postit_bottom'>
-        #{sponsors(task)}
-        <span class='sponsors_form'>#{form_for_sponsors(task)}</span>
+        #{assignees(task)}
+        <span class='assignees_form'>#{form_for_assignees(task)}</span>
       </p>
     </li>"
   end
@@ -25,7 +25,7 @@ module BoardsHelper
     string += "</select>"
   end
 
-  def form_for_sponsors task
+  def form_for_assignees task
     string = "<select multiple='multiple' size='5'>"
     string += "<option value='-'>-</option>"
     task.project.contributors.each do |contributor|
@@ -60,19 +60,19 @@ module BoardsHelper
     end
   end
 
-  def sponsors task
-    return "<span class='show_sponsors'>-</span>" if task.contributors.empty?
+  def assignees task
+    return "<span class='show_assignees'>-</span>" if task.contributors.empty?
 
-    sponsors_sentence = task.contributors.collect(&:username).to_sentence
+    assignees_sentence = task.contributors.collect(&:username).to_sentence
 
-    if sponsors_sentence.length > 25
-      span = "span class='show_sponsors' title='#{sponsors_sentence}'"
+    if assignees_sentence.length > 25
+      span = "span class='show_assignees' title='#{assignees_sentence}'"
     else
-      span = "span class='show_sponsors'"
+      span = "span class='show_assignees'"
     end
 
     return "<#{span}>
-      #{truncate(sponsors_sentence, :length => 25)}
+      #{truncate(assignees_sentence, :length => 25)}
     </span>"
   end
 
