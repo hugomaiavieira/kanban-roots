@@ -6,10 +6,10 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name, :owner_id
 
-  after_create :set_as_owner_project
+  after_create :set_myself_as_project_of_my_owner
 
-  def set_as_owner_project
-    contributor = Contributor.find(self.owner_id)
+  def set_myself_as_project_of_my_owner
+    contributor = Contributor.find(owner_id)
     contributor.projects << self
     contributor.save
   end
