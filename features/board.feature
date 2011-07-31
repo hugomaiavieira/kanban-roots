@@ -40,3 +40,17 @@ Feature: Use the board
     When I drag "task 1" task to "Done" position
     Then I should see "task 1" task at "Done" position
 
+
+  Scenario: Positions shows the points at their titles
+    Given I am an authenticated contributor
+    And I have a project
+    And the following tasks:
+      | title  | position | points |
+      | task 1 | To Do    | 5      |
+      | task 2 | Doing    | 3      |
+      | task 3 | Done     | 4      |
+    And I am on the projects board page
+    Then I should see "To Do (5)"
+    And I should see "Doing (3)"
+    And I should see "Done (4)"
+
