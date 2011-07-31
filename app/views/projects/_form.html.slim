@@ -11,7 +11,8 @@
   .field
     = f.input :description
   .field
-    = f.input :contributors
+    = f.input :contributor_tokens, :label => 'Contributors', \
+              :input_html => { 'data-pre' => @project.contributors_for_token_input }
   .actions
     = f.submit 'Save'
 

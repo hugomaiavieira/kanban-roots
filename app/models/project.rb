@@ -8,6 +8,12 @@ class Project < ActiveRecord::Base
 
   after_create :set_myself_as_project_of_my_owner
 
+  attr_reader :contributor_tokens
+
+  def contributor_tokens= ids
+    self.contributor_ids = ids.split(',')
+  end
+
   def set_myself_as_project_of_my_owner
     contributor = Contributor.find(owner_id)
     contributor.projects << self
@@ -31,6 +37,10 @@ class Project < ActiveRecord::Base
     end
 
     list.sort { |x, y| y[:scores] <=> x[:scores] }
+  end
+
+  def contributors_for_token_input
+    (self.contributors.map { |c| { :id => c.id, :name => c.name} }).to_json
   end
 
   def tasks_by_position position

@@ -14,6 +14,23 @@ describe Project do
     contributor.projects.should include(project)
   end
 
+  it 'should return a json with its contributors id and name' do
+    hugo = Factory.create :contributor, :name => 'Hugo'
+    rodrigo = Factory.create :contributor, :name => 'Rodrigo'
+    project = Factory.create :project, :contributors => [hugo, rodrigo]
+    json = '[{"id":1,"name":"Hugo"},{"id":2,"name":"Rodrigo"}]'
+    project.contributors_for_token_input.should == json
+  end
+
+  it 'should set the contributor_ids given a ids string splited by commas' do
+    hugo = Factory.create :contributor, :name => 'Hugo'
+    rodrigo = Factory.create :contributor, :name => 'Rodrigo'
+    project = Factory.create :project
+    project.contributor_tokens = "#{hugo.id}, #{rodrigo.id}"
+    project.contributor_ids.should include(hugo.id, rodrigo.id)
+    project.contributor_ids.should have(2).ids
+  end
+
   it 'returns all related tasks matching a given position' do
     tasks = [stub_model(Task, :position => 1),
              stub_model(Task, :position => 1),
