@@ -25,6 +25,7 @@ module KanbanRoots
     # Configure generators values.
     config.generators do |g|
       g.stylesheets false
+      g.template_engine :slim
       g.test_framework :rspec,
                        :view_specs => false,
                        :fixture_replacement => :factory_girl
