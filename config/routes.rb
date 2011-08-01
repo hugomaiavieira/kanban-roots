@@ -2,8 +2,8 @@ KanbanRoots::Application.routes.draw do
 
   devise_for :contributors
 
-  get 'contributors/:id/' => 'contributors#show',  :as => :contributor
-  get 'contributors.json' => 'contributors#index'
+  get 'contributors' => 'contributors#index'
+  get 'contributors/:id/' => 'contributors#show', :as => :contributor
 
   resources :projects, :path_names => { :edit => 'admin' }, :except => :index do
     resources :tasks, :path_names => { :edit => 'edit' } do

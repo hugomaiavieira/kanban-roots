@@ -4,9 +4,13 @@ class ContributorsController < InheritedResources::Base
   before_filter :authenticate_contributor!
 
   def index
-    query = "%#{params[:q]}%"
-    @contributors = Contributor.where('name LIKE ? OR username LIKE ?', query, query)
-    render :json => @contributors.map { |c| { :id => c.id, :name => c.name} }
+    respond_to do |format|
+      format.json do
+        query = "%#{params[:q]}%"
+        @contributors = Contributor.where('name LIKE ? OR username LIKE ?', query, query)
+        render :json => @contributors.map { |c| { :id => c.id, :name => c.name} }
+      end
+    end
   end
 
   def dashboard
