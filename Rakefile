@@ -13,7 +13,7 @@ task :dev => ['dev:rspec', 'dev:cucumber:all']
 namespace :dev do
 
   desc 'reset the database'
-  task :database => ['db:drop:all', 'db:create:all', 'db:migrate', ':db:test:clone']
+  task :database => ['db:drop:all', 'db:create:all', 'db:migrate', 'db:test:clone']
 
   desc 'run rspec specs'
   task :rspec do
