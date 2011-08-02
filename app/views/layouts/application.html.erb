@@ -12,7 +12,7 @@
       <% if contributor_signed_in? %>
         <%= link_to current_contributor.username, contributor_path(current_contributor) %>
         | <%= link_to 'Dashboard', root_path %>
-        | <%= link_to 'Sign out', destroy_contributor_session_path %>
+        | <%= link_to 'Sign out', destroy_contributor_session_path, :method => :delete %>
       <% else %>
         <%= link_to 'Sign up', new_contributor_registration_path %> or
         <%= link_to 'Sign in', new_contributor_session_path %>
