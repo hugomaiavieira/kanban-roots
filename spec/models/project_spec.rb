@@ -8,10 +8,13 @@ describe Project do
     should_not have_valid(:name).when('', nil)
   end
 
-  it 'should set itself as project of its owner' do
-    contributor = Factory.create :contributor
-    project = Factory.create :project, :owner => contributor
-    contributor.projects.should include(project)
+  it 'should return all contributors, including owner and other contributors' do
+    hugo = Factory.create :contributor
+    rodrigo = Factory.create :contributor
+    dudu = Factory.create :contributor
+    project = Factory.create :project, :owner => hugo, :contributors => [rodrigo]
+    project.all_contributors.should include(hugo, rodrigo)
+    project.all_contributors.should_not include(dudu)
   end
 
   it 'should return a json with its contributors id and name' do
@@ -101,8 +104,7 @@ describe Project do
       dudu = Factory.create :contributor
       max = Factory.create :contributor
       hugo = Factory.create :contributor
-
-      project = Factory.create :project, :contributors => [hugo, dudu, max]
+      project = Factory.create :project, :owner => hugo, :contributors => [dudu, max]
 
       Factory.create :task, :project => project, :position => Board::POSITIONS['doing'], :contributors => [dudu], :points => 13
       Factory.create :task, :project => project, :position => Board::POSITIONS['todo'], :contributors => [hugo], :points => 5
@@ -125,13 +127,12 @@ describe Project do
 
       project.contributors_scores.should == [{ :contributor => max, :scores => 18 },
                                              { :contributor => hugo, :scores => 8 },
-                                             { :contributor => dudu, :scores =>  7}]
+                                             { :contributor => dudu, :scores => 7}]
     end
 
     it 'should ignore taks without points' do
       hugo = Factory.create :contributor
-
-      project = Factory.create :project, :contributors => [hugo]
+      project = Factory.create :project, :owner => hugo
 
       Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => nil
       Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 3
@@ -142,7 +143,6 @@ describe Project do
 
     it 'should sum 0.1 for taks with 0 points' do
       hugo = Factory.create :contributor
-
       project = Factory.create :project, :contributors => [hugo]
 
       Factory.create :task, :project => project, :position => Board::POSITIONS['done'], :contributors => [hugo], :points => 0

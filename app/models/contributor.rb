@@ -10,13 +10,18 @@ class Contributor < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me,
                   :username, :login
 
-  has_and_belongs_to_many :projects
+  has_many :own_projects, :class_name => 'Project', :foreign_key => :owner_id
+  has_and_belongs_to_many :contributions, :class_name => 'Project'
   has_and_belongs_to_many :tasks
   has_many :comments
 
   validates_presence_of :name, :username
   validates_uniqueness_of :username
   validates_format_of :username, :with => /^\w*$/
+
+  def projects
+    own_projects + contributions
+  end
 
   protected
 

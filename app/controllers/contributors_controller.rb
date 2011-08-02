@@ -7,7 +7,9 @@ class ContributorsController < InheritedResources::Base
     respond_to do |format|
       format.json do
         query = "%#{params[:q]}%"
-        @contributors = Contributor.where('name LIKE ? OR username LIKE ?', query, query)
+        @contributors = Contributor.where('id != ?', current_contributor.id).
+                                    where('name LIKE ? OR username LIKE ?',
+                                           query, query)
         render :json => @contributors.map { |c| { :id => c.id, :name => c.name} }
       end
     end

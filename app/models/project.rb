@@ -6,25 +6,21 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name, :owner_id
 
-  after_create :set_myself_as_project_of_my_owner
-
   attr_reader :contributor_tokens
 
   def contributor_tokens= ids
     self.contributor_ids = ids.split(',')
   end
 
-  def set_myself_as_project_of_my_owner
-    contributor = Contributor.find(owner_id)
-    contributor.projects << self
-    contributor.save
+  def all_contributors
+    contributors + [owner]
   end
 
   def contributors_scores
     list = []
     tasks = self.tasks_by_position Board::POSITIONS['done']
 
-    self.contributors.each do |contributor|
+    all_contributors.each do |contributor|
       tasks_for_contributor = tasks.select { |task| task.contributors.include? contributor }
       points = 0
       tasks_for_contributor.each do |task|
@@ -40,11 +36,11 @@ class Project < ActiveRecord::Base
   end
 
   def contributors_for_token_input
-    (self.contributors.map { |c| { :id => c.id, :name => c.name} }).to_json
+    (contributors.map { |c| { :id => c.id, :name => c.name} }).to_json
   end
 
   def tasks_by_position position
-    self.tasks.select {|item| item.position == position }
+    tasks.select {|item| item.position == position }
   end
 
   def clean_up_done_tasks

@@ -15,7 +15,7 @@ end
 
 Given /^I am a contributor of "([^"]*)" project$/ do |name|
   @project = Factory.create :project, :name => name
-  @contributor = Factory.create :contributor, :projects => [@project]
+  @contributor = Factory.create :contributor, :contributions => [@project]
   @project.update_attribute(:contributors, [@contributor])
 end
 
@@ -35,7 +35,7 @@ end
 
 
 Given /^"([^"]*)" is a contributor of the project$/ do |name|
-  contributor = Factory.create :contributor, :name => name, :projects => [@project]
+  contributor = Factory.create :contributor, :name => name, :contributions => [@project]
   @project.contributors << contributor
   @project.save
 end
