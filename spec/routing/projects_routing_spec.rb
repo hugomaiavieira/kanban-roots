@@ -7,10 +7,6 @@ describe ProjectsController do
       { :get => "/projects/new" }.should route_to(:controller => "projects", :action => "new")
     end
 
-    it "recognizes and generates #show" do
-      { :get => "/projects/1" }.should route_to(:controller => "projects", :action => "show", :id => "1")
-    end
-
     it "recognizes and generates #edit" do
       { :get => "/projects/1/admin" }.should route_to(:controller => "projects", :action => "edit", :id => "1")
     end

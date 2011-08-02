@@ -5,7 +5,7 @@ KanbanRoots::Application.routes.draw do
   get 'contributors' => 'contributors#index'
   get 'contributors/:id/' => 'contributors#show', :as => :contributor
 
-  resources :projects, :path_names => { :edit => 'admin' }, :except => :index do
+  resources :projects, :path_names => { :edit => 'admin' }, :except => [:index, :show] do
     resources :tasks, :path_names => { :edit => 'edit' } do
       resources :comments, :except => :show
     end

@@ -9,9 +9,9 @@ Feature: Manipulate projects
     When I fill in "Name" with "name 1"
     And I fill in "Description" with "description 1"
     And I press "Save"
-    Then I should see "name 1"
-    And I should see "description 1"
-    And I should be the project's owner
+    Then I should be the project's owner
+    And I should be on the projects board page
+    And I should see "name 1 Board"
 
   Scenario: Try to register projects with erros
     Given I am an authenticated contributor
@@ -27,8 +27,8 @@ Feature: Manipulate projects
     And I fill in "Name" with "Some name"
     And I fill in "Description" with "Any description"
     And I press "Save"
-    Then I should see "Some name"
-    And I should see "Any description"
+    Then I should be on the projects board page
+    And I should see "Some name Board"
 
   Scenario: Delete project
     Given I am an authenticated contributor
