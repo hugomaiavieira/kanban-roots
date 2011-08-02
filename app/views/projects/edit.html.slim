@@ -1,3 +1,8 @@
-h1 Editing project
+h1 Admin #{@project.name}
 
 = render 'form'
+
+= link_to 'Destroy', project_path(@project), \
+                    :confirm => 'Are you sure?', \
+                    :method => :delete
+
