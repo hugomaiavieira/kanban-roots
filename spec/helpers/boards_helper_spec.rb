@@ -155,7 +155,7 @@ describe BoardsHelper do
         rodrigo = stub(:username => 'rodrigo', :id => 2)
         max = stub(:username => 'max', :id => 3)
         stub_all(:points => nil)
-        @project.stub(:contributors).and_return([hugo, rodrigo, max])
+        @project.stub(:all_contributors).and_return([hugo, rodrigo, max])
         helper.form_for_assignees(@task).should =~ /<select multiple='multiple' size='5'>/
         helper.form_for_assignees(@task).should =~ /<option value='-'>-<\/option>/
         helper.form_for_assignees(@task).should =~ /<option value='1'>hugo<\/option>/
@@ -170,11 +170,11 @@ describe BoardsHelper do
         rodrigo = stub(:username => 'rodrigo', :id => 2)
         max = stub(:username => 'max', :id => 3)
         stub_all(:points => nil, :contributors => [hugo])
-        @project.stub(:contributors).and_return([hugo])
+        @project.stub(:all_contributors).and_return([hugo])
         helper.form_for_assignees(@task).should =~ /<option selected='selected' value='1'>hugo<\/option>/
 
         stub_all(:points => nil, :contributors => [hugo, rodrigo, max])
-        @project.stub(:contributors).and_return([hugo, rodrigo, max])
+        @project.stub(:all_contributors).and_return([hugo, rodrigo, max])
         helper.form_for_assignees(@task).should =~ /<option selected='selected' value='\d+'>hugo<\/option>/
         helper.form_for_assignees(@task).should =~ /<option selected='selected' value='\d+'>rodrigo<\/option>/
         helper.form_for_assignees(@task).should =~ /<option selected='selected' value='\d+'>max<\/option>/

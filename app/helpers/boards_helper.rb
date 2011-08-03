@@ -28,7 +28,7 @@ module BoardsHelper
   def form_for_assignees task
     string = "<select multiple='multiple' size='5'>"
     string += "<option value='-'>-</option>"
-    task.project.contributors.each do |contributor|
+    task.project.all_contributors.each do |contributor|
       selected = task.contributors.include?(contributor) ? " selected='selected'" : ''
       string += "<option#{selected} value='#{contributor.id}'>#{contributor.username}</option>"
     end
