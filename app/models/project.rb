@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   end
 
   def all_contributors
-    contributors + [owner]
+    [owner] + contributors
   end
 
   def contributors_scores
