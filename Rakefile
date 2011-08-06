@@ -34,7 +34,9 @@ namespace :dev do
     end
 
     desc 'run all specs, with and without javascript'
-    task :all => ['nojavascript', 'javascript']
+    task :all do
+      sh 'cucumber features --format progress'
+    end
 
   end
 
