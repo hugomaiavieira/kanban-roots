@@ -144,7 +144,7 @@ GEM
     slim (1.0.0)
       temple (~> 0.3.0)
       tilt (~> 1.2)
-    spork (0.8.5)
+    spork (0.9.0.rc9)
     sqlite3 (1.3.4)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
@@ -186,6 +186,6 @@ DEPENDENCIES
   rspec-rails (~> 2.6)
   ruby-json (~> 1.1)
   slim (~> 1.0)
-  spork (>= 0.8)
+  spork (~> 0.9.0.rc)
   sqlite3-ruby
   valid_attribute (~> 1.1)

@@ -7,22 +7,22 @@ require 'rake/dsl_definition' # http://migre.me/5nonc
 
 KanbanRoots::Application.load_tasks
 
-desc 'run all specs in development mode'
-task :dev => ['dev:rspec', 'dev:cucumber:all']
+desc 'run all specs in travis-ci mode'
+task :travis => ['travis:database', 'travis:specs']
 
-namespace :dev do
-
-  desc 'reset the database'
-  task :database => ['db:drop:all', 'db:create:all', 'db:migrate', 'db:test:clone']
+namespace :travis do
+  desc 'run rspec and cucumber specs'
+  task :specs => ['rspec', 'cucumber:nojavascript']
 
   desc 'run rspec specs'
   task :rspec do
+    sh 'sed -i s/--drb/#--drb/ .rspec'
     sh 'rspec spec --format progress'
+    sh 'sed -i s/#--drb/--drb/ .rspec'
   end
 
   desc 'run cucumber specs'
   namespace :cucumber do
-
     desc 'without javascript'
     task :nojavascript do
       sh 'cucumber features --tag ~@javascript --format progress'
@@ -37,22 +37,9 @@ namespace :dev do
     task :all do
       sh 'cucumber features --format progress'
     end
-
   end
-
-end
-
-
-desc 'run all specs in travis-ci mode'
-task :travis => ['travis:database', 'travis:specs']
-
-namespace :travis do
-
-  desc 'run rspec and cucumber specs'
-  task :specs => ['dev:rspec', 'dev:cucumber:nojavascript']
 
   desc 'reset the database'
   task :database => ['db:drop', 'db:create', 'db:migrate']
-
 end
 

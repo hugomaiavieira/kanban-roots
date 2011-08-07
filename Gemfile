@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
 gem 'mysql2', '~>0.2.11'
-gem 'sqlite3-ruby'
 
 gem 'slim', '~>1.0'
 gem 'formtastic',  '~>1.2'
@@ -16,6 +15,7 @@ gem 'jquery-rails', '~>1.0'
 gem 'ruby-json', '~>1.1'
 
 group :development, :test do
+  gem 'sqlite3-ruby'
   gem 'factory_girl_rails', '~>1.1'
   gem 'rspec', '~>2.6'
   gem 'rspec-rails', '~>2.6'
@@ -24,7 +24,9 @@ group :development, :test do
   gem 'launchy', '>=2.0' # save_and_open_page
   gem 'cucumber-rails', '~>1.0'
   gem 'database_cleaner', '~>0.6'
-  gem 'spork', '>=0.8' # Run unit tests quickly. See: http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
+
+  # Speedy test iterations
+  gem 'spork', '~> 0.9.0.rc' # See: http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
 end
 
 gem 'rails3-generators', :group => :development
