@@ -8,11 +8,25 @@ module BoardsHelper
         #{comments(task)}
       </p>
       #{title(task)}
-      <p class='postit_bottom'>
-        #{assignees(task)}
-        <span class='assignees_form'>#{form_for_assignees(task)}</span>
-      </p>
+      <div class='postit_bottom'>
+        #{options(task)}
+        <div class='assignees_block'>
+          #{assignees(task)}
+          <div class='assignees_form'>#{form_for_assignees(task)}</div>
+        </div>
+      </div>
     </li>"
+  end
+
+  def options task
+    string = "<div class='postit_options_block'>"
+    string += "<a class='postit_options' href='javascript:;'></a>"
+    string += "<ul class='postit_options_list'>"
+    string += '<li>' + link_to('edit', edit_project_task_path(task.project, task)) + '</li>'
+    string += '<li>' + link_to('destroy', project_task_path(task.project, task),
+                                          :confirm => 'Are you sure?',
+                                          :method => :delete) + '</li>'
+    string += '</ul></div>'
   end
 
   def select_for_points task
@@ -61,19 +75,19 @@ module BoardsHelper
   end
 
   def assignees task
-    return "<span class='show_assignees'>-</span>" if task.contributors.empty?
+    return "<p class='show_assignees'>-</p>" if task.contributors.empty?
 
     assignees_sentence = task.contributors.collect(&:username).to_sentence
 
     if assignees_sentence.length > 25
-      span = "span class='show_assignees' title='#{assignees_sentence}'"
+      p = "p class='show_assignees' title='#{assignees_sentence}'"
     else
-      span = "span class='show_assignees'"
+      p = "p class='show_assignees'"
     end
 
-    return "<#{span}>
+    return "<#{p}>
       #{truncate(assignees_sentence, :length => 25)}
-    </span>"
+    </p>"
   end
 
 end

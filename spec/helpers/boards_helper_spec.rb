@@ -22,7 +22,6 @@ describe BoardsHelper do
   end
 
   describe 'title' do
-
     it 'returns the task title as a link to task with title and help cursor for long title' do
       the_title = 'this title has more than forty five characteres'
       stub_all(:title => the_title, :points => 0)
@@ -40,11 +39,9 @@ describe BoardsHelper do
       helper.stub(:project_task_path).with(@project, @task).and_return(path_stub = stub)
       helper.stub(:link_to).with(the_title, path_stub, {:class => 'title'})
     end
-
   end
 
   describe 'comments' do
-
     context 'with 0 or >= 2 comments' do
       it "generates a span with the number of comments of a task and the word comment on plural" do
         stub_all()
@@ -68,11 +65,9 @@ describe BoardsHelper do
           "<span class ='comments_number'>1 comment</span>"
       end
     end
-
   end
 
   describe  'points' do
-
     context 'with seted points' do
       it 'shows task points' do
         stub_all(:points => 10)
@@ -88,7 +83,6 @@ describe BoardsHelper do
     end
 
     context 'select for' do
-
       it 'generates an select tag for the task points' do
         stub_all(:points => nil)
         helper.select_for_points(@task).should =~ /<select class='points_select'>/
@@ -109,17 +103,23 @@ describe BoardsHelper do
         stub_all(:points => 8)
         helper.select_for_points(@task).should =~ /<option selected='selected' value='8'>8<\/option>/
       end
-
     end
+  end
 
+  describe 'options' do
+    it "shows edit option" do
+      pending
+    end
+    it "shows destroy option" do
+      pending
+    end
   end
 
   describe 'assignees' do
-
     context 'for task without assignees' do
       it "shows a dash" do
         stub_all(:points => 0)
-        helper.assignees(@task).should =~ /<span class='show_assignees'>-<\/span>/
+        helper.assignees(@task).should =~ /<p class='show_assignees'>-<\/p>/
       end
     end
 
@@ -149,7 +149,6 @@ describe BoardsHelper do
     end
 
     context 'form for' do
-
       it 'generates an multiple select and an buttom for the task assignees' do
         hugo = stub(:username => 'hugo', :id => 1)
         rodrigo = stub(:username => 'rodrigo', :id => 2)
@@ -179,9 +178,7 @@ describe BoardsHelper do
         helper.form_for_assignees(@task).should =~ /<option selected='selected' value='\d+'>rodrigo<\/option>/
         helper.form_for_assignees(@task).should =~ /<option selected='selected' value='\d+'>max<\/option>/
       end
-
     end
-
   end
 end
 

@@ -20,7 +20,8 @@ group :development, :test do
   gem 'rspec', '~>2.6'
   gem 'rspec-rails', '~>2.6'
   gem 'valid_attribute', '~>1.1'
-  gem 'capybara', '~>1.0'
+  gem 'capybara', :git => 'https://github.com/jnicklas/capybara.git'
+#  gem 'capybara', '~>1.0'
   gem 'launchy', '>=2.0' # save_and_open_page
   gem 'cucumber-rails', '~>1.0'
   gem 'database_cleaner', '~>0.6'

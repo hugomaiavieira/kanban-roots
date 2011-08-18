@@ -265,23 +265,53 @@ select.points_select {
     font-size: 12px;
 }
 
-span.show_assignees {
-    cursor: pointer;
-    padding-left: 7px;
+div.assignees_block {
+    float: right;
 }
 
-span.assignees_form {
+p.show_assignees {
+    text-align: right;
+    cursor: pointer;
+}
+
+.assignees_form {
     font-size: 12px;
     position: absolute;
     display: none;
-    margin-left: 7px;
     padding: 5px;
-    background-color: #ff4b00;
+    background-color: #bdbdbd;
     border-radius: 5px;
 }
 
-span.assignees_form input {
+div.assignees_form input {
     float: right
+}
+
+div.postit_options_block {
+    float: left;
+}
+
+a.postit_options {
+    display: block;
+    height: 16px;
+    width: 16px;
+    background: transparent url(../images/options.png) no-repeat scroll 0px 50%;
+}
+
+.postit_bottom ul.postit_options_list {
+    position: absolute;
+    display: none;
+    padding: 3px 8px;
+    margin: -20px 0 0 20px;
+    background-color: #bdbdbd;
+    text-align: left;
+    list-style: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.postit_options_list li {
+    padding-bottom: 1px;
 }
 
 /* Board score */

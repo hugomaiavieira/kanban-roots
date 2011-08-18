@@ -113,6 +113,15 @@ $(function() {
   });
 });
 
+// slide postit options
+$(function() {
+  $(".postit_options").click(function () {
+    var task = $(this).parents('li'),
+        form = task.find('.postit_options_list');
+    form.fadeToggle("fast");
+  });
+});
+
 // TODO: Update the points in the board divisions and score
 // change task assignees and slide back the assignees form
 $(function() {
@@ -211,4 +220,5 @@ function defineHeight() {
 }
 
 // define the divisions and board height on page load
-window.onload(defineHeight());
+//window.onload(defineHeight());
+
