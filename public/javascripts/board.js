@@ -220,5 +220,7 @@ function defineHeight() {
 }
 
 // define the divisions and board height on page load
-//window.onload(defineHeight());
+$(function() {
+    defineHeight();
+});
 
