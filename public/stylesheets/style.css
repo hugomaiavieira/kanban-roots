@@ -207,9 +207,9 @@ div.board ul {
 
 .postit {
     float: left;
-    padding: 7px 15px;
+    padding: 7px 10px;
     margin: 7px;
-    width: 150px;
+    width: 160px;
     text-align: center;
     color: black;
     background-color: #ffffa5;
@@ -259,6 +259,11 @@ p.postit_top {
     padding: 0px 7px;
 }
 
+.postit p.postit_top span.show_points:hover {
+    background-color: #ececff;
+    border-radius: 5px;
+}
+
 select.points_select {
     display: none;
     float: left;
@@ -272,6 +277,12 @@ div.assignees_block {
 p.show_assignees {
     text-align: right;
     cursor: pointer;
+    padding: 0 5px;
+}
+
+p.show_assignees:hover {
+    background-color: #ececff;
+    border-radius: 5px;
 }
 
 .assignees_form {
@@ -284,7 +295,7 @@ p.show_assignees {
 }
 
 div.assignees_form input {
-    float: right
+    float: right;
 }
 
 div.postit_options_block {
