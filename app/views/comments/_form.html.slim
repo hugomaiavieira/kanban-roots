@@ -7,7 +7,7 @@
           li= msg
 
   .field
-    = f.input :content
+    = f.input :content, :input_html => { :autofocus => true }
   = markdown_note('Comments').html_safe
 
   = hidden_field_tag "comment[contributor_id]", current_contributor.id

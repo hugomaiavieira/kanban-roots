@@ -7,7 +7,7 @@
           li= msg
 
   .field
-    = f.input :name
+    = f.input :name, :input_html => { :autofocus => true }
   = javascript_include_tag 'jscolor/jscolor.js'
   .field
     = f.input :color, :input_html => { :class => 'color', :autocomplete => 'off' }
