@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 describe Contributor do
+  it "remove all contributors' projects own" do
+    contributor = Factory.create :contributor
+    project_1 = Factory.create :project, :owner => contributor
+    project_2 = Factory.create :project, :owner => contributor
+    contributor.destroy
+    lambda { project_1.reload }.should raise_error ActiveRecord::RecordNotFound
+    lambda { project_2.reload }.should raise_error ActiveRecord::RecordNotFound
+  end
+
   it 'should return all projects, including his own and others the he contribute' do
     hugo = Factory.create :contributor
     rodrigo = Factory.create :contributor

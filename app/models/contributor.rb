@@ -10,7 +10,7 @@ class Contributor < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me,
                   :username, :login
 
-  has_many :own_projects, :class_name => 'Project', :foreign_key => :owner_id
+  has_many :own_projects, :class_name => 'Project', :foreign_key => :owner_id, :dependent => :destroy
   has_and_belongs_to_many :contributions, :class_name => 'Project'
   has_and_belongs_to_many :tasks
   has_many :comments
