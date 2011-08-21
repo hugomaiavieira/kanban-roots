@@ -24,3 +24,7 @@ Then /^The task should no longer exist$/ do
   Task.where(:id => @task.id).should be_empty
 end
 
+Then /^I should be the task author$/ do
+  Task.all.last.author.should == @contributor
+end
+

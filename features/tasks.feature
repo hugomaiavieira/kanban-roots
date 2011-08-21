@@ -3,6 +3,7 @@ Feature: Manipulate tasks
   I want manipulate tasks
   In order to organize them
 
+  @now
   Scenario: Register task successfully
     Given I am a contributor of "Sgtran" project
     And I am authenticated
@@ -19,6 +20,7 @@ Feature: Manipulate tasks
     And I should see "Task was successfully created."
     And I should see "Create issue"
     And "Sgtran" project should have "1" task
+    And I should be the task author
 
   Scenario: Try to register tasks with errors
     Given I am a contributor of "Sgtran" project

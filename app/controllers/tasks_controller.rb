@@ -4,14 +4,15 @@ class TasksController < InheritedResources::Base
   belongs_to :project
 
   def new
-    new! {@categories = Category.where(:project_id => @project.id) }
+    new! { @categories = Category.where(:project_id => @project.id) }
   end
 
   def edit
-    edit! {@categories = Category.where(:project_id => @project.id) }
+    edit! { @categories = Category.where(:project_id => @project.id) }
   end
 
   def create
+    params[:task][:author_id] = current_contributor.id
     create! { project_board_path }
   end
 

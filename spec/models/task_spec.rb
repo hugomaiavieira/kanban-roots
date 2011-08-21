@@ -26,5 +26,12 @@ describe Task do
       lambda { comments[i].reload }.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  it 'should return its author' do
+    contributor = Factory.create :contributor
+    project = Factory.create :project
+    task = Factory.create :task, :project => project, :author_id => contributor.id
+    task.author.should == contributor
+  end
 end
 
