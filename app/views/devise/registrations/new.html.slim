@@ -6,7 +6,7 @@ h2 Sign up
   .registrations
 
     .field
-      = f.input :name
+      = f.input :name, :input_html => { :autofocus => true }
 
     .field
       = f.input :username
@@ -25,3 +25,4 @@ h2 Sign up
       = f.submit "Sign up"
 
 = render :partial => "devise/shared/links"
+

@@ -2,7 +2,7 @@ h2 Sign in
 = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
 
   .field
-    = f.input :login, :required => false
+    = f.input :login, :required => false, :input_html => { :autofocus => true }
 
   .field
     = f.input :password, :as => :password, :required => false
