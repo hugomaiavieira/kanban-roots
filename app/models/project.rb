@@ -5,6 +5,9 @@ class Project < ActiveRecord::Base
   has_many :categories, :dependent => :delete_all
 
   validates_presence_of :name, :owner_id
+  validates_format_of :name,
+                      :with    => /^[A-Z0-9 _\-]*$/i,
+                      :message => "must include only letters, digits, underscores or hyphens"
 
   attr_reader :contributor_tokens
 

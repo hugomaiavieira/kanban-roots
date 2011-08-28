@@ -3,9 +3,22 @@ require 'spec_helper'
 describe Project do
   it { should_not have_valid(:owner_id).when('', nil) }
 
-  it 'should have a valid name' do
-    should have_valid(:name).when('Kanban roots')
-    should_not have_valid(:name).when('', nil)
+  context 'name validation' do
+    it 'accepts letter, digits, underscores and hyphens' do
+      should have_valid(:name).when('Kanban roots')
+      should have_valid(:name).when('Kanban-roots')
+      should have_valid(:name).when('Kanban_roots')
+      should have_valid(:name).when('Kanban roots 1')
+    end
+
+    it 'denies blanks' do
+      should_not have_valid(:name).when('', nil)
+    end
+
+    it 'denies symbols' do
+      should_not have_valid(:name).when(
+        *%w(a! a@ a# a$ a% a" a& a* a( a) a+ a= a{ a[ a} a] a? a/ a| a\ a' a"))
+    end
   end
 
   it 'should return all contributors, including owner and other contributors' do
