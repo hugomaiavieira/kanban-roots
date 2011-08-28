@@ -19,6 +19,14 @@ describe Project do
       should_not have_valid(:name).when(
         *%w(a! a@ a# a$ a% a" a& a* a( a) a+ a= a{ a[ a} a] a? a/ a| a\ a' a"))
     end
+
+    it 'converts to downcase when saving' do
+      project = Factory.create :project, :name => 'KAnBaN-RootS'
+      project.name.should == 'kanban-roots'
+      project.name = 'ROOTS_OF KANBAN'
+      project.save!
+      project.name.should == 'roots_of kanban'
+    end
   end
 
   it 'should return all contributors, including owner and other contributors' do

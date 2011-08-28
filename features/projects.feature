@@ -28,7 +28,7 @@ Feature: Manipulate projects
     And I fill in "Description" with "Any description"
     And I press "Save"
     Then I should be on the projects board page
-    And I should see "Some name Board"
+    And I should see "some name Board"
 
   Scenario: Delete project
     Given I am an authenticated contributor

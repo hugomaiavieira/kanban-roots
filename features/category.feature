@@ -4,9 +4,9 @@ Feature: Manipulate categories
   In order to organize them
 
   Scenario: Register a category successfully
-    Given I am a contributor of "Sgtran" project
+    Given I am a contributor of "sgtran" project
     And I am authenticated
-    And I am on the "Sgtran" categories page
+    And I am on the "sgtran" categories page
     When I follow "New Category"
     And I fill in "Name" with "Feature"
     And I fill in "Color" with "ffa5a5"
@@ -14,19 +14,19 @@ Feature: Manipulate categories
     Then I should see "Category was successfully created."
     And I should see "Feature"
     And I should see "ffa5a5"
-    And "Sgtran" project should have "1" category
+    And "sgtran" project should have "1" category
 
   Scenario Outline: Try to register categories with errors
-    Given I am a contributor of "Sgtran" project
+    Given I am a contributor of "sgtran" project
     And I am authenticated
-    And I am on the "Sgtran" categories page
+    And I am on the "sgtran" categories page
     And I have a category with name "Bug" and color "ffa5a5"
     When I follow "New Category"
     And I fill in "Name" with "<name>"
     And I fill in "Color" with "<color>"
     And I press "Save"
     Then I should see "<sentence>"
-    And "Sgtran" project should have "1" category
+    And "sgtran" project should have "1" category
 
     Examples:
     | name    | color   | sentence                         |
@@ -38,7 +38,7 @@ Feature: Manipulate categories
     | Bug 1   | a5d2ff | Name is invalid                 |
 
   Scenario: Edit a category
-    Given I am a contributor of "Sgtran" project
+    Given I am a contributor of "sgtran" project
     And I am authenticated
     And I have a category with name "Feature" and color "ffa5a5"
     When I am on the category edit page
@@ -49,10 +49,10 @@ Feature: Manipulate categories
 
   @javascript
   Scenario: Destroy category
-    Given I am a contributor of "Sgtran" project
+    Given I am a contributor of "sgtran" project
     And I am authenticated
     And I have a category with name "Feature" and color "ffa5a5"
-    When I am on the "Sgtran" categories page
+    When I am on the "sgtran" categories page
     And I follow "Destroy" and press ok at the pop-up
-    And "Sgtran" project should have "0" categories
+    And "sgtran" project should have "0" categories
 

@@ -11,6 +11,8 @@ class Project < ActiveRecord::Base
 
   attr_reader :contributor_tokens
 
+  before_save :downcase_name
+
   def contributor_tokens= ids
     self.contributor_ids = ids.split(',')
   end
@@ -61,6 +63,12 @@ class Project < ActiveRecord::Base
 
   def <=> project
     self.name <=> project.name
+  end
+
+  private
+
+  def downcase_name
+    name.try(:downcase!)
   end
 end
 
