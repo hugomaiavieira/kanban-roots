@@ -5,14 +5,18 @@ describe Project do
 
   context 'name validation' do
     it 'accepts letter, digits, underscores and hyphens' do
-      should have_valid(:name).when('Kanban roots')
+      should have_valid(:name).when('KanbanRoots')
       should have_valid(:name).when('Kanban-roots')
       should have_valid(:name).when('Kanban_roots')
-      should have_valid(:name).when('Kanban roots 1')
+      should have_valid(:name).when('Kanban-roots_11')
     end
 
     it 'denies blanks' do
       should_not have_valid(:name).when('', nil)
+    end
+
+    it 'denies whitespaces' do
+      should_not have_valid(:name).when('kanban roots')
     end
 
     it 'denies symbols' do
@@ -23,9 +27,9 @@ describe Project do
     it 'converts to downcase when saving' do
       project = Factory.create :project, :name => 'KAnBaN-RootS'
       project.name.should == 'kanban-roots'
-      project.name = 'ROOTS_OF KANBAN'
+      project.name = 'ROOTS_OF-KANBAN'
       project.save!
-      project.name.should == 'roots_of kanban'
+      project.name.should == 'roots_of-kanban'
     end
 
     it 'validates uniqueness for contributor' do

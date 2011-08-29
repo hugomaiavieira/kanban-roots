@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name, :owner_id
   validates_format_of :name,
-                      :with    => /^[A-Z0-9 _\-]*$/i,
+                      :with    => /^[A-Z0-9_\-]*$/i,
                       :message => "must include only letters, digits, underscores or hyphens"
   validate :uniqueness_of_project_name_by_owner
 
