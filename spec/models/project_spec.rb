@@ -27,6 +27,19 @@ describe Project do
       project.save!
       project.name.should == 'roots_of kanban'
     end
+
+    it 'validates uniqueness for contributor' do
+      contributor = Factory.create :contributor
+      Factory.create :project, :name => 'kanban-roots', :owner => contributor
+      expect {
+        Factory.create :project, :name => 'kanban-roots', :owner => contributor
+      }.to raise_error ActiveRecord::RecordInvalid
+
+      contributor2 = Factory.create :contributor
+      expect {
+        Factory.create :project, :name => 'kanban-roots', :owner => contributor2
+      }.to_not raise_error
+    end
   end
 
   it 'should return all contributors, including owner and other contributors' do

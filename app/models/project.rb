@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   validates_format_of :name,
                       :with    => /^[A-Z0-9 _\-]*$/i,
                       :message => "must include only letters, digits, underscores or hyphens"
+  validate :uniqueness_of_project_name_by_owner
 
   attr_reader :contributor_tokens
 
@@ -69,6 +70,13 @@ class Project < ActiveRecord::Base
 
   def downcase_name
     name.try(:downcase!)
+  end
+
+  def uniqueness_of_project_name_by_owner
+    return unless owner
+    if owner.reload.own_projects.map(&:name).include?(name.try(:downcase))
+      errors.add(:owner_id, 'already has a project with the same name')
+    end
   end
 end
 
