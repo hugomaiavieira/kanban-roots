@@ -189,7 +189,7 @@ function defineHeight() {
   var max_line_number = 0,
       division_postit_per_line = 2,
       backlog_postit_per_line = 6,
-      postit_height = $('.postit').get(0).clientHeight,
+      postit_height = $('.postit').get(0)? $('.postit').get(0).clientHeight : null,
       postit_margin = 14,
       // TODO: Make this work
       // margin_top + margin_bottom == margin * 2
