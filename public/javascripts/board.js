@@ -1,5 +1,23 @@
-$(function() {
+function update_board_division(show_points) {
+  var division = show_points.closest('.division'),
+      points = division.find('.show_points').get(), //.get() to obtain javascript-array
+      // map-reduce to sum points
+      sum_points = points.map(
+                    function(element){
+                      var number = parseInt(element.innerText);
+                      return (number == null || isNaN(number)? 0 : number);
+                    })
+                      .reduce(function(accum,value){return accum + value});
+  // update board division points
+  division.find('span[id*=_points]').text(sum_points);
+}
 
+function update_score(old_points, new_points) {
+  var task_contributors = new_points.closest('.postit').find('.show_assignees')[0].innerText.split(new RegExp(' and '));
+
+}
+
+$(function() {
   var $todo = $('#todo'),
       $doing = $('#doing'),
       $done = $('#done'),
