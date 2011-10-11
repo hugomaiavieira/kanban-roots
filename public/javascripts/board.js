@@ -1,9 +1,23 @@
+function sort_score_list() {
+  var ordered_list = $('#score_list').children().sort(function(a,b){
+      var first_value = parseInt(a.children[0].innerText),
+          second_value = parseInt(b.children[0].innerText);
+      if (first_value != second_value) {
+        return first_value > second_value ? 1 : -1;
+      } else {
+        return a.innerText > b.innerText ? 1 : -1;
+      }
+    });
+  $('#score_list').html(ordered_list);
+}
+
 function update_score_points(contributors, score) {
   $.each(contributors, function(index, id) {
     contributor = $('#contributor_'.concat(id));
     contributor_points = parseFloat(contributor.text());
     contributor.text((contributor_points + score).toFixed(1));
-    // TODO: sort of the scores list
+    // sort of the scores list (first by value asc, then alphabetically asc)
+    sort_score_list();
   });
 }
 
@@ -191,5 +205,10 @@ function defineHeight() {
 // define the divisions and board height on page load
 $(function() {
     defineHeight();
+});
+
+// sort score list on page load
+$(function() {
+    sort_score_list();
 });
 
