@@ -45,8 +45,37 @@ class BoardsController < InheritedResources::Base
   def update_points
     task = Task.find(params[:task_id])
     points = params[:points] == '-' ? nil : params[:points]
+
+    position = Board::POSITIONS.key(task.position)
+    if position != 'done'
+      score = 0
+    else
+      # TODO: refactor
+      if task.points.nil?
+        old_points = 0
+      elsif task.points.zero?
+        old_points = 0.1
+      else
+        old_points = task.points
+      end
+      if points.nil?
+        new_points = 0
+      elsif points.to_i.zero?
+        new_points = 0.1
+      else
+        new_points = points.to_i
+      end
+    end
+    score = new_points - old_points
+
     task.update_attribute(:points, points)
-    render :nothing => true
+
+    project = Project.find(task.project_id)
+    division_name = Board::POSITIONS[params[:division_id]]
+    division_points = project.count_points(division_name)
+    contributors = task.contributor_ids
+    data = { :division_points => division_points, :contributors => contributors, :score => score}
+    render :text => data.to_json
   end
 
   # TODO: Make test and refactor

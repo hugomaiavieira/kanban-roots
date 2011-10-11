@@ -1,20 +1,10 @@
-function update_board_division(show_points) {
-  var division = show_points.closest('.division'),
-      points = division.find('.show_points').get(), //.get() to obtain javascript-array
-      // map-reduce to sum points
-      sum_points = points.map(
-                    function(element){
-                      var number = parseInt(element.innerText);
-                      return (number == null || isNaN(number)? 0 : number);
-                    })
-                      .reduce(function(accum,value){return accum + value});
-  // update board division points
-  division.find('span[id*=_points]').text(sum_points);
-}
-
-function update_score(old_points, new_points) {
-  var task_contributors = new_points.closest('.postit').find('.show_assignees')[0].innerText.split(new RegExp(' and '));
-
+function update_score_points(contributors, score) {
+  $.each(contributors, function(index, id) {
+    contributor = $('#contributor_'.concat(id));
+    contributor_points = parseFloat(contributor.text());
+    contributor.text((contributor_points + score).toFixed(1));
+    // TODO: sort of the scores list
+  });
 }
 
 $(function() {
@@ -59,21 +49,28 @@ $(function() {
   });
 });
 
-// TODO: Update the points in the board divisions and score
 // change task points and slide back the select
 $(function() {
   $('.points_select').change(function () {
     var show_points = $(this).siblings('.show_points'),
+        division_id = show_points.closest('ul').attr('id'),
         task = $(this).parents('li'),
         task_id = task.attr('id'),
-    points = $(this).children(':selected').attr('value');
+        points = $(this).children(':selected').attr('value');
     if (points != show_points.text()) {
       $.ajax({
         type: "PUT",
         url: "/board/update_points",
-        data: ({ task_id: task_id, points: points }),
-        success: function() {
+        data: ({ task_id: task_id, points: points, division_id: division_id }),
+        dataType: 'json',
+        success: function(data) {
+          var division_points = data.division_points;
+          // update task points
           show_points.text(points);
+          // update board division points
+          show_points.closest('.division').find('span[id*=_points]').text(division_points);
+          // update score points
+          update_score_points(data.contributors, data.score);
         }
       });
     }
@@ -152,12 +149,7 @@ function movePostit (postit, ul) {
       new_division.text(new_division_points + data.task_points);
       old_division.text(old_division_points - data.task_points);
       // update scores
-      $.each(data.contributors, function(index, id) {
-        contributor = $('#contributor_'.concat(id));
-        contributor_points = parseFloat(contributor.text());
-        contributor.text((contributor_points + data.score).toFixed(1));
-        // TODO: sort of the scores list
-      });
+      update_score_points(data.contributors, data.score);
     }
   });
 }
