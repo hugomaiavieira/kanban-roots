@@ -65,8 +65,8 @@ class BoardsController < InheritedResources::Base
       else
         new_points = points.to_i
       end
+      score = new_points - old_points
     end
-    score = new_points - old_points
 
     task.update_attribute(:points, points)
 
