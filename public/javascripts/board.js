@@ -1,5 +1,27 @@
-$(function() {
+function sort_score_list() {
+  var ordered_list = $('#score_list').children().sort(function(a,b){
+      var first_value = parseInt(a.children[0].innerText),
+          second_value = parseInt(b.children[0].innerText);
+      if (first_value != second_value) {
+        return first_value > second_value ? 1 : -1;
+      } else {
+        return a.innerText > b.innerText ? 1 : -1;
+      }
+    });
+  $('#score_list').html(ordered_list);
+}
 
+function update_score_points(contributors, score) {
+  $.each(contributors, function(index, id) {
+    contributor = $('#contributor_'.concat(id));
+    contributor_points = parseFloat(contributor.text());
+    contributor.text((contributor_points + score).toFixed(1));
+    // sort of the scores list (first by value asc, then alphabetically asc)
+    sort_score_list();
+  });
+}
+
+$(function() {
   var $todo = $('#todo'),
       $doing = $('#doing'),
       $done = $('#done'),
@@ -41,21 +63,28 @@ $(function() {
   });
 });
 
-// TODO: Update the points in the board divisions and score
 // change task points and slide back the select
 $(function() {
   $('.points_select').change(function () {
     var show_points = $(this).siblings('.show_points'),
+        division_id = show_points.closest('ul').attr('id'),
         task = $(this).parents('li'),
         task_id = task.attr('id'),
-    points = $(this).children(':selected').attr('value');
+        points = $(this).children(':selected').attr('value');
     if (points != show_points.text()) {
       $.ajax({
         type: "PUT",
         url: "/board/update_points",
-        data: ({ task_id: task_id, points: points }),
-        success: function() {
+        data: ({ task_id: task_id, points: points, division_id: division_id }),
+        dataType: 'json',
+        success: function(data) {
+          var division_points = data.division_points;
+          // update task points
           show_points.text(points);
+          // update board division points
+          show_points.closest('.division').find('span[id*=_points]').text(division_points);
+          // update score points
+          update_score_points(data.contributors, data.score);
         }
       });
     }
@@ -134,12 +163,7 @@ function movePostit (postit, ul) {
       new_division.text(new_division_points + data.task_points);
       old_division.text(old_division_points - data.task_points);
       // update scores
-      $.each(data.contributors, function(index, id) {
-        contributor = $('#contributor_'.concat(id));
-        contributor_points = parseFloat(contributor.text());
-        contributor.text((contributor_points + data.score).toFixed(1));
-        // TODO: sort of the scores list
-      });
+      update_score_points(data.contributors, data.score);
     }
   });
 }
@@ -181,5 +205,10 @@ function defineHeight() {
 // define the divisions and board height on page load
 $(function() {
     defineHeight();
+});
+
+// sort score list on page load
+$(function() {
+    sort_score_list();
 });
 
