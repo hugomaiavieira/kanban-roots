@@ -9,21 +9,21 @@ database:
 
 rspec:
 	@echo "run rspec specs"
-	@rspec spec --drb --format progress
+	@bundle exec  rspec spec --drb --format progress
 
 cucumber:
 	@echo "run cucumber specs"
-	@cucumber features --drb
+	@bundle exec  cucumber features --drb
 
 cucumber-nojs:
 	@echo "run cucumber specs without javascript"
-	@cucumber features --drb --tag ~@javascript
+	@bundle exec cucumber features --drb --tag ~@javascript
 
 cucumber-js:
 	@echo "run cucumber specs with javascript"
-	@cucumber features --drb --tag @javascript
+	@bundle exec  cucumber features --drb --tag @javascript
 
 spork:
 	@echo "start spork"
-	@spork cucumber & spork
+	@bundle exec spork cucumber & bundle exec spork
 

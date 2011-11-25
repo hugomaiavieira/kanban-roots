@@ -11,8 +11,8 @@ class Contributor < ActiveRecord::Base
                   :username, :login
 
   has_many :own_projects, :class_name => 'Project', :foreign_key => :owner_id, :dependent => :destroy
-  has_and_belongs_to_many :contributions, :class_name => 'Project'
-  has_and_belongs_to_many :tasks
+  has_and_belongs_to_many :contributions, :class_name => 'Project', :join_table => :contributors_projects
+  has_and_belongs_to_many :tasks, :join_table => :contributors_tasks
   has_many :comments
 
   validates_presence_of :name, :username

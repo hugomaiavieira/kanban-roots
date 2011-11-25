@@ -5,9 +5,9 @@ describe Contributor do
     contributor = Factory.create :contributor
     project_1 = Factory.create :project, :owner => contributor
     project_2 = Factory.create :project, :owner => contributor
-    contributor.destroy
-    lambda { project_1.reload }.should raise_error ActiveRecord::RecordNotFound
+    contributor.reload.destroy
     lambda { project_2.reload }.should raise_error ActiveRecord::RecordNotFound
+    lambda { project_1.reload }.should raise_error ActiveRecord::RecordNotFound
   end
 
   it 'should return all projects, including his own and others the he contribute' do
@@ -16,6 +16,7 @@ describe Contributor do
     my_project = Factory.create :project, :owner => hugo
     our_project = Factory.create :project, :owner => rodrigo, :contributors => [hugo]
     other_project = Factory.create :project, :owner => rodrigo
+    hugo.reload
     hugo.projects.should include(my_project, our_project)
     hugo.projects.should_not include(other_project)
   end
@@ -25,7 +26,7 @@ describe Contributor do
       Factory.create :contributor, :username => "johndoe"
       contributor = Factory.build :contributor, :username => "johndoe"
       contributor.save.should be_false
-      contributor.errors.should include({:username=>["has already been taken"]})
+      contributor.errors.messages.should include({:username=>["has already been taken"]})
     end
 
     it "e-mail" do
