@@ -1,9 +1,9 @@
-h1 Listing tasks
+.page-header
+  h1 Listing tasks
 
-table
+table.zebra-striped
   tr
     th Title
-    th Description
     th Points
     th Category
     th Position
@@ -14,7 +14,6 @@ table
   - @tasks.each do |task|
     tr
       td= task.title
-      td= task.description
       td= task.points
       td= task.category.name if task.category
       td= task.position

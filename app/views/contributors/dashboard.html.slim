@@ -1,6 +1,5 @@
-h1 Kanban-roots
-
-h2 Your projects
+.page-header
+  h1 Your projects
 
 ul
   - current_contributor.projects.each do |project|
@@ -10,4 +9,5 @@ ul
       = project.description
 
 p
-  = link_to 'New project', new_project_path
+  = link_to 'New project', new_project_path, :class => 'btn primary'
+

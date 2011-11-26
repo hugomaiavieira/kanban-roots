@@ -5,7 +5,8 @@
       = '.' + category.to_class + '{background-color: #' + category.color + '}'
 
 - content_for :project_nav do
-  = link_to 'Clean up Done', clean_up_done_path(@project), :confirm => 'Are you sure?'
+  li
+    = link_to 'Clean up Done', clean_up_done_path(@project), :confirm => 'Are you sure?'
 
 .score
   h3 Scores

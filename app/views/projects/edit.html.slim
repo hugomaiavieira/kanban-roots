@@ -1,8 +1,10 @@
-h1 Admin #{@project.name}
+.page-header
+  h1 Admin #{@project.name}
 
 = render 'form'
 
 = link_to 'Destroy', project_path(@project), \
+                    :class => 'btn danger', \
                     :confirm => 'Are you sure?', \
                     :method => :delete
 

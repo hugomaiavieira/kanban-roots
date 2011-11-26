@@ -7,37 +7,54 @@
     <%= csrf_meta_tag %>
     <%= yield :head %>
   </head>
+
   <body>
-
-    <nav id="user_nav">
-      <% if contributor_signed_in? %>
-        <%= link_to current_contributor.username, contributor_path(current_contributor) %>
-        | <%= link_to 'Dashboard', root_path %>
-        | <%= link_to 'Sign out', destroy_contributor_session_path, :method => :delete %>
-      <% else %>
-        <%= link_to 'Sign up', new_contributor_registration_path %> or
-        <%= link_to 'Sign in', new_contributor_session_path %>
-      <% end %>
-    </nav>
-
+    <div class="topbar-wrapper">
+      <div class="topbar">
+        <div class="topbar-inner">
+          <div class="container">
+            <h3><%= link_to 'Kanban-roots', root_path %></h3>
+            <ul class="nav secondary-nav">
+              <% if contributor_signed_in? %>
+                <li><%= link_to current_contributor.username, contributor_path(current_contributor) %></li>
+                <li><%= link_to 'Dashboard', root_path %></li>
+                <li><%= link_to 'Sign out', destroy_contributor_session_path, :method => :delete %></li>
+              <% else %>
+                <li>
+                  <%= link_to 'Sign up', new_contributor_registration_path %> or
+                  <%= link_to 'Sign in', new_contributor_session_path %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <%- flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      <% if msg.is_a?(String) %>
+        <div class="alert-message <%= name %> fade in" data-alert="alert">
+          <a class="close" href="#">×</a>
+          <p><%= msg %></p>
+        </div>
+      <% end -%>
     <%- end -%>
 
+    <div class="container">
+      <div class="content">
+        <% if @project and @project.id %>
+          <ul class="pills">
+            <li><%= link_to 'Board', project_board_path(@project) %></li>
+            <li><%= link_to 'New Task', new_project_task_path(@project) %></li>
+            <li><%= link_to 'List Tasks', project_tasks_path(@project) %></li>
+            <li><%= link_to 'Admin', edit_project_path(@project) %></li>
+            <li><%= link_to 'Manage Categories', project_categories_path(@project) %></li>
+            <%= yield :project_nav %>
+          </ul>
+        <% end %>
 
-    <% if @project and @project.id %>
-      <nav id="project_nav">
-        <%= link_to 'Board', project_board_path(@project) %>
-        <%= link_to 'New Task', new_project_task_path(@project) %>
-        <%= link_to 'List Tasks', project_tasks_path(@project) %>
-        <%= link_to 'Admin', edit_project_path(@project) %>
-        <%= link_to 'Manage Categories', project_categories_path(@project) %>
-        <%= yield :project_nav %>
-      </nav>
-    <% end %>
-
-    <%= yield %>
-
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
 

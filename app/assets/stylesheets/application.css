@@ -1,80 +1,62 @@
-*/
-*= require_self
+/*
 *= require_tree .
+*= require_self
 */
-
-@font-face {
-  font-family: 'Molengo';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Molengo'), url('../fonts/Molengo-Regular.ttf') format('woff');
-}
 
 body {
-    font-family: Molengo, Ubuntu, Monaco, Verdana, Helvetica;
-    margin-bottom: 30px;
-}
-
-pre {
-    font-family: inherit;
-    font-size: inherit;
-    margin: 10px 0px 0px 20px;
-    white-space: pre-wrap;
-    text-align: justify;
-}
-
-table {
-    border: solid 2px #bfbfbf;
-}
-
-th {
-    padding: 1px 4px;
-    background-color: #80c0ff;
-}
-
-tr:nth-child(odd) {
-    background-color: #c7ffc7;
-}
-
-td {
-    padding: 1px 4px;
-}
-
-a {
-    color: #005e9b;
+    padding-top: 40px;
+    background-color: #EEEEEE;
 }
 
 .help_cursor {
     cursor: help;
 }
 
-.markdown_note {
-    display: inline-block;
-    font-size: 12px;
-    margin: 5px 0px 8px 105px;
-    padding: 5px;
-    border: solid 1px #e6e6fa;
+/* Twitter bootstrap overwrite */
+
+.btn {
+    margin-right: 4px;
 }
+
+.container {
+    width: 1235px;
+}
+
+.container > .content {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    background-color: #FFFFFF;
+}
+
+/*@font-face {*/
+/*  font-family: 'Molengo';*/
+/*  font-style: normal;*/
+/*  font-weight: normal;*/
+/*  src: local('Molengo'), url('../fonts/Molengo-Regular.ttf') format('woff');*/
+/*}*/
+
+/*body {*/
+/*    font-family: Molengo, Ubuntu, Monaco, Verdana, Helvetica;*/
+/*    margin-bottom: 30px;*/
+/*}*/
+
+/*pre {*/
+/*    font-family: inherit;*/
+/*    font-size: inherit;*/
+/*    margin: 10px 0px 0px 20px;*/
+/*    white-space: pre-wrap;*/
+/*    text-align: justify;*/
+/*}*/
+
+/*.markdown_note {*/
+/*    display: inline-block;*/
+/*    font-size: 12px;*/
+/*    margin: 5px 0px 8px 105px;*/
+/*    padding: 5px;*/
+/*    border: solid 1px #e6e6fa;*/
+/*}*/
 
 /* Coding */
-
-p code, pre {
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    background-color: #f7f7f7;
-    border: 1px solid #DDDDDD;
-    color: #444444;
-    font-size: 13px;
-    font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
-}
-
-p code {
-    padding: 3px 5px;
-}
-
-pre {
-    padding: 5px 25px;
-}
 
 .highlight .hll { background-color: #ffffcc }
 .highlight  { background: #ffffff; }
@@ -141,48 +123,26 @@ pre {
 
 /* Flashs */
 
-#flash_notice, #flash_alert {
-    margin-top: 15px;
-    padding: 3px 10px 3px 30px;
-    width: 550px;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    border: 1px solid;
-}
+/*#flash_notice, #flash_alert {*/
+/*    margin-top: 15px;*/
+/*    padding: 3px 10px 3px 30px;*/
+/*    width: 550px;*/
+/*    border-radius: 3px;*/
+/*    -moz-border-radius: 3px;*/
+/*    border: 1px solid;*/
+/*}*/
 
-#flash_notice {
-    background: #DFFFDF url(../images/success.png) no-repeat scroll 8px 50%;
-    border-color: #9FCF9F;
-    color :#005F00;
-}
+/*#flash_notice {*/
+/*    background: #DFFFDF url(../images/success.png) no-repeat scroll 8px 50%;*/
+/*    border-color: #9FCF9F;*/
+/*    color :#005F00;*/
+/*}*/
 
-#flash_alert {
-    background: #ffc7c7 url(../images/error.png) no-repeat scroll 8px 50%;
-    border-color: #fe94a7;
-    color: #ea002a;
-}
-
-/* Navigation */
-
-#project_nav {
-    margin: 30px 5px 0px 5px;
-}
-
-#project_nav a {
-    display: inline-block;
-    margin-right: 5px;
-    padding: 3px 8px;
-    text-decoration: none;
-    background-color: #dccbf6;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    color: #2483c0;
-}
-
-#project_nav a:hover {
-    background-color: #ae8ae5;
-    color: #005e9b;
-}
+/*#flash_alert {*/
+/*    background: #ffc7c7 url(../images/error.png) no-repeat scroll 8px 50%;*/
+/*    border-color: #fe94a7;*/
+/*    color: #ea002a;*/
+/*}*/
 
 /* Board */
 
@@ -367,20 +327,6 @@ div.score ol {
     background-color: #e3e9ff;
 }
 
-/* Comments */
-
-.comment_wrapper {
-    margin: 20px;
-    padding: 10px;
-    border: solid 1px #e6e6fa;
-    width: 700px;
-}
-
-.comment_wrapper #comments_menu {
-    margin: 10px 2px 2px 2px;
-    text-align: right;
-}
-
 /* Legends */
 
 ul.legends {
@@ -395,84 +341,98 @@ ul.legends li {
     padding: 0px 3px;
 }
 
+/* Comments */
+
+/*.comment_wrapper {*/
+/*    margin: 20px;*/
+/*    padding: 10px;*/
+/*    border: solid 1px #e6e6fa;*/
+/*    width: 700px;*/
+/*}*/
+
+/*.comment_wrapper #comments_menu {*/
+/*    margin: 10px 2px 2px 2px;*/
+/*    text-align: right;*/
+/*}*/
+
 /* Description */
 
-.description {
-    width: 700px;
-    margin-left: 20px;
-}
+/*.description {*/
+/*    width: 700px;*/
+/*    margin-left: 20px;*/
+/*}*/
 
 /* Forms */
 
-div.field {
-    margin: 2px 0px;
-}
+/*div.field {*/
+/*    margin: 2px 0px;*/
+/*}*/
 
-div.field li {
-    list-style: none;
-}
+/*div.field li {*/
+/*    list-style: none;*/
+/*}*/
 
-div.field li label {
-    float: left;
-    margin-right: 5px;
-    text-align: right;
-    width: 100px;
-}
+/*div.field li label {*/
+/*    float: left;*/
+/*    margin-right: 5px;*/
+/*    text-align: right;*/
+/*    width: 100px;*/
+/*}*/
 
-div.field li label:after {
-    content: ':';
-}
+/*div.field li label:after {*/
+/*    content: ':';*/
+/*}*/
 
-div.actions {
-    width: 100px;
-}
+/*div.actions {*/
+/*    width: 100px;*/
+/*}*/
 
-div.actions:after {
-    content: '.';
-    display: block;
-    clear: both;
-    height: 0;
-    visibility: hidden;
-}
+/*div.actions:after {*/
+/*    content: '.';*/
+/*    display: block;*/
+/*    clear: both;*/
+/*    height: 0;*/
+/*    visibility: hidden;*/
+/*}*/
 
-div.actions input {
-    margin: 15px 0px;
-    float: right;
-}
+/*div.actions input {*/
+/*    margin: 15px 0px;*/
+/*    float: right;*/
+/*}*/
 
-abbr {
-    color: red;
-}
+/*abbr {*/
+/*    color: red;*/
+/*}*/
 
-.registrations div.field i {
-    float: left;
-    margin-left: 5px;
-}
+/*.registrations div.field i {*/
+/*    float: left;*/
+/*    margin-left: 5px;*/
+/*}*/
 
-.registrations div.field input {
-    float: left;
-}
+/*.registrations div.field input {*/
+/*    float: left;*/
+/*}*/
 
-.registrations div.field:after {
-    content: '.';
-    display: block;
-    clear: both;
-    height: 0;
-    visibility: hidden;
-}
+/*.registrations div.field:after {*/
+/*    content: '.';*/
+/*    display: block;*/
+/*    clear: both;*/
+/*    height: 0;*/
+/*    visibility: hidden;*/
+/*}*/
 
-.registrations div.field li label {
-    float: left;
-    margin-right: 5px;
-    text-align: right;
-    width: 170px;
-}
+/*.registrations div.field li label {*/
+/*    float: left;*/
+/*    margin-right: 5px;*/
+/*    text-align: right;*/
+/*    width: 170px;*/
+/*}*/
 
-.registrations div.actions {
-    width: 170px;
-}
+/*.registrations div.actions {*/
+/*    width: 170px;*/
+/*}*/
 
-.remember_me {
-    margin-left: 105px;
-}
+/*.remember_me {*/
+/*    margin-left: 105px;*/
+/*}*/
 
