@@ -4,9 +4,6 @@
     - @categories.each do |category|
       = '.' + category.to_class + '{background-color: #' + category.color + '}'
 
-- content_for :javascript do
-  = javascript_include_tag 'board.js'
-
 - content_for :project_nav do
   = link_to 'Clean up Done', clean_up_done_path(@project), :confirm => 'Are you sure?'
 

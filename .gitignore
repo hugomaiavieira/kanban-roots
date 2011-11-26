@@ -5,3 +5,4 @@ log/*.log
 tmp/**/*
 Capfile
 config/deploy.rb
+.sass-cache/
