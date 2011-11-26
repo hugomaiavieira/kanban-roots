@@ -8,7 +8,9 @@
   li
     = link_to 'Clean up Done', clean_up_done_path(@project), :confirm => 'Are you sure?'
 
-.score
+a#scores-btn.btn.info[data-controls-modal="score-modal" data-keyboard="true" data-backdrop="true"] Scores
+
+#score-modal.modal.fade
   h3 Scores
   ol#score_list
     - @project.contributors_scores.each do |item|
