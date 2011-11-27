@@ -3,6 +3,7 @@ Feature: Manipulate categories
   I want manipulate categories
   In order to organize them
 
+  @now
   Scenario: Register a category successfully
     Given I am a contributor of "sgtran" project
     And I am authenticated

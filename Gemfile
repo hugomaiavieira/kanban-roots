@@ -4,7 +4,7 @@ gem 'rails', '3.1.3'
 gem 'mysql2', '~>0.3'
 
 gem 'slim', '~>1.0'
-gem 'formtastic',  '~>1.2'
+gem 'simple_form',  '~>1.5'
 gem 'inherited_resources', '~>1.2'
 gem 'escape_utils', '~>0.2'
 gem 'devise', '~>1.4'

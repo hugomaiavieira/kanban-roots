@@ -1,4 +1,4 @@
-= semantic_form_for [@project, @category] do |f|
+= simple_form_for [@project, @category] do |f|
   -if @category.errors.any?
     #error_explanation
       h2 #{pluralize(@category.errors.count, "error")} prohibited this category from being saved:
@@ -12,5 +12,5 @@
   .field
     = f.input :color, :input_html => { :class => 'color', :autocomplete => 'off' }
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class => 'btn primary'
 

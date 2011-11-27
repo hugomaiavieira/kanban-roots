@@ -20,10 +20,8 @@
                 <li><%= link_to 'Dashboard', root_path %></li>
                 <li><%= link_to 'Sign out', destroy_contributor_session_path, :method => :delete %></li>
               <% else %>
-                <li>
-                  <%= link_to 'Sign up', new_contributor_registration_path %> or
-                  <%= link_to 'Sign in', new_contributor_session_path %>
-                </li>
+                <li><%= link_to 'Sign up', new_contributor_registration_path %></li>
+                <li><%= link_to 'Sign in', new_contributor_session_path %></li>
               <% end %>
             </ul>
           </div>

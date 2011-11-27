@@ -1,19 +1,17 @@
-h2 Sign in
-= semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+.page-header
+  h1 Sign in
 
-  .field
-    = f.input :login, :required => false, :input_html => { :autofocus => true }
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
 
-  .field
-    = f.input :password, :as => :password, :required => false
+  = f.input :login, :required => false, :input_html => { :autofocus => true }
+
+  = f.input :password, :as => :password, :required => false
 
   - if devise_mapping.rememberable?
-    .remember_me
-      = f.check_box :remember_me
-      = f.label :remember_me
+    = f.input :remember_me, :as => :boolean
 
   .actions
-    = f.submit "Sign in"
+    = f.submit 'Sign in', :class => 'btn primary'
 
-= render :partial => "devise/shared/links"
+= render :partial => 'devise/shared/links'
 

@@ -67,10 +67,6 @@ GEM
       factory_girl (~> 2.0.0)
       railties (>= 3.0.0)
     ffi (1.0.11)
-    formtastic (1.2.4)
-      actionpack (>= 2.3.7)
-      activesupport (>= 2.3.7)
-      i18n (~> 0.4)
     gherkin (2.4.5)
       json (>= 1.4.6)
     has_scope (0.5.0)
@@ -148,6 +144,9 @@ GEM
       ffi (~> 1.0.9)
       json_pure
       rubyzip
+    simple_form (1.5.2)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     slim (1.0.0)
       temple (~> 0.3.0)
       tilt (~> 1.2)
@@ -184,7 +183,6 @@ DEPENDENCIES
   devise (~> 1.4)
   escape_utils (~> 0.2)
   factory_girl_rails (~> 1.1)
-  formtastic (~> 1.2)
   inherited_resources (~> 1.2)
   jquery-rails (~> 1.0)
   launchy (>= 2.0)
@@ -196,6 +194,7 @@ DEPENDENCIES
   rspec (~> 2.6)
   rspec-rails (~> 2.6)
   ruby-json (~> 1.1)
+  simple_form (~> 1.5)
   slim (~> 1.0)
   spork (~> 0.9.0.rc)
   sqlite3-ruby

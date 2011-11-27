@@ -32,6 +32,18 @@ body {
     background-color: #FFFFFF;
 }
 
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+    margin-left: 10px !important;
+}
+
+.actions {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 4px 4px 4px 4px;
+}
+
 /*@font-face {*/
 /*  font-family: 'Molengo';*/
 /*  font-style: normal;*/
@@ -52,13 +64,13 @@ body {
 /*    text-align: justify;*/
 /*}*/
 
-/*.markdown_note {*/
-/*    display: inline-block;*/
-/*    font-size: 12px;*/
-/*    margin: 5px 0px 8px 105px;*/
-/*    padding: 5px;*/
-/*    border: solid 1px #e6e6fa;*/
-/*}*/
+.markdown_note {
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 0 18px 140px;
+    padding: 5px;
+    border: solid 1px #e6e6fa;
+}
 
 /* Coding */
 
@@ -436,7 +448,12 @@ ul.legends li {
 /*    width: 170px;*/
 /*}*/
 
-/*.remember_me {*/
-/*    margin-left: 105px;*/
-/*}*/
+#contributor_remember_me {
+    margin: 8px 0 0 10px;
+}
+
+ul.token-input-list-facebook {
+    margin: 0 0 0 140px;
+    border-radius: 3px 3px 0 0;
+}
 
