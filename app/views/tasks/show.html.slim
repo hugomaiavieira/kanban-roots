@@ -3,25 +3,46 @@
     = @task.title
     '
     small
-      ' by
-      = @task.author.name
+      ' by #{@task.author.name}
+      span.task-info-date
+        = @task.created_at.strftime 'at %d-%m-%Y'
 
-p
-  b Description:
-  .description
-    = markdown(@task.description)
-p
-  b Points:
-  = @task.points
-p
-  b Category:
-  = @task.category.name if @task.category
-p
-  b Position:
-  = @task.position
-p
-  b Assignees:
-  = @task.contributors.collect(&:name).to_sentence
+.task-info-wrapper.clear
+  .task-info-principal
+    .task-info-assignees
+      p
+        - if !@task.contributors.empty?
+          ' Assigned to
+          strong
+            = @task.contributors.collect(&:name).to_sentence
+        - else
+          strong No one is assigned
+
+    .task-info-description
+      = @task.description.empty? ? 'No description given.' : markdown(@task.description)
+
+  .task-info-side
+    - if @task.category
+      p.task-info-category[style="background-color:##{@task.category.color};"] #{@task.category.name}
+    - else
+      p.task-info-category[style="background-color:#ffffa5;"] None
+
+    p
+      - if @task.points
+        strong
+          ' #{@task.points}
+        | point#{ 's' if !@task.points == 1 }
+      - else
+        | No punctuated yet
+
+    p
+      - if @task.position
+        ' At
+        strong
+          ' #{@task.position}
+        | position
+      - else
+        | Out of the board
 
 - if !@task.comments.empty?
   = render '/comments/list'

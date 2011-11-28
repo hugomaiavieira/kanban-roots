@@ -8,6 +8,14 @@ body {
     background-color: #EEEEEE;
 }
 
+.clear:after {
+    content: ".";
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+}
+
 .help_cursor {
     cursor: help;
 }
@@ -49,35 +57,7 @@ textarea {
     border-radius: 4px 4px 4px 4px;
 }
 
-/*@font-face {*/
-/*  font-family: 'Molengo';*/
-/*  font-style: normal;*/
-/*  font-weight: normal;*/
-/*  src: local('Molengo'), url('../fonts/Molengo-Regular.ttf') format('woff');*/
-/*}*/
-
-/*body {*/
-/*    font-family: Molengo, Ubuntu, Monaco, Verdana, Helvetica;*/
-/*    margin-bottom: 30px;*/
-/*}*/
-
-/*pre {*/
-/*    font-family: inherit;*/
-/*    font-size: inherit;*/
-/*    margin: 10px 0px 0px 20px;*/
-/*    white-space: pre-wrap;*/
-/*    text-align: justify;*/
-/*}*/
-
-.markdown_note {
-    display: inline-block;
-    font-size: 12px;
-    margin: 0 0 18px 140px;
-    padding: 5px;
-    border: solid 1px #e6e6fa;
-}
-
-/* Coding */
+/* Code highlight */
 
 .highlight .hll { background-color: #ffffcc }
 .highlight  { background: #ffffff; }
@@ -376,12 +356,54 @@ ul.legends li {
 /*    text-align: right;*/
 /*}*/
 
-/* Description */
+/* Task show */
 
-/*.description {*/
-/*    width: 700px;*/
-/*    margin-left: 20px;*/
-/*}*/
+.task-info-description {
+    padding: 10px;
+}
+
+.task-info-description *> pre {
+    margin: 0;
+}
+
+.task-info-principal {
+    width: 75%;
+    float: left;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.task-info-assignees {
+    background-color: #e6e6fa;
+    padding: 8px;
+    border-bottom: solid 1px #e5e5e5;
+    border-radius: 2px 2px 0 0;
+}
+
+.task-info-date {
+    font-size: 15px;
+}
+
+.task-info-side {
+    float: right;
+    padding: 0 10px;
+    width: 20%;
+    text-align: center;
+}
+
+.task-info-category {
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: block;
+}
+
+.task-info-assignees > p {
+    margin: 0;
+}
 
 /* Forms */
 
@@ -460,5 +482,13 @@ ul.legends li {
 ul.token-input-list-facebook {
     margin: 0 0 0 140px;
     border-radius: 3px 3px 0 0;
+}
+
+.markdown_note {
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 0 18px 140px;
+    padding: 5px;
+    border: solid 1px #e6e6fa;
 }
 
