@@ -191,8 +191,8 @@ div.board ul {
 
 .postit a.title {
     display: block;
-    height: 63px;
-    margin: 10px 0px;
+    height: 53px;
+    margin: 20px 0 10px 0;
     padding: 0px;
     color: inherit;
     background-color: inherit;
@@ -231,13 +231,15 @@ p.postit_top {
 
 .postit p.postit_top span.show_points:hover {
     background-color: #ececff;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 select.points_select {
     display: none;
     float: left;
-    font-size: 12px;
+    width: auto;
+    height: 25px !important;
+    margin-left: 3px !important;
 }
 
 div.assignees_block {
@@ -256,16 +258,24 @@ p.show_assignees:hover {
 }
 
 .assignees_form {
-    font-size: 12px;
     position: absolute;
     display: none;
     padding: 5px;
-    background-color: #bdbdbd;
-    border-radius: 5px;
+    background-color: #FFFFFF;
+    border: solid 1px #e6e6fa;
+    border-radius: 3px;
+    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.3);
 }
 
-div.assignees_form input {
+div.assignees_form select {
+    margin-left: 0px !important;
+    width: 110px;
+}
+
+div.assignees_form input[type="submit"] {
     float: right;
+    margin-left: 5px;
+    padding: 1px 2px;
 }
 
 div.postit_options_block {
@@ -284,15 +294,12 @@ a.postit_options {
     display: none;
     padding: 3px 8px;
     margin: -20px 0 0 20px;
-    background-color: #bdbdbd;
+    background-color: #FFFFFF;
+    border: solid 1px #e6e6fa;
+    border-radius: 3px;
+    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.3);
     text-align: left;
     list-style: none;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.postit_options_list li {
-    padding-bottom: 1px;
 }
 
 /* Board score */
@@ -394,8 +401,8 @@ ul.legends li {
 .comment-wrapper {
     margin: 5px 20px 20px 20px;
     padding: 10px;
-    border: solid 1px #e6e6fa;
     width: 700px;
+    border: solid 1px #e6e6fa;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
