@@ -276,7 +276,7 @@ a.postit_options {
     display: block;
     height: 16px;
     width: 16px;
-    background: transparent url(../images/options.png) no-repeat scroll 0px 50%;
+    background: transparent url(/assets/options.png) no-repeat scroll 0px 50%;
 }
 
 .postit_bottom ul.postit_options_list {
@@ -297,25 +297,20 @@ a.postit_options {
 
 /* Board score */
 
-/*div.score {*/
-/*    float: right;*/
-/*    width: 240px;*/
-/*    margin: -60px 145px 0 0;*/
-/*    padding: 5px 20px;*/
-/*    border-radius: 8px;*/
-/*    background-color: #def3fa;*/
-/*}*/
+#score-modal {
+    padding: 5px 20px;
+}
 
-/*div.score h3 {*/
-/*    margin: 0px;*/
-/*    padding: 7px 0px 2px 40px;*/
-/*    height: 32px;*/
-/*    background: transparent url(../images/trophy.png) no-repeat scroll 	0px 50%;*/
-/*}*/
+#score-modal h3 {
+    margin: 0px;
+    padding: 7px 0px 2px 40px;
+    height: 32px;
+    background: transparent url(/assets/trophy.png) no-repeat scroll 0px 50%;
+}
 
-/*div.score ol {*/
-/*    margin: 10px 0px;*/
-/*}*/
+#score-modal > ol {
+    margin: 15px 15px 15px 40px;
+}
 
 /* Board drag and drop */
 
