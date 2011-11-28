@@ -342,20 +342,6 @@ ul.legends li {
     padding: 0px 3px;
 }
 
-/* Comments */
-
-/*.comment_wrapper {*/
-/*    margin: 20px;*/
-/*    padding: 10px;*/
-/*    border: solid 1px #e6e6fa;*/
-/*    width: 700px;*/
-/*}*/
-
-/*.comment_wrapper #comments_menu {*/
-/*    margin: 10px 2px 2px 2px;*/
-/*    text-align: right;*/
-/*}*/
-
 /* Task show */
 
 .task-info-description {
@@ -374,9 +360,12 @@ ul.legends li {
 }
 
 .task-info-assignees {
-    background-color: #e6e6fa;
+    color: #FFFFFF;
+    background-color: #339BB9;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+/*    border: solid 1px #e6e6fa;*/
+/*    background-color: #e5e5e5;*/
     padding: 8px;
-    border-bottom: solid 1px #e5e5e5;
     border-radius: 2px 2px 0 0;
 }
 
@@ -405,75 +394,22 @@ ul.legends li {
     margin: 0;
 }
 
+/* Comments */
+
+.comment-wrapper {
+    margin: 5px 20px 20px 20px;
+    padding: 10px;
+    border: solid 1px #e6e6fa;
+    width: 700px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.comment-wrapper .comments-menu {
+    text-align: right;
+}
+
 /* Forms */
-
-/*div.field {*/
-/*    margin: 2px 0px;*/
-/*}*/
-
-/*div.field li {*/
-/*    list-style: none;*/
-/*}*/
-
-/*div.field li label {*/
-/*    float: left;*/
-/*    margin-right: 5px;*/
-/*    text-align: right;*/
-/*    width: 100px;*/
-/*}*/
-
-/*div.field li label:after {*/
-/*    content: ':';*/
-/*}*/
-
-/*div.actions {*/
-/*    width: 100px;*/
-/*}*/
-
-/*div.actions:after {*/
-/*    content: '.';*/
-/*    display: block;*/
-/*    clear: both;*/
-/*    height: 0;*/
-/*    visibility: hidden;*/
-/*}*/
-
-/*div.actions input {*/
-/*    margin: 15px 0px;*/
-/*    float: right;*/
-/*}*/
-
-/*abbr {*/
-/*    color: red;*/
-/*}*/
-
-/*.registrations div.field i {*/
-/*    float: left;*/
-/*    margin-left: 5px;*/
-/*}*/
-
-/*.registrations div.field input {*/
-/*    float: left;*/
-/*}*/
-
-/*.registrations div.field:after {*/
-/*    content: '.';*/
-/*    display: block;*/
-/*    clear: both;*/
-/*    height: 0;*/
-/*    visibility: hidden;*/
-/*}*/
-
-/*.registrations div.field li label {*/
-/*    float: left;*/
-/*    margin-right: 5px;*/
-/*    text-align: right;*/
-/*    width: 170px;*/
-/*}*/
-
-/*.registrations div.actions {*/
-/*    width: 170px;*/
-/*}*/
 
 #contributor_remember_me {
     margin: 8px 0 0 10px;

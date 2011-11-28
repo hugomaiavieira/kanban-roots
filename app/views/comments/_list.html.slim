@@ -1,14 +1,13 @@
 - if !@task.comments.empty?
   hr
-  b Comments:
   - @task.comments.each do |comment|
-    .comment_wrapper
-      b #{comment.contributor.name}:
+    strong #{comment.contributor.name}:
+    .comment-wrapper
       = markdown(comment.content)
       - if comment.contributor == current_contributor
-        p#comments_menu
-          = link_to 'Edit', edit_project_task_comment_path(@project, @task, comment)
-          ||
+        .comments-menu
+          = link_to 'Edit', edit_project_task_comment_path(@project, @task, comment), :class => 'btn primary small'
           = link_to 'Destroy', project_task_comment_path(@project, @task, comment), \
+                              :class => 'btn danger small', \
                               :confirm => 'Are you sure?', :method => :delete
 
