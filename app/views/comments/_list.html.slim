@@ -1,13 +1,14 @@
-hr
-b Comments:
-- @task.comments.each do |comment|
-  .comment_wrapper
-    b #{comment.contributor.name}:
-    = markdown(comment.content)
-    - if comment.contributor == current_contributor
-      p#comments_menu
-        = link_to 'Edit', edit_project_task_comment_path(@project, @task, comment)
-        ||
-        = link_to 'Destroy', project_task_comment_path(@project, @task, comment), \
-                            :confirm => 'Are you sure?', :method => :delete
+- if !@task.comments.empty?
+  hr
+  b Comments:
+  - @task.comments.each do |comment|
+    .comment_wrapper
+      b #{comment.contributor.name}:
+      = markdown(comment.content)
+      - if comment.contributor == current_contributor
+        p#comments_menu
+          = link_to 'Edit', edit_project_task_comment_path(@project, @task, comment)
+          ||
+          = link_to 'Destroy', project_task_comment_path(@project, @task, comment), \
+                              :confirm => 'Are you sure?', :method => :delete
 

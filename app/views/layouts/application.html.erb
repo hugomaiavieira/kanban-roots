@@ -28,17 +28,17 @@
         </div>
       </div>
     </div>
-    <%- flash.each do |name, msg| -%>
-      <% if msg.is_a?(String) %>
-        <div class="alert-message <%= name %> fade in" data-alert="alert">
-          <a class="close" href="#">×</a>
-          <p><%= msg %></p>
-        </div>
-      <% end -%>
-    <%- end -%>
 
     <div class="container">
       <div class="content">
+        <%- flash.each do |name, msg| -%>
+          <% if msg.is_a?(String) %>
+            <div class="alert-message <%= name %> fade in" data-alert="alert">
+              <a class="close" href="#">×</a>
+              <p><%= msg %></p>
+            </div>
+          <% end -%>
+        <%- end -%>
         <% if @project and @project.id %>
           <ul class="pills">
             <li><%= link_to 'Board', project_board_path(@project) %></li>

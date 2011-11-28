@@ -44,8 +44,7 @@
       - else
         | Out of the board
 
-- if !@task.comments.empty?
-  = render '/comments/list'
+= render '/comments/list'
 
 = link_to 'Edit', edit_project_task_path(@project, @task), :class => 'btn primary'
 = link_to 'Destroy', project_task_path(@project, @task), \
