@@ -11,13 +11,13 @@
   = f.input :description, :input_html => { :class => 'span8', :rows => 10 }
   = markdown_note('Tasks').html_safe
 
-  = f.input :points, :as => 'select', :collection => Task::POINTS
+  = f.input :points, :collection => Task::POINTS
 
-  = f.input :category, :as => 'select', :collection => @categories
+  = f.association :category, :collection => @categories
 
-  = f.input :position, :as => 'select', :collection => Board::POSITIONS.values, :prompt => false
+  = f.input :position, :collection => Board::POSITIONS.values, :prompt => false
 
-  = f.input :contributors, :label => 'Assignees', :include_blank => true, :collection => @project.all_contributors
+  = f.association :contributors, :label => 'Assignees', :include_blank => true, :collection => @project.all_contributors
 
   .actions
     = f.submit 'Save', :class => 'btn primary'
