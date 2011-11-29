@@ -3,7 +3,6 @@ Feature: Manipulate categories
   I want manipulate categories
   In order to organize them
 
-  @now
   Scenario: Register a category successfully
     Given I am a contributor of "sgtran" project
     And I am authenticated
@@ -30,13 +29,13 @@ Feature: Manipulate categories
     And "sgtran" project should have "1" category
 
     Examples:
-    | name    | color   | sentence                         |
-    |         | a5d2ff | Name can't be blank              |
-    | Feature |         | Color can't be blank             |
-    | Feature | ffa5a5 | Color should be uniq for project |
-    | Bug     | a5d2ff | Name should be uniq for project  |
-    | Bug     | red     | Color is invalid                 |
-    | Bug 1   | a5d2ff | Name is invalid                 |
+    | name    | color  | sentence                   |
+    |         | a5d2ff | can't be blank             |
+    | Feature |        | can't be blank             |
+    | Feature | ffa5a5 | should be uniq for project |
+    | Bug     | a5d2ff | should be uniq for project |
+    | Bug     | red    | is invalid                 |
+    | Bug 1   | a5d2ff | is invalid                 |
 
   Scenario: Edit a category
     Given I am a contributor of "sgtran" project

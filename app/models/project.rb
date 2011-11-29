@@ -75,7 +75,7 @@ class Project < ActiveRecord::Base
   def uniqueness_of_project_name_by_owner
     return unless owner
     if owner.reload.own_projects.map(&:name).include?(name.try(:downcase))
-      errors.add(:owner_id, 'already has a project with the same name')
+      errors.add(:name, 'you already have a project with this name')
     end
   end
 end

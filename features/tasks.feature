@@ -28,7 +28,7 @@ Feature: Manipulate tasks
     When I follow "New Task"
     When I fill in "Title" with ""
     And I press "Save"
-    Then I should see "Title can't be blank"
+    Then I should see "can't be blank"
 
   Scenario: Tasks description should be rendered with Markdown syntax
     Given I am a contributor of "sgtran" project

@@ -17,7 +17,7 @@ Feature: Manipulate projects
     Given I am an authenticated contributor
     And I am on the new project page
     And I press "Save"
-    Then I should see "Name can't be blank"
+    Then I should see "can't be blank"
     And I should not have any project
 
   Scenario: Edit a project
