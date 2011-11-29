@@ -11,5 +11,11 @@ class Task < ActiveRecord::Base
   def author
     Contributor.find(author_id) if author_id
   end
+
+  private
+  def author=(contributor)
+    self.author_id = contributor.id
+    self.save
+  end
 end
 

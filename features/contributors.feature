@@ -30,11 +30,11 @@ Feature: Manipulate contributors
     | Someone | someone  |                   | can't be blank |
     | Someone | someone  | someone@nothing   | is invalid     |
 
+  @now
   Scenario: Edit a contributor
     Given I am contributor with password "123456" and email "test@test.com"
     And I am authenticated
-    And I am on my details page
-    When I follow "Edit"
+    And I am on my details edit page
     And I fill in "Username" with "hugomaiavieira"
     And I fill in "Current password" with "123456"
     And I press "Update"

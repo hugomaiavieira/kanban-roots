@@ -17,8 +17,8 @@ module NavigationHelpers
     when /the projects board page/
       project_board_path(@project)
 
-    when /my details page/
-      contributor_path(@contributor)
+    when /my details edit page/
+      edit_contributor_registration_path(@contributor)
 
     when /the new contributor page/
       new_contributor_registration_path

@@ -3,7 +3,6 @@ Feature: Manipulate tasks
   I want manipulate tasks
   In order to organize them
 
-  @now
   Scenario: Register task successfully
     Given I am a contributor of "sgtran" project
     And I am authenticated

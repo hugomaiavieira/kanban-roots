@@ -12,7 +12,7 @@ module HtmlSelectorsHelpers
       "html > body"
 
     when /my comment box/
-      'div.comment_wrapper'
+      'div.comment-wrapper'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

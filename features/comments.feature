@@ -23,7 +23,7 @@ Feature: Manipulate comments in tasks
     And I have a task of "sgtran" project
     And I write a comment for this task
     When I am on the task page
-    And I follow "Edit" within "div.comment_wrapper"
+    And I follow "Edit" within "div.comment-wrapper"
     And I fill in "Content" with "I'm editing this content"
     And I press "Save"
     Then I should be on the task page
@@ -44,7 +44,7 @@ Feature: Manipulate comments in tasks
     And I have a task of "sgtran" project
     And there is a comment for this task
     When I am on the task page
-    Then I should not see "Edit" within "div.comment_wrapper"
+    Then I should not see "Edit" within "div.comment-wrapper"
 
   Scenario: Comments should be rendered with Markdown syntax
     Given I am a contributor of "sgtran" project

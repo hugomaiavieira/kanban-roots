@@ -12,7 +12,7 @@ end
 
 Given /^I have a task of "([^"]*)" project$/ do |project_name|
   @project = Factory.create :project, :name => 'project_name'
-  @task = Factory.create :task, :project => @project
+  @task = Factory.create :task, :project => @project, :author => @contributor
 end
 
 Then /^"([^"]*)" should be a assignee of the task$/ do |name|
