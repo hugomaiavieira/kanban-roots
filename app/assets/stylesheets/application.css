@@ -35,6 +35,11 @@ body {
     margin-left: 140px;
 }
 
+.help-block > a {
+    color: #BFBFBF;
+    text-decoration: underline;
+}
+
 .container > .content {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     border-radius: 0 0 6px 6px;
@@ -69,15 +74,6 @@ ul.token-input-list-facebook {
     margin: 0 0 0 140px;
     border-radius: 3px 3px 0 0;
 }
-
-.markdown_note {
-    display: inline-block;
-    font-size: 12px;
-    margin: 0 0 18px 140px;
-    padding: 5px;
-    border: solid 1px #e6e6fa;
-}
-
 
 /* Code highlight */
 

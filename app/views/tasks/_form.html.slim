@@ -8,8 +8,9 @@
 
   = f.input :title, :input_html => { :autofocus => true, :class => 'span8' }
 
-  = f.input :description, :input_html => { :class => 'span8', :rows => 10 }
-  = markdown_note('Tasks').html_safe
+  = f.input :description, :input_html => { :class => 'span8', :rows => 10 }, \
+    :hint => markdown_note('Tasks').html_safe, \
+    :hint_html => {:class => 'help-block'}
 
   = f.input :points, :collection => Task::POINTS
 
