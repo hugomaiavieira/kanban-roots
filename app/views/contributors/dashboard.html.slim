@@ -1,13 +1,16 @@
 .page-header
   h1 Your projects
 
-ul
-  - current_contributor.projects.each do |project|
-    li
-      = link_to project.name, project_board_path(project)
-      br
-      = project.description
+- if current_contributor.projects.empty?
+  p You don't have projects yet. #{link_to 'Create your first project!', new_project_path}
+  br
+- else
+  ul
+    - current_contributor.projects.each do |project|
+      li
+        = link_to project.name, project_board_path(project)
+        br
+        = project.description
 
-p
-  = link_to 'New project', new_project_path, :class => 'btn primary'
+= link_to 'New project', new_project_path, :class => 'btn primary'
 

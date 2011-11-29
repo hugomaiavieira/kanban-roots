@@ -10,15 +10,18 @@ describe Contributor do
     lambda { project_1.reload }.should raise_error ActiveRecord::RecordNotFound
   end
 
-  it 'should return all projects, including his own and others the he contribute' do
+  it 'should return all projects, including his own and others the he contribute, ordered by update date' do
     hugo = Factory.create :contributor
     rodrigo = Factory.create :contributor
     my_project = Factory.create :project, :owner => hugo
     our_project = Factory.create :project, :owner => rodrigo, :contributors => [hugo]
     other_project = Factory.create :project, :owner => rodrigo
     hugo.reload
-    hugo.projects.should include(my_project, our_project)
     hugo.projects.should_not include(other_project)
+    hugo.projects.should == [our_project, my_project]
+    my_project.update_attribute(:name, 'Changed name')
+    hugo.reload
+    hugo.projects.should == [my_project, our_project]
   end
 
   context 'validates' do

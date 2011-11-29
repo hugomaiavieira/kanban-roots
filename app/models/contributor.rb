@@ -20,7 +20,7 @@ class Contributor < ActiveRecord::Base
   validates_format_of :username, :with => /^\w*$/
 
   def projects
-    own_projects + contributions
+    (own_projects + contributions).sort { |x, y| y[:updated_at] <=> x[:updated_at] }
   end
 
   protected

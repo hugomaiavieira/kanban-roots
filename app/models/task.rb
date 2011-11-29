@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :project, :touch => true # TODO: Test the touch
   belongs_to :category
   has_and_belongs_to_many :contributors, :join_table => :contributors_tasks
   has_many :comments, :dependent => :delete_all
