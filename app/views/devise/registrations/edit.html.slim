@@ -2,24 +2,20 @@
   h1 Edit #{resource_name.to_s.humanize}
 
 = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-  = devise_error_messages!
 
   = f.input :name, :input_html => { :autofocus => true }
 
-  = f.input :username, :hint => 'just letters, numbers and _', \
-    :hint_html => {:class => 'help-block'}
+  = f.input :username, :hint => 'just letters, numbers and _'
 
   = f.input :email
 
   = f.input :password, :as => :password, \
-    :hint => "leave blank if you don't want to change it", \
-    :hint_html => {:class => 'help-block'}
+    :hint => "leave blank if you don't want to change it"
 
   = f.input :password_confirmation, :as => :password
 
   = f.input :current_password, :as => :password, \
-    :hint => 'we need your current password to confirm your changes', \
-    :hint_html => {:class => 'help-block'}
+    :hint => 'we need your current password to confirm your changes'
 
   .actions
     = f.submit "Update", :class => 'btn primary'

@@ -1,14 +1,6 @@
 = simple_form_for [@project, @task, @comment] do |f|
-  -if @comment.errors.any?
-    #error_explanation
-      h2 #{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:
-      ul
-        - @comment.errors.full_messages.each do |msg|
-          li= msg
-
   = f.input :content, :input_html => { :autofocus => true, :class => 'span8', :rows => 10 }, \
-    :hint => markdown_note('Tasks').html_safe, \
-    :hint_html => {:class => 'help-block'}
+    :hint => markdown_note('Tasks').html_safe
 
   = hidden_field_tag "comment[contributor_id]", current_contributor.id
 
