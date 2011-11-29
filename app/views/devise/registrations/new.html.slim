@@ -1,28 +1,22 @@
-h2 Sign up
+.page-header
+  h1 Sign up
 
-= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = devise_error_messages!
 
-  .registrations
+  = f.input :name, :input_html => { :autofocus => true }
 
-    .field
-      = f.input :name, :input_html => { :autofocus => true }
+  = f.input :username, :hint => 'just letters, numbers and _', \
+    :hint_html => {:class => 'help-block'}
 
-    .field
-      = f.input :username
-      i (just letters, numbers and _)
+  = f.input :email, :label => 'E-mail'
 
-    .field
-      = f.input :email, :label => 'E-mail'
+  = f.input :password, :as => :password
 
-    .field
-      = f.input :password, :as => :password
+  = f.input :password_confirmation, :as => :password
 
-    .field
-      = f.input :password_confirmation, :as => :password
-
-    .actions
-      = f.submit "Sign up"
+  .actions
+    = f.submit "Sign up", :class => 'btn primary'
 
 = render :partial => "devise/shared/links"
 

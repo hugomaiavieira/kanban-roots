@@ -1,34 +1,30 @@
-h2
-  | Edit #{resource_name.to_s.humanize}
+.page-header
+  h1 Edit #{resource_name.to_s.humanize}
 
-= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
 
-  .registrations
 
-    .field
-      = f.input :name, :input_html => { :autofocus => true }
+  = f.input :name, :input_html => { :autofocus => true }
 
-    .field
-      = f.input :username
-      i (just letters, numbers and _)
+  = f.input :username, :hint => 'just letters, numbers and _', \
+    :hint_html => {:class => 'help-block'}
 
-    .field
-      = f.input :email
+  = f.input :email
 
-    .field
-      = f.input :password, :as => :password
-      i (leave blank if you don't want to change it)
+  = f.input :password, :as => :password, \
+    :hint => "leave blank if you don't want to change it", \
+    :hint_html => {:class => 'help-block'}
 
-    .field
-      = f.input :password_confirmation, :as => :password
+  = f.input :password_confirmation, :as => :password
 
-    .field
-      = f.input :current_password, :as => :password
-      i (we need your current password to confirm your changes)
+  = f.input :current_password, :as => :password, \
+    :hint => 'we need your current password to confirm your changes', \
+    :hint_html => {:class => 'help-block'}
 
-    .actions
-      = f.submit "Update"
+  .actions
+    = f.submit "Update", :class => 'btn primary'
+    = link_to 'Cancel', :back, :class => 'btn'
 
 h3 Cancel my account
 

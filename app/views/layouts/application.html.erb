@@ -16,7 +16,7 @@
             <h3><%= link_to 'Kanban-roots', root_path %></h3>
             <ul class="nav secondary-nav">
               <% if contributor_signed_in? %>
-                <li><%= link_to current_contributor.username, contributor_path(current_contributor) %></li>
+                <li><%= link_to current_contributor.username, edit_contributor_registration_path(current_contributor) %></li>
                 <li><%= link_to 'Dashboard', root_path %></li>
                 <li><%= link_to 'Sign out', destroy_contributor_session_path, :method => :delete %></li>
               <% else %>

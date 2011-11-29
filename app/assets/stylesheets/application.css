@@ -20,9 +20,6 @@ body {
     cursor: help;
 }
 
-#scores-btn {
-    float: right;
-}
 
 /* Twitter bootstrap overwrite */
 
@@ -32,6 +29,10 @@ body {
 
 .container {
     width: 1235px;
+}
+
+.help-block {
+    margin-left: 140px;
 }
 
 .container > .content {
@@ -47,6 +48,7 @@ body {
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
 select,
 textarea {
     margin-left: 10px !important;
@@ -56,6 +58,26 @@ textarea {
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 4px 4px 4px 4px;
 }
+
+/* Forms */
+
+#contributor_remember_me {
+    margin: 8px 0 0 10px;
+}
+
+ul.token-input-list-facebook {
+    margin: 0 0 0 140px;
+    border-radius: 3px 3px 0 0;
+}
+
+.markdown_note {
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 0 18px 140px;
+    padding: 5px;
+    border: solid 1px #e6e6fa;
+}
+
 
 /* Code highlight */
 
@@ -304,6 +326,10 @@ a.postit_options {
 
 /* Board score */
 
+#scores-btn {
+    float: right;
+}
+
 #score-modal {
     padding: 5px 20px;
 }
@@ -409,24 +435,5 @@ ul.legends li {
 
 .comment-wrapper .comments-menu {
     text-align: right;
-}
-
-/* Forms */
-
-#contributor_remember_me {
-    margin: 8px 0 0 10px;
-}
-
-ul.token-input-list-facebook {
-    margin: 0 0 0 140px;
-    border-radius: 3px 3px 0 0;
-}
-
-.markdown_note {
-    display: inline-block;
-    font-size: 12px;
-    margin: 0 0 18px 140px;
-    padding: 5px;
-    border: solid 1px #e6e6fa;
 }
 
