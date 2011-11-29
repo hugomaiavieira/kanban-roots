@@ -18,6 +18,14 @@
               <% if contributor_signed_in? %>
                 <li><%= link_to current_contributor.username, edit_contributor_registration_path(current_contributor) %></li>
                 <li><%= link_to 'Dashboard', root_path %></li>
+                <li class='dropdown' data-dropdown='dropdown'>
+                  <a href='#' class="dropdown-toggle">Projects</a>
+                  <ul class="dropdown-menu">
+                    <% current_contributor.projects.each do |project| %>
+                      <li><%= link_to project.name, project_board_path(project) %></li>
+                    <% end %>
+                  </ul>
+                </li>
                 <li><%= link_to 'Sign out', destroy_contributor_session_path, :method => :delete %></li>
               <% else %>
                 <li><%= link_to 'Sign up', new_contributor_registration_path %></li>
