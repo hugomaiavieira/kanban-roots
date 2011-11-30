@@ -35,6 +35,7 @@ describe Project do
     it 'validates uniqueness for contributor' do
       contributor = Factory.create :contributor
       Factory.create :project, :name => 'kanban-roots', :owner => contributor
+      contributor.reload
       expect {
         Factory.create :project, :name => 'kanban-roots', :owner => contributor
       }.to raise_error ActiveRecord::RecordInvalid
