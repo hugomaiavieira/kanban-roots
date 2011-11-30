@@ -14,6 +14,11 @@ gem 'nokogiri', '~>1.5' # Parse the html for markdown syntax highlighting
 gem 'jquery-rails', '~>1.0'
 gem 'ruby-json', '~>1.1'
 
+group :assets do
+  gem 'therubyracer' # JavaScript runtime. uglifier dependence
+  gem 'uglifier'
+end
+
 group :development, :test do
   gem 'sqlite3-ruby'
   gem 'factory_girl_rails', '~>1.1'
