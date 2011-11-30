@@ -21,7 +21,9 @@ highlighting. To install it, just run:
 ## Using on Heroku
 
 If you don't know [heroku](http://heroku.com) yet, just follow the
-[Geting Started with Heroku](http://docs.heroku.com/quickstart) guide.
+[Geting Started with Heroku](http://docs.heroku.com/quickstart) guide with one
+difference: instead of use `git push heroku master`, you will use the script
+_heroku-deploy.sh_.
 
 I [add a hack](https://github.com/hugomaiavieira/kanban-roots/commit/e008af61bdcce90f5ff0eb0e2edd359ac206f53c)
 for pygments work on Heroku, based on [this post](http://matthewboston.com/posts/3)

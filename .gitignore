@@ -6,4 +6,3 @@ tmp/**/*
 Capfile
 config/deploy.rb
 .sass-cache/
-kanban-heroku-deploy.sh
