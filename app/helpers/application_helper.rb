@@ -1,4 +1,13 @@
 module ApplicationHelper
+  # TODO: Test it!
+  def li_link_to label, path
+    if request.fullpath == path
+      return "<li class='active'>#{link_to(label, path)}</li>".html_safe
+    else
+      return "<li>#{link_to(label, path)}</li>".html_safe
+    end
+  end
+
   def markdown_note(item)
     "Note: #{item} are rendered using
      <a href='http://github.github.com/github-flavored-markdown/'>

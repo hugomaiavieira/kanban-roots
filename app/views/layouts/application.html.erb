@@ -16,31 +16,31 @@
             <h3><%= link_to 'Kanban-roots', root_path %></h3>
             <ul class="nav secondary-nav">
               <% if contributor_signed_in? %>
-                <li><%= link_to current_contributor.username, edit_contributor_registration_path(current_contributor) %></li>
-                <li><%= link_to 'Dashboard', root_path %></li>
+                <%= li_link_to current_contributor.username, edit_contributor_registration_path(current_contributor) %>
+                <%= li_link_to 'Dashboard', root_path %>
                 <li class='dropdown' data-dropdown='dropdown'>
                   <a href='#' class="dropdown-toggle">Projects</a>
                   <ul class="dropdown-menu">
                     <% projects = current_contributor.projects %>
                     <% if projects.count <= 10 %>
                       <% projects.each do |project| %>
-                        <li><%= link_to project.name, project_board_path(project) %></li>
+                        <%= li_link_to project.name, project_board_path(project) %>
                       <% end %>
                     <% else %>
                       <% projects[0..9].each do |project| %>
-                        <li><%= link_to project.name, project_board_path(project) %></li>
+                        <%= li_link_to project.name, project_board_path(project) %>
                       <% end %>
                       <li class="divider"></li>
-                      <li><%= link_to 'All projects...', root_path %></li>
+                      <%= li_link_to 'All projects...', root_path %>
                     <% end %>
                     <li class="divider"></li>
-                    <li><%= link_to 'New project', new_project_path %></li>
+                    <%= li_link_to 'New project', new_project_path %>
                   </ul>
                 </li>
                 <li><%= link_to 'Sign out', destroy_contributor_session_path, :method => :delete %></li>
               <% else %>
-                <li><%= link_to 'Sign up', new_contributor_registration_path %></li>
-                <li><%= link_to 'Sign in', new_contributor_session_path %></li>
+                <%= li_link_to 'Sign up', new_contributor_registration_path %>
+                <%= li_link_to 'Sign in', new_contributor_session_path %>
               <% end %>
             </ul>
           </div>
@@ -60,11 +60,11 @@
         <%- end -%>
         <% if @project and @project.id %>
           <ul class="pills">
-            <li><%= link_to 'Board', project_board_path(@project) %></li>
-            <li><%= link_to 'New Task', new_project_task_path(@project) %></li>
-            <li><%= link_to 'List Tasks', project_tasks_path(@project) %></li>
-            <li><%= link_to 'Admin', edit_project_path(@project) %></li>
-            <li><%= link_to 'Manage Categories', project_categories_path(@project) %></li>
+            <%= li_link_to 'Board', project_board_path(@project) %>
+            <%= li_link_to 'New Task', new_project_task_path(@project) %>
+            <%= li_link_to 'List Tasks', project_tasks_path(@project) %>
+            <%= li_link_to 'Admin', edit_project_path(@project) %>
+            <%= li_link_to 'Manage Categories', project_categories_path(@project) %>
             <%= yield :project_nav %>
           </ul>
         <% end %>
