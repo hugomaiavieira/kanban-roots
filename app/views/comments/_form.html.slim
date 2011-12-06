@@ -1,9 +1,9 @@
 = simple_form_for [@project, @task, @comment] do |f|
-  = f.input :content, :input_html => { :autofocus => true, :class => 'span8', :rows => 10 }, \
+  = f.input :content, :label => 'Add comment', :input_html => { :class => 'span8', :rows => 10 }, \
     :hint => markdown_note('Tasks').html_safe
 
   = hidden_field_tag "comment[contributor_id]", current_contributor.id
 
   .actions
-    = f.submit 'Save', :class => 'btn primary'
+    = f.submit 'Comment', :class => 'btn primary'
 

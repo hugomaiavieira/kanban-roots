@@ -8,9 +8,8 @@ Feature: Manipulate comments in tasks
     And I am authenticated
     And I have a task of "sgtran" project
     When I am on the task page
-    And I follow "Add comment"
-    And I fill in "Content" with "Some content here"
-    And I press "Save"
+    And I fill in "Add comment" with "Some content here"
+    And I press "Comment"
     Then I should be on the task page
     And I should see "Some content here"
     And I should see "Comment was successfully created."
@@ -24,8 +23,8 @@ Feature: Manipulate comments in tasks
     And I write a comment for this task
     When I am on the task page
     And I follow "Edit" within "div.comment-wrapper"
-    And I fill in "Content" with "I'm editing this content"
-    And I press "Save"
+    And I fill in "Add comment" with "I'm editing this content"
+    And I press "Comment"
     Then I should be on the task page
     And I should see "I'm editing this content"
     And I should see "Comment was successfully updated."
@@ -51,9 +50,8 @@ Feature: Manipulate comments in tasks
     And I am authenticated
     And I have a task of "sgtran" project
     When I am on the task page
-    And I follow "Add comment"
-    And I fill in "Content" with "# Some content here [link](http://exemplo.com)"
-    And I press "Save"
+    And I fill in "Add comment" with "# Some content here [link](http://exemplo.com)"
+    And I press "Comment"
     And I should see "Some content here" in a "h1" tag
     And I should see "link" in an "a" tag
 

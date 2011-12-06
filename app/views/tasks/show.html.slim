@@ -44,12 +44,13 @@
       - else
         | Out of the board
 
-= render '/comments/list'
-
 = link_to 'Edit', edit_project_task_path(@project, @task), :class => 'btn primary'
 = link_to 'Destroy', project_task_path(@project, @task), \
                     :class => 'btn danger', \
                     :confirm => 'Are you sure?', \
                     :method => :delete
-= link_to 'Add comment', new_project_task_comment_path(@project, @task), :class => 'btn'
+
+= render '/comments/list'
+hr
+= render '/comments/form'
 

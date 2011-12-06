@@ -3,6 +3,13 @@ class TasksController < InheritedResources::Base
 
   belongs_to :project
 
+  def show
+    show! do
+      @project = @task.project
+      @comment = Comment.new
+    end
+  end
+
   def new
     new! { @categories = Category.where(:project_id => @project.id) }
   end

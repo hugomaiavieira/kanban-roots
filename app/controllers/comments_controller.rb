@@ -1,5 +1,5 @@
 class CommentsController < InheritedResources::Base
-  actions :all, :except => [ :show ]
+  actions :all, :except => [ :show, :new ]
 
   before_filter :authenticate_contributor!
   belongs_to :task
@@ -11,10 +11,6 @@ class CommentsController < InheritedResources::Base
       end
       @project = @task.project
     }
-  end
-
-  def new
-    new! { @project = @task.project }
   end
 
   def create

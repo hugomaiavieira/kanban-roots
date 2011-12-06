@@ -6,7 +6,7 @@ KanbanRoots::Application.routes.draw do
 
   resources :projects, :path_names => { :edit => 'admin' }, :except => [:index, :show] do
     resources :tasks, :path_names => { :edit => 'edit' } do
-      resources :comments, :except => :show
+      resources :comments, :except => [:show, :new]
     end
     resources :categories, :path_names => { :edit => 'edit' }, :except => :show
   end
