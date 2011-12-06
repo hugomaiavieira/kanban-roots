@@ -418,6 +418,10 @@ ul.legends li {
     margin: 0;
 }
 
+.task-actions {
+    margin-top: 20px;
+}
+
 /* Comments */
 
 .comment-wrapper {
