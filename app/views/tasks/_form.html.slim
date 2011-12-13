@@ -2,7 +2,7 @@
 
   = f.input :title, :input_html => { :autofocus => true, :class => 'span8' }
 
-  = f.input :description, :input_html => { :class => 'span8', :rows => 10 }, \
+  = f.input :description, :input_html => { :class => 'span8 monospace', :rows => 10 }, \
     :hint => markdown_note('Tasks').html_safe
 
   = f.input :points, :collection => Task::POINTS
