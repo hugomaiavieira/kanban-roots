@@ -8,7 +8,7 @@ A kanban board that keep the simplicity as well as the roots of the concept.
 
 _Obs.:_ the database of this example is regularly cleaned up.
 
-![kanban-roots board print](http://cloud.github.com/downloads/hugomaiavieira/kanban-roots/kanban-roots.png "kanban-roots board print")
+![kanban-roots board print](http://github.com/downloads/hugomaiavieira/kanban-roots/kanban-roots.png "kanban-roots board print")
 
 ## System dependencies
 
