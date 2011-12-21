@@ -6,7 +6,7 @@ A kanban board that keep the simplicity as well as the roots of the concept.
 
 [http://kanban-roots.heroku.com](http://kanban-roots.heroku.com)
 
-_Obs.:_ the database of this example is regularly cleaned up.
+**Obs.:** the database of this example is regularly cleaned up.
 
 ![kanban-roots board print](http://github.com/downloads/hugomaiavieira/kanban-roots/kanban-roots.png "kanban-roots board print")
 
@@ -14,7 +14,8 @@ _Obs.:_ the database of this example is regularly cleaned up.
 
 ### pygments
 
-The [pygments](http://pygments.org/) is a python package used on markdown syntax
+The [pygments](http://pygments.org/) is a python package used on 
+[markdown](http://daringfireball.net/projects/markdown/) syntax
 highlighting. To install it, just run:
 
     $ (sudo) easy_install pygments
