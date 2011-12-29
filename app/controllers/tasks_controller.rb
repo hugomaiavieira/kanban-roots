@@ -11,11 +11,11 @@ class TasksController < InheritedResources::Base
   end
 
   def new
-    new! { @categories = Category.where(:project_id => @project.id) }
+    new! { @categories = Category.where(:project_id => @project.id).order('NAME ASC') }
   end
 
   def edit
-    edit! { @categories = Category.where(:project_id => @project.id) }
+    edit! { @categories = Category.where(:project_id => @project.id).order('NAME ASC') }
   end
 
   def create
