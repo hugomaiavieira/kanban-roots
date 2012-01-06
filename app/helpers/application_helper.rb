@@ -20,7 +20,7 @@ module ApplicationHelper
     options.reverse_merge!(:size => 24, :class => '')
     if Rails.env.production?
       gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-      url = "http://gravatar.com/avatar/#{gravatar_id}.png?d=mm&s=#{options[:size]}"
+      url = "http://gravatar.com/avatar/#{gravatar_id}?d=mm&s=#{options[:size]}"
       image_tag(url,
                 :class => "avatar #{options[:class]}",
                 :height => options[:size],
