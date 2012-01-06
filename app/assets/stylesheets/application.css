@@ -85,6 +85,10 @@ textarea {
     border-radius: 4px 4px 4px 4px;
 }
 
+blockquote p {
+    font-size: inherit !important;
+}
+
 /* Forms */
 
 #contributor_remember_me {
