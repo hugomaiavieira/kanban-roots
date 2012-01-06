@@ -1,13 +1,42 @@
 - if !@task.comments.empty?
   hr
   - @task.comments.each do |comment|
-    strong #{comment.contributor.name}:
-    .comment-wrapper
-      = markdown(comment.content)
-      - if comment.contributor == current_contributor
-        .comments-menu
-          = link_to 'Edit', edit_project_task_comment_path(@project, @task, comment), :class => 'btn primary small'
-          = link_to 'Destroy', project_task_comment_path(@project, @task, comment), \
-                              :class => 'btn danger small', \
-                              :confirm => 'Are you sure?', :method => :delete
+    .comment-container
+      = gravatar_image_tag(comment.contributor, :size => 48, :class => 'comment-avatar')
 
+      .comment-wrapper
+        .comment-info.clear-inline
+          p.comment-authour
+            strong
+              ' #{comment.contributor.name}
+            ' commented
+          p.comment-date #{comment.contributor.updated_at.strftime '%d-%m-%Y'}
+
+        .comment-body
+          = markdown(comment.content)
+          - if comment.contributor == current_contributor
+            .comment-menu
+              = link_to 'Edit', edit_project_task_comment_path(@project, @task, comment), :class => 'btn primary small'
+              = link_to 'Destroy', project_task_comment_path(@project, @task, comment), \
+                                  :class => 'btn danger small', \
+                                  :confirm => 'Are you sure?', :method => :delete
+
+.comment-container
+  = gravatar_image_tag(current_contributor, :size => 48, :class => 'comment-avatar')
+
+  .comment-wrapper
+    .comment-info.clear-inline
+      p.comment-authour
+        strong Comment on this task
+      p.comment-date
+        = markdown_note('Tasks').html_safe
+
+
+    = simple_form_for [@project, @task, @comment] do |f|
+      .comment-body
+        = f.input :content, :label => false, :input_html => { :class => 'monospace', :rows => 10 }
+
+        = hidden_field_tag "comment[contributor_id]", current_contributor.id
+
+        .comment-menu
+          = f.submit 'Comment', :class => 'btn primary'

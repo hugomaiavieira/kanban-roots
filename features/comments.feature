@@ -8,7 +8,7 @@ Feature: Manipulate comments in tasks
     And I am authenticated
     And I have a task of "sgtran" project
     When I am on the task page
-    And I fill in "Add comment" with "Some content here"
+    And I fill in "comment_content" with "Some content here"
     And I press "Comment"
     Then I should be on the task page
     And I should see "Some content here"
@@ -50,7 +50,7 @@ Feature: Manipulate comments in tasks
     And I am authenticated
     And I have a task of "sgtran" project
     When I am on the task page
-    And I fill in "Add comment" with "# Some content here [link](http://exemplo.com)"
+    And I fill in "comment_content" with "# Some content here [link](http://exemplo.com)"
     And I press "Comment"
     And I should see "Some content here" in a "h1" tag
     And I should see "link" in an "a" tag

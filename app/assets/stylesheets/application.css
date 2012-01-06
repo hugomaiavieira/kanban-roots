@@ -21,6 +21,14 @@ code {
     clear: both;
 }
 
+.clear-inline:after {
+    content: ".";
+    height: 0;
+    visibility: hidden;
+    display: inline;
+    clear: both;
+}
+
 .help_cursor {
     cursor: help;
 }
@@ -28,6 +36,10 @@ code {
 textarea.monospace {
     font-family: monospace;
     font-size: 12px;
+}
+
+.avatar {
+    border-radius: 3px;
 }
 
 /* Twitter bootstrap overwrite */
@@ -432,15 +444,52 @@ ul.legends li {
 /* Comments */
 
 .comment-wrapper {
-    margin: 5px 20px 20px 20px;
-    padding: 10px;
-    width: 700px;
+    margin: 5px 20px 20px 60px;
+    width: 750px;
     border: solid 1px #e6e6fa;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-.comment-wrapper .comments-menu {
-    text-align: right;
+.comment-info {
+    color: white;
+    background-color: #339D79;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    padding: 5px 8px;
+    border-radius: 2px 2px 0 0;
 }
 
+.comment-date {
+    float: right;
+}
+
+.comment-date a {
+    color: white;
+    text-decoration: underline;
+}
+
+.comment-authour {
+    float: left;
+}
+
+.comment-body {
+    padding: 10px 10px 0 10px;
+}
+
+.comment-body textarea {
+    width: 99%;
+    margin: 0 !important;
+}
+
+.comment-wrapper form {
+    margin: 0;
+}
+
+.comment-menu {
+    text-align: right;
+    padding-bottom: 10px;
+}
+
+.comment-avatar {
+    float: left;
+}
