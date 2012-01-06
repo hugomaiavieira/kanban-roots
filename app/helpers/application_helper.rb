@@ -15,6 +15,24 @@ module ApplicationHelper
      </a>"
   end
 
+  # TODO: Test it!
+  def gravatar_image_tag(user, options={})
+    options.reverse_merge!(:size => 24, :class => '')
+    if Rails.env.production?
+      gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+      url = "http://gravatar.com/avatar/#{gravatar_id}.png?d=mm&s=#{options[:size]}"
+      image_tag(url,
+                :class => "avatar #{options[:class]}",
+                :height => options[:size],
+                :width => options[:size]).html_safe
+    else
+      image_tag('gravatar.png',
+                :class => "avatar #{options[:class]}",
+                :height => options[:size],
+                :width => options[:size]).html_safe
+    end
+  end
+
   # This make the haml markdown filter protected against javascript injection
   # attacks and add some other processing options to markdown.
   def markdown(text)
