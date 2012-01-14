@@ -35,4 +35,4 @@ group :development, :test do
 end
 
 gem 'rails3-generators', :group => :development
-
+gem 'pry', :group => :development
