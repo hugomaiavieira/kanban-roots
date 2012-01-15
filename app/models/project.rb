@@ -46,7 +46,7 @@ class Project < ActiveRecord::Base
   end
 
   def tasks_by_position position
-    tasks.select {|item| item.position == position }
+    tasks.select { |item| item.position.to_s == position.to_s }
   end
 
   def clean_up_done_tasks

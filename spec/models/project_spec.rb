@@ -47,13 +47,20 @@ describe Project do
     end
   end
 
-  it 'should return all contributors, including owner and other contributors' do
-    hugo = Factory.create :contributor
-    rodrigo = Factory.create :contributor
-    dudu = Factory.create :contributor
-    project = Factory.create :project, :owner => hugo, :contributors => [rodrigo]
-    project.all_contributors.should include(hugo, rodrigo)
-    project.all_contributors.should_not include(dudu)
+  context 'should return all contributors when' do
+    it 'has only the owner' do
+      hugo = Factory.create :contributor
+      project = Factory.create :project, :owner => hugo
+      project.all_contributors.should include(hugo)
+    end
+
+    it 'has the owner and other contributor' do
+      hugo = Factory.create :contributor
+      rodrigo = Factory.create :contributor
+      project = Factory.create :project, :owner => hugo, :contributors => [rodrigo]
+      project.all_contributors.should include(hugo, rodrigo)
+      project.all_contributors.should have(2).contributors
+    end
   end
 
   it 'should return a json with its contributors id and name' do
