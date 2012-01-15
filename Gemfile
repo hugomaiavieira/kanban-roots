@@ -34,5 +34,8 @@ group :development, :test do
   gem 'spork', '~> 0.9.0.rc' # See: http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
 end
 
-gem 'rails3-generators', :group => :development
-gem 'pry', :group => :development
+group :development do
+  gem 'rails3-generators'
+  gem 'pry'
+  gem 'pry-doc'
+end
