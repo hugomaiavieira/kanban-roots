@@ -55,4 +55,3 @@ Feature: Manipulate categories
     When I am on the "sgtran" categories page
     And I follow "Destroy" and press ok at the pop-up
     And "sgtran" project should have "0" categories
-

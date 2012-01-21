@@ -28,3 +28,21 @@ feature 'Show (or not) destroy and edit links of a comment' do
   end
 end
 
+# This tests the same thing as one test at comments.feature. After my monography
+# I will delete features/*
+feature "Render comments with Markdown syntax" do
+  background do
+    @owner = Factory.create :contributor
+    @project = Factory.create :project
+    @task = Factory.create :task, :project => @project, :author => @owner
+  end
+
+  scenario "on tasks page" do
+    login(@owner.email, @owner.password)
+    visit project_task_path(@project, @task)
+    fill_in "comment_content", :with => "# Some content [link](http://exemplo.com)"
+    click_button "Comment"
+    page.should have_xpath("//h1", :text => "Some content")
+    page.should have_xpath("//a", :text => "link")
+  end
+end

@@ -45,14 +45,14 @@ Feature: Manipulate comments in tasks
     When I am on the task page
     Then I should not see "Edit" within "div.comment-wrapper"
 
-  Scenario: Comments should be rendered with Markdown syntax
+  Scenario: Comments should be rendered with Markdown syntax on the tasks page
     Given I am a contributor of "sgtran" project
     And I am authenticated
     And I have a task of "sgtran" project
     When I am on the task page
-    And I fill in "comment_content" with "# Some content here [link](http://exemplo.com)"
+    And I fill in "comment_content" with "# Some content [link](http://exemplo.com)"
     And I press "Comment"
-    And I should see "Some content here" in a "h1" tag
+    Then I should see "Some content" in a "h1" tag
     And I should see "link" in an "a" tag
 
   @javascript
