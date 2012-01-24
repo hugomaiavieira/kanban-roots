@@ -13,13 +13,13 @@
           p.comment-date #{comment.contributor.updated_at.strftime '%d-%m-%Y'}
 
         .comment-body
-          = markdown(comment.content)
           - if comment.contributor == current_contributor
             .comment-menu
               = link_to 'Edit', edit_project_task_comment_path(@project, @task, comment), :class => 'btn primary small'
               = link_to 'Destroy', project_task_comment_path(@project, @task, comment), \
                                   :class => 'btn danger small', \
                                   :confirm => 'Are you sure?', :method => :delete
+          = markdown(comment.content)
 
 .comment-container
   = gravatar_image_tag(current_contributor, :size => 48, :class => 'comment-avatar')
@@ -38,5 +38,5 @@
 
         = hidden_field_tag "comment[contributor_id]", current_contributor.id
 
-        .comment-menu
+        .new-comment-menu
           = f.submit 'Comment', :class => 'btn primary'

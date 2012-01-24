@@ -489,9 +489,17 @@ ul.legends li {
     margin: 0;
 }
 
-.comment-menu {
+.new-comment-menu {
     text-align: right;
     padding-bottom: 10px;
+}
+
+.comment-menu {
+    float: right;
+}
+
+.comment-menu .btn.small {
+    padding: 2px 5px;
 }
 
 .comment-avatar {
