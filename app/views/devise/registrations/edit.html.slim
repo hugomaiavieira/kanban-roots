@@ -7,14 +7,14 @@
 
   = f.input :username, :hint => 'just letters, numbers and _'
 
-  = f.input :email
+  = f.input :email, :required => true
 
   = f.input :password, :as => :password, \
     :hint => "leave blank if you don't want to change it"
 
   = f.input :password_confirmation, :as => :password
 
-  = f.input :current_password, :as => :password, \
+  = f.input :current_password, :as => :password, :required => true, \
     :hint => 'we need your current password to confirm your changes'
 
   .actions
