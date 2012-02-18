@@ -8,7 +8,7 @@ gem 'simple_form',  '~>1.5'
 gem 'inherited_resources', '~>1.2'
 gem 'escape_utils', '~>0.2'
 gem 'devise', '~>2.0'
-gem 'redcarpet', '~>1.17' # Markdown
+gem 'redcarpet', '~>2.1' # Markdown
 gem 'albino', '~>1.3' # Markdown syntax highlighting
 gem 'nokogiri', '~>1.5' # Parse the html for markdown syntax highlighting
 gem 'jquery-rails', '~>2.0'
