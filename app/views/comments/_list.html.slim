@@ -10,7 +10,7 @@
             strong
               ' #{comment.contributor.name}
             ' commented
-          p.comment-date #{comment.contributor.updated_at.strftime '%d-%m-%Y'}
+          p.comment-date #{comment.updated_at.strftime '%d-%m-%Y'}
 
         .comment-body
           - if comment.contributor == current_contributor
