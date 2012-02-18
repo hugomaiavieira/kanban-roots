@@ -3,23 +3,23 @@ class CreateContributors < ActiveRecord::Migration
     create_table(:contributors) do |t|
       t.string :name
       t.string :username
-      t.database_authenticatable :null => false
-      t.recoverable
-      t.rememberable
 
-      # t.trackable
-      # t.confirmable
-      # t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
-      # t.token_authenticatable
+      ## Devise: Database authenticatable
+      t.string :email,              :null => false, :default => ""
+      t.string :encrypted_password, :null => false, :default => ""
 
+      ## Devise: Recoverable
+      t.string   :reset_password_token
+      t.datetime :reset_password_sent_at
+
+      ## Devise: Rememberable
+      t.datetime :remember_created_at
 
       t.timestamps
     end
 
     add_index :contributors, :email,                :unique => true
     add_index :contributors, :reset_password_token, :unique => true
-    # add_index :contributors, :confirmation_token,   :unique => true
-    # add_index :contributors, :unlock_token,         :unique => true
   end
 
   def self.down
