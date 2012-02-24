@@ -7,10 +7,10 @@ end
 Given /^I am(?:| an) authenticated(?:| contributor)$/ do
   @contributor ||= Factory.create :contributor
 
-  Given %{I am on the sign in page}
-  And %{I fill in "contributor_login" with "#{@contributor.email}"}
-  And %{I fill in "contributor_password" with "#{@contributor.password}"}
-  And %{I press "Sign in"}
+  step %{I am on the sign in page}
+  step %{I fill in "contributor_login" with "#{@contributor.email}"}
+  step %{I fill in "contributor_password" with "#{@contributor.password}"}
+  step %{I press "Sign in"}
 end
 
 Given /^I am a contributor of "([^"]*)" project$/ do |name|
@@ -39,4 +39,3 @@ Given /^"([^"]*)" is a contributor of the project$/ do |name|
   @project.contributors << contributor
   @project.save
 end
-
