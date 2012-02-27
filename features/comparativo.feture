@@ -1,0 +1,167 @@
+Feature: Manipulate comments in tasks
+  As a user
+  I want manipulate comments in tasks
+  In order to help other assignees in their job
+
+  Scenario: Comments should be rendered with Markdown syntax on the tasks page
+    Given I am a contributor of "sgtran" project
+    And I am authenticated
+    And I have a task of "sgtran" project
+    When I am on the task page
+    And I fill in "comment_content" with "# Some content [link](http://exemplo.com)"
+    And I press "Comment"
+    Then I should see "Some content" in a "h1" tag
+    And I should see "link" in an "a" tag
+
+  Scenario: Sign out
+    Given I am an authenticated contributor
+    And I am on the dashboard
+    When I follow "Sign out"
+    Then I should see "Sign in"
+
+  Scenario: Register new project
+    Given I am an authenticated contributor
+    And I am on the new project page
+    When I fill in "Name" with "name-1"
+    And I fill in "Description" with "description 1"
+    And I press "Save"
+    Then I should be the project's owner
+    And I should be on the projects board page
+    And I should see "name-1 Board"
+
+  Scenario: Try to register projects with erros
+    Given I am an authenticated contributor
+    And I am on the new project page
+    And I press "Save"
+    Then I should see "can't be blank"
+    And I should not have any project
+
+  Scenario: Edit a project
+    Given I am an authenticated contributor
+    And I have a project
+    When I am on the project edit page
+    And I fill in "Name" with "Some_name"
+    And I fill in "Description" with "Any description"
+    And I press "Save"
+    Then I should be on the projects board page
+    And I should see "some_name Board"
+
+  Scenario: Delete project
+    Given I am an authenticated contributor
+    And the following projects:
+      | name   | description   |
+      | name_1 | description 1 |
+      | name_2 | description 2 |
+      | name_3 | description 3 |
+      | name_4 | description 4 |
+    When I delete the 3rd project
+    And I am on the dashboard page
+    Then I should see "name_1"
+    And I should see "name_2"
+    And I should see "name_4"
+    And I should not see "name_3"
+
+  Scenario: Register a category successfully
+    Given I am a contributor of "sgtran" project
+    And I am authenticated
+    And I am on the "sgtran" categories page
+    When I follow "New Category"
+    And I fill in "Name" with "Feature"
+    And I fill in "Color" with "ffa5a5"
+    And I press "Save"
+    Then I should see "Category was successfully created."
+    And I should see "Feature"
+    And I should see "ffa5a5"
+    And "sgtran" project should have "1" category
+
+  Scenario Outline: Try to register categories with errors
+    Given I am a contributor of "sgtran" project
+    And I am authenticated
+    And I am on the "sgtran" categories page
+    And I have a category with name "Bug" and color "ffa5a5"
+    When I follow "New Category"
+    And I fill in "Name" with "<name>"
+    And I fill in "Color" with "<color>"
+    And I press "Save"
+    Then I should see "<sentence>"
+    And "sgtran" project should have "1" category
+
+    Examples:
+    | name    | color  | sentence                   |
+    |         | a5d2ff | can't be blank             |
+    | Feature |        | can't be blank             |
+    | Feature | ffa5a5 | should be uniq for project |
+    | Bug     | a5d2ff | should be uniq for project |
+    | Bug     | red    | is invalid                 |
+    | Bug 1   | a5d2ff | is invalid                 |
+
+  Scenario: Edit a category
+    Given I am a contributor of "sgtran" project
+    And I am authenticated
+    And I have a category with name "Feature" and color "ffa5a5"
+    When I am on the category edit page
+    And I fill in "Name" with "New feature"
+    And I press "Save"
+    Then I should see "New feature"
+    And I should see "Category was successfully updated."
+
+#  @javascript
+#  Scenario: Destroy category
+#    Given I am a contributor of "sgtran" project
+#    And I am authenticated
+#    And I have a category with name "Feature" and color "ffa5a5"
+#    When I am on the "sgtran" categories page
+#    And I follow "Destroy" and press ok at the pop-up
+#    And "sgtran" project should have "0" categories
+
+  Scenario: Register contributors successfully
+    Given I am on the new contributor page
+    When I fill in "Name" with "Someone of Nothing"
+    And I fill in "Username" with "someone"
+    And I fill in "E-mail" with "someone@gmail.com"
+    And I fill in "Password" with "password"
+    And I fill in "Password confirmation" with "password"
+    And I press "Sign up"
+    Then I should see "You have signed up successfully."
+
+  Scenario Outline: Try to register contributors with errors
+    Given I am on the new contributor page
+    When I fill in "Name" with "<name>"
+    And I fill in "Username" with "<username>"
+    And I fill in "E-mail" with "<e-mail>"
+    And I fill in "Password" with "password"
+    And I fill in "Password confirmation" with "password"
+    And I press "Sign up"
+    Then I should see "<sentence>"
+
+    Examples:
+    | name    | username | e-mail            | sentence       |
+    |         | someone  | someone@gmail.com | can't be blank |
+    | Someone |          | someone@gmail.com | can't be blank |
+    | Someone | someone  |                   | can't be blank |
+    | Someone | someone  | someone@nothing   | is invalid     |
+
+  Scenario: Edit a contributor
+    Given I am contributor with password "123456" and email "test@test.com"
+    And I am authenticated
+    And I am on my details edit page
+    And I fill in "Username" with "hugomaiavieira"
+    And I fill in "Current password" with "123456"
+    And I press "Save"
+    Then I should see "hugomaiavieira"
+
+  Scenario: Sign in with username successfully
+    Given I am contributor with password "123456" and username "someone"
+    Given I am on the sign in page
+    When I fill in "Login" with "someone"
+    And I fill in "Password" with "123456"
+    And I press "Sign in"
+    Then I should see "Signed in successfully."
+
+  Scenario: Sign in with email successfully
+    Given I am contributor with password "123456" and email "someone@example.com"
+    Given I am on the sign in page
+    When I fill in "Login" with "someone@example.com"
+    And I fill in "Password" with "123456"
+    And I press "Sign in"
+    Then I should see "Signed in successfully."
