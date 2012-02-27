@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Category do
-  before(:each) do
-    @project = Factory.create :project
-  end
-
   it { should_not have_valid(:project_id).when(nil, '') }
 
   it 'should validate format of name' do
@@ -19,18 +15,22 @@ describe Category do
   end
 
   it 'should validate uniqueness of name for project' do
-    saved = Factory.create :category, :project => @project, :name => 'Feature'
+    project = Factory.create :project
 
-    category = Factory.build :category, :project => @project, :name => 'Feature'
+    saved = Factory.create :category, :project => project, :name => 'Feature'
+
+    category = Factory.build :category, :project => project, :name => 'Feature'
     category.save.should be_false
     category.errors[:name].should include 'should be uniq for project'
   end
 
   it 'should validate uniqueness of color for project' do
-    saved = Factory.create :category, :project => @project, :color => 'ffa5a5'
+    project = Factory.create :project
+
+    saved = Factory.create :category, :project => project, :color => 'ffa5a5'
     saved.update_attributes!(:color => 'ffa5a5').should be_true
 
-    category = Factory.build :category, :project => @project, :color => 'ffa5a5'
+    category = Factory.build :category, :project => project, :color => 'ffa5a5'
     category.save.should be_false
     category.errors[:color].should include 'should be uniq for project'
   end
@@ -49,4 +49,3 @@ describe Category do
     category.to_class.should == 'study_research'
   end
 end
-
