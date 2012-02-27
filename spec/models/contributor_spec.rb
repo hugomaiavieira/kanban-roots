@@ -3,11 +3,11 @@ require 'spec_helper'
 describe Contributor do
   it "remove all contributors' projects own" do
     contributor = Factory.create :contributor
-    project_1 = Factory.create :project, :owner => contributor
-    project_2 = Factory.create :project, :owner => contributor
+    project_a = Factory.create :project, :owner => contributor
+    project_b = Factory.create :project, :owner => contributor
     contributor.reload.destroy
-    lambda { project_2.reload }.should raise_error ActiveRecord::RecordNotFound
-    lambda { project_1.reload }.should raise_error ActiveRecord::RecordNotFound
+    expect { project_a.reload }.to raise_error ActiveRecord::RecordNotFound
+    expect { project_b.reload }.to raise_error ActiveRecord::RecordNotFound
   end
 
   it 'should return all projects, including his own and others the he contribute, ordered by update date' do
@@ -16,12 +16,12 @@ describe Contributor do
     my_project = Factory.create :project, :owner => hugo
     our_project = Factory.create :project, :owner => rodrigo, :contributors => [hugo]
     other_project = Factory.create :project, :owner => rodrigo
-    hugo.reload
-    hugo.projects.should_not include(other_project)
+
+    hugo.reload.projects.should_not include(other_project)
     hugo.projects.should == [our_project, my_project]
+
     my_project.update_attribute(:name, 'Changed name')
-    hugo.reload
-    hugo.projects.should == [my_project, our_project]
+    hugo.reload.projects.should == [my_project, our_project]
   end
 
   context 'validates' do
@@ -34,8 +34,7 @@ describe Contributor do
 
     it "e-mail" do
       should have_valid(:email).when('hugo@gmail.com')
-      should_not have_valid(:email).when('hugo@gmail.c', 'hugo@gmail', 'hugo@',
-                                         '', nil)
+      should_not have_valid(:email).when('hugo@gmail.c', 'hugo@gmail', 'hugo@', '', nil)
     end
 
     it "username" do
@@ -44,4 +43,3 @@ describe Contributor do
     end
   end
 end
-
