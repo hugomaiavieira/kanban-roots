@@ -23,7 +23,7 @@ describe Task do
     task.destroy
 
     5.times do |i|
-      lambda { comments[i].reload }.should raise_error(ActiveRecord::RecordNotFound)
+      expect { comments[i].reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 
@@ -34,4 +34,3 @@ describe Task do
     task.author.should == contributor
   end
 end
-
