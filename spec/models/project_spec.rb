@@ -52,6 +52,7 @@ describe Project do
       hugo = Factory.create :contributor
       project = Factory.create :project, :owner => hugo
       project.all_contributors.should include(hugo)
+      project.all_contributors.should have(1).contributor
     end
 
     it 'has the owner and other contributor' do
@@ -210,11 +211,10 @@ describe Project do
     comment = Factory.create :comment, :task => task
     category = Factory.create :category, :project => project
 
-    project.destroy
+    project.reload.destroy
 
-    lambda { task.reload }.should raise_error(ActiveRecord::RecordNotFound)
-    lambda { comment.reload }.should raise_error(ActiveRecord::RecordNotFound)
-    lambda { category.reload }.should raise_error(ActiveRecord::RecordNotFound)
+    expect { task.reload }.to raise_error ActiveRecord::RecordNotFound
+    expect { comment.reload }.to raise_error ActiveRecord::RecordNotFound
+    expect { category.reload }.to raise_error ActiveRecord::RecordNotFound
   end
 end
-
