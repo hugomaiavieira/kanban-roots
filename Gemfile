@@ -30,6 +30,8 @@ group :development, :test do
   gem 'cucumber-rails', '~>1.0', :require => false
   gem 'database_cleaner', '~>0.6'
 
+  # Just a faster web server
+  gem 'thin'
   # Speedy test iterations
   gem 'spork', '~> 0.9.0.rc' # See: http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
 end
