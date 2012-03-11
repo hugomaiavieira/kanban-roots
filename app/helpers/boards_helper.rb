@@ -51,7 +51,7 @@ module BoardsHelper
   end
 
   def category_class task
-    category_class = task.category.nil? ? '' : " #{task.category.to_class}"
+    category_class = task.category.nil? ? '' : " #{task.category.name_as_css_class}"
   end
 
   def points task

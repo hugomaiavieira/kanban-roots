@@ -13,7 +13,7 @@ describe BoardsHelper do
   end
 
   it "category_class generates the category class" do
-    category = stub(:name => 'Bug', :to_class => 'bug')
+    category = stub(:name => 'Bug', :name_as_css_class => 'bug')
     stub_all(:category => category)
     helper.category_class(@task).should == ' bug'
 

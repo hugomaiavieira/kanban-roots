@@ -35,17 +35,17 @@ describe Category do
     category.errors[:color].should include 'should be uniq for project'
   end
 
-  it 'should return the name as a css class' do
+  it 'should return its name as a css class' do
     category = Factory.build :category, :name => 'Feature'
-    category.to_class.should == 'feature'
+    category.name_as_css_class.should == 'feature'
 
     category.name = 'New Feature'
-    category.to_class.should == 'new_feature'
+    category.name_as_css_class.should == 'new_feature'
 
     category.name = 'Other-New Feature'
-    category.to_class.should == 'other_new_feature'
+    category.name_as_css_class.should == 'other_new_feature'
 
     category.name = 'Study/Research'
-    category.to_class.should == 'study_research'
+    category.name_as_css_class.should == 'study_research'
   end
 end

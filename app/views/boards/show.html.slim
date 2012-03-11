@@ -2,7 +2,7 @@
   meta  http-equiv='Refresh' content='300'
   style
     - @categories.each do |category|
-      = '.' + category.to_class + '{background-color: #' + category.color + '}'
+      = '.' + category.name_as_css_class + '{background-color: #' + category.color + '}'
 
 - content_for :project_nav do
   li
@@ -23,7 +23,7 @@ ul.legends
   strong Legend:
   li(style="background-color: #ffffa5;") None
   - @categories.each do |category|
-    li(class=category.to_class)= category.name
+    li(class=category.name_as_css_class)= category.name
 
 .board
   - ['todo', 'doing', 'done'].each do |division|
